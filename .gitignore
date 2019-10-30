@@ -1,0 +1,7 @@
+.idea
+.DS_Store
+
+node_modules
+package-lock.json
+example/video-player/film.mp4
+example/pixi_filter

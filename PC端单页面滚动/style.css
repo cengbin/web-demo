@@ -1,0 +1,130 @@
+*{
+    margin:0;
+    padding:0;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+html,body{
+    position:relative;
+    width:100%;
+    height:100%;
+    overflow: hidden;
+}
+.page{
+    position:relative;
+    width:100%;
+    height:100%;
+    -webkit-transition: 500ms ease;
+    transition: 500ms ease;
+}
+.scene{
+    position:relative;
+    width:100%;
+    height:100%;
+    /*overflow:hidden;*/
+    background-repeat:no-repeat;
+    /*background-attachment:fixed;*/
+    background-size:cover;
+    background-position:center;
+}
+.s1{
+    background-color:cornflowerblue;
+    background-image:url('s1.jpg');
+}
+.s2{
+    background-color:red;
+    background-image:url('s2.jpg');
+}
+.s3{
+    background-color:black;
+    background-image:url('s3.jpg');
+}
+.go-next {
+    text-decoration: none;
+    text-align: center;
+    color: #ffffff;
+    font-size: 36px;
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    margin-left: -15px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    z-index: 99;
+    cursor: pointer;
+}
+.iconfont {
+    font-family: "alipayhome";
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    display: block;
+}
+@font-face{
+    font-family: 'alipayhome';
+    src: url('rei.woff') format('woff');
+}
+
+.onepage-pagination{
+    position: absolute;
+    top:50%;
+    right:20px;
+}
+.onepage-pagination a{
+    display:block;
+    width:20px;
+    height:20px;
+    padding:10px;
+}
+.onepage-pagination a{
+    display:block;
+    width:15px;
+    height:15px;
+    padding:5px 0;
+}
+.onepage-pagination .dotted {
+    display: block;
+    width:10px;
+    height:10px;
+    border: 1px #cccccc solid;
+    position: relative;
+    display: block;
+    border-radius: 50%;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+.onepage-pagination .active .dotted {
+    border-color: #0cf;
+    background-color: #0cf !important;
+}
+
+
+
+nav{
+    position:fixed;
+    left:0;
+    top:0;
+    z-index:10;
+    width:100%;
+    background-color:rgba(0,0,0,.3);
+}
+nav ul{
+    display:block;
+    width:1200px;
+    margin:0 auto;
+}
+nav ul li{
+    display:inline-block;
+    border-left:1px solid white;
+    padding:0 10px;
+    font-size:18px;
+    line-height:3;
+    color:white;
+}
+nav ul li:last-child{
+    border-right:1px solid white;
+}

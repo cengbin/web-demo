@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background-color:cornflowerblue;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+    function generateRenderMap( image, resolution ) {
+        var w=image.width;
+        var h=image.height;
+        ctx.drawImage(image, 0, 0, w, h );
+
+        var imgData = ctx.getImageData(0, 0, w, h );
+        var xyData = [];
+        for (var i = 0; i < h; i++) {
+            for (var j = 0; j < w; j++) {
+                var _num = i * w + j;
+                if (imgData.data[_num * 4 + 3] > 0) xyData.push({x:j,y:i});
+            }
+        }
+        return xyData;
+    }
+
+    var image = new Image();
+    image.onload=function(){
+
+        document.body.appendChild(image);
+
+        var can=document.createElement("canvas");
+        can.width=image.width;
+        can.height=image.height;
+        document.body.appendChild(can);
+
+        ctx = can.getContext("2d");
+        ctx.drawImage(image, 0, 0);
+        img_data=generateRenderMap(image,2);
+        console.log(img_data);
+
+        ctx.clearRect(0,0,image.width,image.height);
+        ctx.fillStyle="#0000ff";
+        for(var i=1;i<img_data.length;i++){
+            ctx.fillRect(img_data[i].x,img_data[i].y,1,1);
+        }
+        ctx.stroke();
+    }
+    image.src='test6.png';
+</script>

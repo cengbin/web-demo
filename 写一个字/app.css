@@ -1,0 +1,53 @@
+body{
+    margin:0;
+    padding:0;
+}
+.game-canvas{
+    display:block;
+    margin:0 auto;
+    margin-top:10px;
+}
+.button-group{
+    display:block;
+    width:800px;
+    margin:0 auto;
+    margin-top:20px;
+}
+.clearfix:after{
+    content:"";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+}
+.color-button{
+    display:block;
+    width:40px;
+    height:40px;
+    margin-right:20px;
+    float:left;
+}
+.button-red{
+    background-color:red;
+}
+.button-yellow{
+    background-color:yellow;
+}
+.button-blue{
+    background-color:blue;
+}
+.button-black{
+    background-color:black;
+}
+.button-selected{
+    border:5px solid gray;
+    box-shadow:3px 3px 5px #888;
+}
+.remove-button{
+    display:inline-block;
+    border:3px solid #ccc;
+    width:60px;
+    text-align:center;
+    line-height:40px;
+    box-shadow:3px 3px 5px #888;
+}

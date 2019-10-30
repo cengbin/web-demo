@@ -1,0 +1,12 @@
+{
+  "description": "WXMoment Orientation Tip",
+  "scripts": [
+    "index.js"
+  ],
+  "templates": [
+    "template.html"
+  ],
+  "locals": [
+    "zepto"
+  ]
+}

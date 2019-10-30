@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SoundJS: Audio</title>
+</head>
+<body>
+<p id="status">Hello World.</p>
+<script type="text/javascript" src="soundjs-0.6.1.min.js"></script>
+<script type="text/javascript" src="H5Sound.js"></script>
+
+<script>
+    init();
+
+	function init() {
+		var sounds = [
+			{src: "sound/s1.mp3", id: 1},
+			{src: "sound/s2.mp3", id: 2},
+			{src: "sound/s3.mp3", id: 3},
+			{src: "sound/bg.mp3", id: "bg"}
+		];
+		
+		H5Sound.load(sounds,soundLoadComplete);
+	}
+	function soundLoadComplete()
+	{
+		document.getElementById("status").innerHTML = "soundLoadComplete";
+
+		H5Sound.play("bg",0);
+
+		setTimeout('playSound(1)',3000);
+		setTimeout('playSound(2)',8000);
+		setTimeout('playSound(3)',12000);
+	}
+
+
+	function playSound(_id) {
+		document.getElementById("status").innerHTML = "playing"+_id;
+		H5Sound.play(_id,1,function()
+		{
+			document.getElementById("status").innerHTML = "played"+_id;
+		})
+	
+	}
+</script>
+
+</body>
+</html>

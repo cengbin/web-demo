@@ -1,0 +1,28 @@
+{
+	"groups":[{
+			"keys":"bg_jpg,sp1,sp2,sp3",
+			"name":"preload"
+		}],
+	"resources":[
+		{
+			"name":"bg_jpg",
+			"type":"image",
+			"url":"assets/bg.jpg"
+		},
+		{
+			"name":"sp1",
+			"type":"image",
+			"url":"assets/sp11_01.jpg"
+		},
+		{
+			"name":"sp2",
+			"type":"image",
+			"url":"assets/sp11_04.jpg"
+		},
+		{
+			"name":"sp3",
+			"type":"image",
+			"url":"assets/sp2.png"
+		}
+	]
+}

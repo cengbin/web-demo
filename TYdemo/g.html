@@ -1,0 +1,46 @@
+<html>
+
+<head>
+<title>DeviceOrientationEvent</title>
+<meta charset="UTF-8" />
+</head>
+<p>Z轴(左右)：<span id="alpha">0</span>
+</p>
+
+<p>X轴(前后)：<span id="beta">0</span>
+</p>
+
+<p>Time：<span id="tNum">0</span>
+</p>
+
+<script type="text/javascript">
+
+
+if (window.DeviceOrientationEvent) {
+	window.addEventListener("deviceorientation", orientationHandler, false);
+} else {
+	document.body.innerHTML = "What user agent u r using???";
+};
+
+
+
+
+function orientationHandler(event) {
+	var _a=180-Math.abs(event.alpha-180);
+	var _b=event.beta-90;
+	document.getElementById("alpha").innerHTML = _a;
+	document.getElementById("beta").innerHTML = _b;
+}
+
+var tNum=0;
+setInterval(loop, 1000);
+function loop() {
+    tNum++;
+    document.getElementById("tNum").innerHTML = tNum;
+}
+
+
+</script>
+</body>
+
+</html>

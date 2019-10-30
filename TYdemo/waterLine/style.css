@@ -1,0 +1,25 @@
+body,html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #284c8e;
+
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+}
+#canvas
+{
+    display:block;
+    position: absolute;
+    z-index: 0;
+}
+#landscape
+{
+    background:#000000 url(assets/roate.png) center center no-repeat;
+    position: absolute;
+    z-index: 1;
+}

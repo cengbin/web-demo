@@ -1,0 +1,3335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-12-22T10:40:36Z</created>
+    <modified>2010-12-22T10:40:36Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.010000"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="file12-image" name="file12">
+      <init_from>file://X:/Card/lib/dimian.png</init_from>
+    </image>
+    <image id="file1-image" name="file1">
+      <init_from>file://X:/Card/lib/fangzi-tietu.jpg</init_from>
+    </image>
+    <image id="file2-image" name="file2">
+      <init_from>file://X:/heka_ceshi/yancong_tietu.jpg</init_from>
+    </image>
+    <image id="file14-image" name="file14">
+      <init_from>file://X:/Card/lib/letter_cell.png</init_from>
+    </image>
+    <image id="file18-image" name="file18">
+      <init_from>file://X:/Card/lib/xiaoshu_uv.jpg</init_from>
+    </image>
+    <image id="file20-image" name="file20">
+      <init_from>file://X:/Card/lib/cao_uv.png</init_from>
+    </image>
+    <image id="file19-image" name="file19">
+      <init_from>file://X:/Card/lib/shan.jpg</init_from>
+    </image>
+    <image id="file17-image" name="file17">
+      <init_from>file://X:/Card/lib/shu_uv.jpg</init_from>
+    </image>
+    <image id="file21-image" name="file21">
+      <init_from>file://X:/Card/lib/LULULULULU.jpg</init_from>
+    </image>
+    <image id="file11-image" name="file11">
+      <init_from>file://X:/Card/lib/yan.jpg</init_from>
+    </image>
+    <image id="file22-image" name="file22">
+      <init_from>file://X:/Card/lib/niao.jpg</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="lambert4" name="lambert4">
+      <instance_effect url="#lambert4-fx"/>
+    </material>
+    <material id="lambert2" name="lambert2">
+      <instance_effect url="#lambert2-fx"/>
+    </material>
+    <material id="lambert3" name="lambert3">
+      <instance_effect url="#lambert3-fx"/>
+    </material>
+    <material id="lambert16" name="lambert16">
+      <instance_effect url="#lambert16-fx"/>
+    </material>
+    <material id="lambert1" name="lambert1">
+      <instance_effect url="#lambert1-fx"/>
+    </material>
+    <material id="lambert20" name="lambert20">
+      <instance_effect url="#lambert20-fx"/>
+    </material>
+    <material id="lambert22" name="lambert22">
+      <instance_effect url="#lambert22-fx"/>
+    </material>
+    <material id="lambert24" name="lambert24">
+      <instance_effect url="#lambert24-fx"/>
+    </material>
+    <material id="lambert23" name="lambert23">
+      <instance_effect url="#lambert23-fx"/>
+    </material>
+    <material id="lambert21" name="lambert21">
+      <instance_effect url="#lambert21-fx"/>
+    </material>
+    <material id="lambert19" name="lambert19">
+      <instance_effect url="#lambert19-fx"/>
+    </material>
+    <material id="lambert14" name="lambert14">
+      <instance_effect url="#lambert14-fx"/>
+    </material>
+    <material id="lambert26" name="lambert26">
+      <instance_effect url="#lambert26-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="lambert4-fx" name="lambert4">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file12-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent>
+              <texture texture="file12-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="lambert2-fx" name="lambert2">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file1-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent>
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="lambert3-fx" name="lambert3">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file2-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent>
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="lambert16-fx" name="lambert16">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file14-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent>
+              <texture texture="file14-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="lambert1-fx" name="lambert1">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.400000  0.400000 0.400000 1.000000</color>
+            </diffuse>
+            <transparent>
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="lambert20-fx" name="lambert20">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.400000  0.400000 0.400000 1.000000</color>
+            </diffuse>
+            <transparent>
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="lambert22-fx" name="lambert22">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file18-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent>
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="lambert24-fx" name="lambert24">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file20-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent>
+              <texture texture="file20-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="lambert23-fx" name="lambert23">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file19-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent>
+              <texture texture="file19-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="lambert21-fx" name="lambert21">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file17-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent>
+              <texture texture="file17-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="lambert19-fx" name="lambert19">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file21-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent>
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="lambert14-fx" name="lambert14">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file11-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent>
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="lambert26-fx" name="lambert26">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file22-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent>
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="floor-lib" name="floorMesh">
+      <mesh>
+        <source id="floor-lib-Position">
+          <float_array id="floor-lib-Position-array" count="45">
+-20.590469 0.001103 14.143861
+19.764793 0.000953 14.143863
+-20.590469 0.001159 -14.145478
+19.764786 0.001159 -14.145473
+19.764790 0.001056 -0.000912
+-20.590469 0.001131 -0.000702
+-0.412801 0.001028 14.143863
+-0.412840 0.001094 -0.000807
+-0.412879 0.001159 -14.145476
+9.675953 0.001159 -14.145474
+9.675975 0.001075 -0.000859
+9.675997 0.000990 14.143863
+-10.501675 0.001159 -14.145478
+-10.501655 0.001112 -0.000754
+-10.501635 0.001066 14.143863
+</float_array>
+          <technique_common>
+            <accessor source="#floor-lib-Position-array" count="15" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="floor-lib-Normal0">
+          <float_array id="floor-lib-Normal0-array" count="144">
+0.000003 1.000000 0.000004
+0.000003 1.000000 0.000005
+0.000002 1.000000 0.000005
+0.000002 1.000000 0.000005
+0.000003 1.000000 0.000004
+0.000003 1.000000 0.000004
+0.000001 1.000000 0.000005
+0.000003 1.000000 0.000004
+0.000002 1.000000 0.000005
+0.000003 1.000000 0.000007
+0.000002 1.000000 0.000007
+0.000002 1.000000 0.000006
+0.000002 1.000000 0.000006
+0.000003 1.000000 0.000006
+0.000003 1.000000 0.000007
+0.000001 1.000000 0.000006
+0.000002 1.000000 0.000006
+-0.000000 1.000000 0.000006
+0.000001 1.000000 0.000005
+0.000002 1.000000 0.000005
+-0.000000 1.000000 0.000005
+0.000003 1.000000 0.000006
+0.000002 1.000000 0.000006
+0.000002 1.000000 0.000005
+0.000002 1.000000 0.000005
+0.000003 1.000000 0.000005
+0.000003 1.000000 0.000006
+0.000002 1.000000 0.000002
+0.000002 1.000000 0.000002
+0.000002 1.000000 0.000002
+0.000004 1.000000 0.000003
+0.000003 1.000000 0.000004
+0.000003 1.000000 0.000004
+0.000002 1.000000 0.000007
+0.000002 1.000000 0.000006
+0.000002 1.000000 0.000007
+0.000001 1.000000 0.000006
+0.000002 1.000000 0.000005
+0.000002 1.000000 0.000006
+-0.000000 1.000000 0.000003
+-0.000000 1.000000 0.000003
+-0.000000 1.000000 0.000003
+0.000002 1.000000 0.000002
+0.000002 1.000000 0.000002
+0.000002 1.000000 0.000002
+-0.000000 1.000000 0.000003
+-0.000000 1.000000 0.000003
+-0.000000 1.000000 0.000003
+</float_array>
+          <technique_common>
+            <accessor source="#floor-lib-Normal0-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="floor-lib-UV0">
+          <float_array id="floor-lib-UV0-array" count="30">
+0.999992 0.998512
+-0.000004 0.998497
+-0.000004 0.001486
+0.999996 0.001486
+0.999994 0.499999
+-0.000004 0.499992
+0.499996 0.001486
+0.499995 0.499995
+0.499994 0.998504
+0.749993 0.998508
+0.749994 0.499997
+0.749996 0.001486
+0.249995 0.998501
+0.249995 0.499993
+0.249996 0.001486
+</float_array>
+          <technique_common>
+            <accessor source="#floor-lib-UV0-array" count="15" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="floor-lib-Vertex">
+          <input semantic="POSITION" source="#floor-lib-Position"/>
+        </vertices>
+        <polygons material="lambert4" count="16">
+          <input semantic="VERTEX" offset="0" source="#floor-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#floor-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#floor-lib-UV0"/>
+          <p>14 0 14 6 1 6 7 2 7</p>
+          <p>7 3 7 13 4 13 14 5 14</p>
+          <p>8 6 8 13 7 13 7 8 7</p>
+          <p>1 9 3 4 10 4 10 11 10</p>
+          <p>10 12 10 11 13 11 1 14 3</p>
+          <p>9 15 9 10 16 10 3 17 0</p>
+          <p>8 18 8 7 19 7 9 20 9</p>
+          <p>11 21 11 10 22 10 7 23 7</p>
+          <p>7 24 7 6 25 6 11 26 11</p>
+          <p>5 27 5 13 28 13 2 29 1</p>
+          <p>0 30 2 14 31 14 13 32 13</p>
+          <p>3 33 0 10 34 10 4 35 4</p>
+          <p>9 36 9 7 37 7 10 38 10</p>
+          <p>8 39 8 12 40 12 13 41 13</p>
+          <p>0 42 2 13 43 13 5 44 5</p>
+          <p>2 45 1 13 46 13 12 47 12</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="house_ncl1_1-lib" name="house_ncl1_1Mesh">
+      <mesh>
+        <source id="house_ncl1_1-lib-Position">
+          <float_array id="house_ncl1_1-lib-Position-array" count="51">
+-2.106037 1.743012 -0.485948
+-2.243250 0.029026 -0.601084
+-3.586362 3.537146 -1.728089
+-3.586362 0.029026 -1.728089
+-3.441032 3.537146 -1.901287
+-1.712053 1.438806 -0.451976
+-6.521897 4.124818 1.770345
+-3.441032 4.124818 -1.901287
+-1.505114 1.753145 -0.278334
+-7.647855 0.029026 0.384545
+-7.785069 1.743012 0.269409
+-5.066689 1.743012 -2.970230
+-4.929475 0.029026 -2.855094
+-8.250876 1.438806 0.321034
+-5.168559 1.438806 -3.352329
+-8.457815 1.753145 0.147392
+-5.375497 1.753145 -3.525971
+</float_array>
+          <technique_common>
+            <accessor source="#house_ncl1_1-lib-Position-array" count="17" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="house_ncl1_1-lib-Normal0">
+          <float_array id="house_ncl1_1-lib-Normal0-array" count="180">
+0.642788 0.000000 -0.766044
+0.642788 0.000000 -0.766044
+0.642788 -0.000000 -0.766044
+0.642788 -0.000000 -0.766044
+0.642788 -0.000000 -0.766044
+0.642788 0.000000 -0.766044
+-0.525041 -0.732508 -0.433317
+-0.525041 -0.732508 -0.433317
+-0.525041 -0.732508 -0.433317
+-0.525041 -0.732508 -0.433317
+-0.525041 -0.732508 -0.433317
+-0.525041 -0.732508 -0.433317
+0.642505 0.000111 -0.766282
+0.642505 0.000111 -0.766282
+0.642505 0.000111 -0.766282
+0.642505 0.000111 -0.766282
+0.642505 0.000111 -0.766282
+0.642505 0.000111 -0.766282
+-0.761895 -0.103938 -0.639306
+-0.761895 -0.103938 -0.639306
+-0.761895 -0.103938 -0.639306
+-0.761895 -0.103938 -0.639306
+-0.761895 -0.103938 -0.639306
+-0.761895 -0.103938 -0.639306
+0.642788 0.000000 -0.766044
+0.642787 0.000000 -0.766044
+0.642787 0.000000 -0.766044
+0.642787 0.000000 -0.766044
+0.642788 0.000000 -0.766044
+0.642788 0.000000 -0.766044
+0.524651 -0.728652 0.440235
+0.524651 -0.728652 0.440235
+0.521283 -0.730586 0.441031
+0.521283 -0.730586 0.441031
+0.521283 -0.730586 0.441031
+0.524651 -0.728652 0.440235
+0.521283 -0.730586 0.441031
+0.521283 -0.730586 0.441031
+0.517905 -0.732509 0.441820
+0.517905 -0.732509 0.441820
+0.517905 -0.732509 0.441820
+0.521283 -0.730586 0.441031
+-0.580980 -0.651772 -0.487500
+-0.580980 -0.651772 -0.487500
+-0.580980 -0.651772 -0.487500
+-0.580980 -0.651772 -0.487500
+-0.580980 -0.651772 -0.487500
+-0.580980 -0.651772 -0.487500
+0.643070 0.000110 -0.765807
+0.643070 0.000110 -0.765807
+0.643070 0.000110 -0.765807
+0.643070 0.000110 -0.765807
+0.643070 0.000110 -0.765807
+0.643070 0.000110 -0.765807
+-0.524323 0.729055 -0.439959
+-0.524323 0.729055 -0.439959
+-0.524323 0.729055 -0.439959
+-0.524323 0.729055 -0.439959
+-0.524323 0.729055 -0.439959
+-0.524323 0.729055 -0.439959
+</float_array>
+          <technique_common>
+            <accessor source="#house_ncl1_1-lib-Normal0-array" count="60" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="house_ncl1_1-lib-UV0">
+          <float_array id="house_ncl1_1-lib-UV0-array" count="46">
+0.496480 0.225432
+0.496480 0.490541
+0.351065 0.356492
+0.365221 0.225432
+0.627738 0.225432
+0.641894 0.356492
+0.220600 0.562730
+0.497793 0.562682
+0.497750 0.589034
+0.220734 0.590209
+0.769161 0.562730
+0.769145 0.589091
+0.950951 0.946854
+0.819663 0.947111
+0.819663 0.587884
+0.950951 0.587884
+0.769169 0.507731
+0.220590 0.507731
+0.497524 0.507731
+0.791928 0.947634
+0.769145 0.947749
+0.498004 0.947688
+0.791928 0.587857
+</float_array>
+          <technique_common>
+            <accessor source="#house_ncl1_1-lib-UV0-array" count="23" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="house_ncl1_1-lib-Vertex">
+          <input semantic="POSITION" source="#house_ncl1_1-lib-Position"/>
+        </vertices>
+        <polygons material="lambert2" count="20">
+          <input semantic="VERTEX" offset="0" source="#house_ncl1_1-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#house_ncl1_1-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#house_ncl1_1-lib-UV0"/>
+          <p>3 0 0 2 1 1 0 2 2</p>
+          <p>0 3 2 1 4 3 3 5 0</p>
+          <p>0 6 17 2 7 18 4 8 7</p>
+          <p>4 9 7 5 10 6 0 11 17</p>
+          <p>5 12 6 4 13 7 7 14 8</p>
+          <p>7 15 8 8 16 9 5 17 6</p>
+          <p>9 18 12 10 19 13 11 20 14</p>
+          <p>11 21 14 12 22 15 9 23 12</p>
+          <p>3 24 0 12 25 4 11 26 5</p>
+          <p>11 27 5 2 28 1 3 29 0</p>
+          <p>10 30 13 13 31 19 14 32 22</p>
+          <p>14 33 22 11 34 14 10 35 13</p>
+          <p>11 36 16 14 37 10 4 38 7</p>
+          <p>4 39 7 2 40 18 11 41 16</p>
+          <p>13 42 19 15 43 20 16 44 11</p>
+          <p>16 45 11 14 46 22 13 47 19</p>
+          <p>14 48 10 16 49 11 7 50 8</p>
+          <p>7 51 8 4 52 7 14 53 10</p>
+          <p>6 54 21 7 55 8 16 56 11</p>
+          <p>16 57 11 15 58 20 6 59 21</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="yancong-lib" name="yancongMesh">
+      <mesh>
+        <source id="yancong-lib-Position">
+          <float_array id="yancong-lib-Position-array" count="24">
+-5.387999 2.870763 -1.639899
+-5.002301 3.342782 -1.316261
+-5.387999 4.052386 -1.639899
+-5.002301 4.052386 -1.316261
+-5.064360 4.052386 -2.025597
+-4.678662 4.052386 -1.701958
+-5.064360 2.870763 -2.025597
+-4.678662 3.342782 -1.701958
+</float_array>
+          <technique_common>
+            <accessor source="#yancong-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="yancong-lib-Normal0">
+          <float_array id="yancong-lib-Normal0-array" count="72">
+0.642787 0.000000 -0.766045
+0.642787 0.000000 -0.766045
+0.642787 0.000000 -0.766045
+0.642787 0.000000 -0.766045
+0.642787 0.000000 -0.766045
+0.642787 0.000000 -0.766045
+0.766044 0.000000 0.642788
+0.766044 0.000000 0.642788
+0.766044 0.000000 0.642788
+0.766044 0.000000 0.642788
+0.766044 0.000000 0.642788
+0.766044 0.000000 0.642788
+-0.766044 0.000000 -0.642788
+-0.766044 0.000000 -0.642788
+-0.766044 0.000000 -0.642788
+-0.766044 0.000000 -0.642788
+-0.766044 0.000000 -0.642788
+-0.766044 0.000000 -0.642788
+-0.642788 0.000000 0.766044
+-0.642788 0.000000 0.766044
+-0.642788 0.000000 0.766044
+-0.642788 0.000000 0.766044
+-0.642788 0.000000 0.766044
+-0.642788 0.000000 0.766044
+</float_array>
+          <technique_common>
+            <accessor source="#yancong-lib-Normal0-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="yancong-lib-UV0">
+          <float_array id="yancong-lib-UV0-array" count="20">
+0.501191 1.000956
+0.252671 1.000956
+0.252671 0.646998
+0.501191 0.412361
+0.003351 0.647248
+1.001101 1.000956
+0.750746 1.000956
+0.003351 1.000956
+1.001101 0.646542
+0.750746 0.412258
+</float_array>
+          <technique_common>
+            <accessor source="#yancong-lib-UV0-array" count="10" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="yancong-lib-Vertex">
+          <input semantic="POSITION" source="#yancong-lib-Position"/>
+        </vertices>
+        <polygons material="lambert3" count="8">
+          <input semantic="VERTEX" offset="0" source="#yancong-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#yancong-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#yancong-lib-UV0"/>
+          <p>4 0 0 5 1 1 7 2 2</p>
+          <p>7 3 2 6 4 3 4 5 0</p>
+          <p>1 6 4 7 7 2 5 8 1</p>
+          <p>5 9 1 3 10 7 1 11 4</p>
+          <p>6 12 3 0 13 9 2 14 6</p>
+          <p>2 15 6 4 16 0 6 17 3</p>
+          <p>2 18 6 0 19 9 1 20 8</p>
+          <p>1 21 8 3 22 5 2 23 6</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cell1-lib" name="cell1Mesh">
+      <mesh>
+        <source id="cell1-lib-Position">
+          <float_array id="cell1-lib-Position-array" count="12">
+-4.699999 -0.000000 2.899998
+4.699999 -0.000000 2.899998
+-4.699999 0.000000 -2.899996
+4.699999 0.000000 -2.899996
+</float_array>
+          <technique_common>
+            <accessor source="#cell1-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell1-lib-Normal0">
+          <float_array id="cell1-lib-Normal0-array" count="18">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell1-lib-Normal0-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell1-lib-UV0">
+          <float_array id="cell1-lib-UV0-array" count="8">
+0.000000 1.000000
+1.000000 1.000000
+1.000000 0.000000
+0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell1-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cell1-lib-Vertex">
+          <input semantic="POSITION" source="#cell1-lib-Position"/>
+        </vertices>
+        <polygons material="lambert16" count="2">
+          <input semantic="VERTEX" offset="0" source="#cell1-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cell1-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cell1-lib-UV0"/>
+          <p>2 0 1 0 1 0 3 2 2</p>
+          <p>0 3 0 1 4 3 3 5 2</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cell2-lib" name="cell2Mesh">
+      <mesh>
+        <source id="cell2-lib-Position">
+          <float_array id="cell2-lib-Position-array" count="12">
+-4.699999 -0.000000 2.899998
+4.699999 -0.000000 2.899998
+-4.699999 0.000000 -2.899996
+4.699999 0.000000 -2.899996
+</float_array>
+          <technique_common>
+            <accessor source="#cell2-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell2-lib-Normal0">
+          <float_array id="cell2-lib-Normal0-array" count="18">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell2-lib-Normal0-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell2-lib-UV0">
+          <float_array id="cell2-lib-UV0-array" count="8">
+0.000000 1.000000
+1.000000 1.000000
+1.000000 0.000000
+0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell2-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cell2-lib-Vertex">
+          <input semantic="POSITION" source="#cell2-lib-Position"/>
+        </vertices>
+        <polygons material="lambert16" count="2">
+          <input semantic="VERTEX" offset="0" source="#cell2-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cell2-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cell2-lib-UV0"/>
+          <p>2 0 1 0 1 0 3 2 2</p>
+          <p>0 3 0 1 4 3 3 5 2</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cell3-lib" name="cell3Mesh">
+      <mesh>
+        <source id="cell3-lib-Position">
+          <float_array id="cell3-lib-Position-array" count="12">
+-4.699999 -0.000000 2.899998
+4.699999 -0.000000 2.899998
+-4.699999 0.000000 -2.899996
+4.699999 0.000000 -2.899996
+</float_array>
+          <technique_common>
+            <accessor source="#cell3-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell3-lib-Normal0">
+          <float_array id="cell3-lib-Normal0-array" count="18">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell3-lib-Normal0-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell3-lib-UV0">
+          <float_array id="cell3-lib-UV0-array" count="8">
+0.000000 1.000000
+1.000000 1.000000
+1.000000 0.000000
+0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell3-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cell3-lib-Vertex">
+          <input semantic="POSITION" source="#cell3-lib-Position"/>
+        </vertices>
+        <polygons material="lambert16" count="2">
+          <input semantic="VERTEX" offset="0" source="#cell3-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cell3-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cell3-lib-UV0"/>
+          <p>2 0 1 0 1 0 3 2 2</p>
+          <p>0 3 0 1 4 3 3 5 2</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cell4-lib" name="cell4Mesh">
+      <mesh>
+        <source id="cell4-lib-Position">
+          <float_array id="cell4-lib-Position-array" count="12">
+-4.699999 -0.000000 2.899998
+4.699999 -0.000000 2.899998
+-4.699999 0.000000 -2.899996
+4.699999 0.000000 -2.899996
+</float_array>
+          <technique_common>
+            <accessor source="#cell4-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell4-lib-Normal0">
+          <float_array id="cell4-lib-Normal0-array" count="18">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell4-lib-Normal0-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell4-lib-UV0">
+          <float_array id="cell4-lib-UV0-array" count="8">
+0.000000 1.000000
+1.000000 1.000000
+1.000000 0.000000
+0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell4-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cell4-lib-Vertex">
+          <input semantic="POSITION" source="#cell4-lib-Position"/>
+        </vertices>
+        <polygons material="lambert16" count="2">
+          <input semantic="VERTEX" offset="0" source="#cell4-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cell4-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cell4-lib-UV0"/>
+          <p>2 0 1 0 1 0 3 2 2</p>
+          <p>0 3 0 1 4 3 3 5 2</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cell5-lib" name="cell5Mesh">
+      <mesh>
+        <source id="cell5-lib-Position">
+          <float_array id="cell5-lib-Position-array" count="12">
+-4.699999 -0.000000 2.899998
+4.699999 -0.000000 2.899998
+-4.699999 0.000000 -2.899996
+4.699999 0.000000 -2.899996
+</float_array>
+          <technique_common>
+            <accessor source="#cell5-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell5-lib-Normal0">
+          <float_array id="cell5-lib-Normal0-array" count="18">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell5-lib-Normal0-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell5-lib-UV0">
+          <float_array id="cell5-lib-UV0-array" count="8">
+0.000000 1.000000
+1.000000 1.000000
+1.000000 0.000000
+0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell5-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cell5-lib-Vertex">
+          <input semantic="POSITION" source="#cell5-lib-Position"/>
+        </vertices>
+        <polygons material="lambert16" count="2">
+          <input semantic="VERTEX" offset="0" source="#cell5-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cell5-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cell5-lib-UV0"/>
+          <p>2 0 1 0 1 0 3 2 2</p>
+          <p>0 3 0 1 4 3 3 5 2</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cell6-lib" name="cell6Mesh">
+      <mesh>
+        <source id="cell6-lib-Position">
+          <float_array id="cell6-lib-Position-array" count="12">
+-4.699999 -0.000000 2.899998
+4.699999 -0.000000 2.899998
+-4.699999 0.000000 -2.899996
+4.699999 0.000000 -2.899996
+</float_array>
+          <technique_common>
+            <accessor source="#cell6-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell6-lib-Normal0">
+          <float_array id="cell6-lib-Normal0-array" count="18">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell6-lib-Normal0-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell6-lib-UV0">
+          <float_array id="cell6-lib-UV0-array" count="8">
+0.000000 1.000000
+1.000000 1.000000
+1.000000 0.000000
+0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell6-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cell6-lib-Vertex">
+          <input semantic="POSITION" source="#cell6-lib-Position"/>
+        </vertices>
+        <polygons material="lambert16" count="2">
+          <input semantic="VERTEX" offset="0" source="#cell6-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cell6-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cell6-lib-UV0"/>
+          <p>2 0 1 0 1 0 3 2 2</p>
+          <p>0 3 0 1 4 3 3 5 2</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cell7-lib" name="cell7Mesh">
+      <mesh>
+        <source id="cell7-lib-Position">
+          <float_array id="cell7-lib-Position-array" count="12">
+-4.699999 -0.000000 2.899998
+4.699999 -0.000000 2.899998
+-4.699999 0.000000 -2.899996
+4.699999 0.000000 -2.899996
+</float_array>
+          <technique_common>
+            <accessor source="#cell7-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell7-lib-Normal0">
+          <float_array id="cell7-lib-Normal0-array" count="18">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell7-lib-Normal0-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell7-lib-UV0">
+          <float_array id="cell7-lib-UV0-array" count="8">
+0.000000 1.000000
+1.000000 1.000000
+1.000000 0.000000
+0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell7-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cell7-lib-Vertex">
+          <input semantic="POSITION" source="#cell7-lib-Position"/>
+        </vertices>
+        <polygons material="lambert16" count="2">
+          <input semantic="VERTEX" offset="0" source="#cell7-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cell7-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cell7-lib-UV0"/>
+          <p>2 0 1 0 1 0 3 2 2</p>
+          <p>0 3 0 1 4 3 3 5 2</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cell8-lib" name="cell8Mesh">
+      <mesh>
+        <source id="cell8-lib-Position">
+          <float_array id="cell8-lib-Position-array" count="12">
+-4.699999 -0.000000 2.899998
+4.699999 -0.000000 2.899998
+-4.699999 0.000000 -2.899996
+4.699999 0.000000 -2.899996
+</float_array>
+          <technique_common>
+            <accessor source="#cell8-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell8-lib-Normal0">
+          <float_array id="cell8-lib-Normal0-array" count="18">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell8-lib-Normal0-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cell8-lib-UV0">
+          <float_array id="cell8-lib-UV0-array" count="8">
+0.000000 1.000000
+1.000000 1.000000
+1.000000 0.000000
+0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cell8-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cell8-lib-Vertex">
+          <input semantic="POSITION" source="#cell8-lib-Position"/>
+        </vertices>
+        <polygons material="lambert16" count="2">
+          <input semantic="VERTEX" offset="0" source="#cell8-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cell8-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cell8-lib-UV0"/>
+          <p>2 0 1 0 1 0 3 2 2</p>
+          <p>0 3 0 1 4 3 3 5 2</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="lipinhe1-lib" name="lipinhe1Mesh">
+      <mesh>
+        <source id="lipinhe1-lib-Position">
+          <float_array id="lipinhe1-lib-Position-array" count="24">
+-0.673759 -0.673759 0.673759
+0.673759 -0.673759 0.673759
+-0.673759 0.673759 0.673759
+0.673759 0.673759 0.673759
+-0.673759 0.673759 -0.673759
+0.673759 0.673759 -0.673759
+-0.673759 -0.673759 -0.673759
+0.673759 -0.673759 -0.673759
+</float_array>
+          <technique_common>
+            <accessor source="#lipinhe1-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="lipinhe1-lib-Normal0">
+          <float_array id="lipinhe1-lib-Normal0-array" count="72">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#lipinhe1-lib-Normal0-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="lipinhe1-lib-UV0">
+          <float_array id="lipinhe1-lib-UV0-array" count="20">
+0.671553 0.928166
+0.342015 0.928166
+0.342158 0.598690
+0.671399 0.598379
+0.012808 0.598686
+1.000827 0.598063
+0.342136 0.269186
+0.671376 0.268875
+0.012808 0.269148
+1.000827 0.268525
+</float_array>
+          <technique_common>
+            <accessor source="#lipinhe1-lib-UV0-array" count="10" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="lipinhe1-lib-Vertex">
+          <input semantic="POSITION" source="#lipinhe1-lib-Position"/>
+        </vertices>
+        <polygons material="lambert1" count="8">
+          <input semantic="VERTEX" offset="0" source="#lipinhe1-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#lipinhe1-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#lipinhe1-lib-UV0"/>
+          <p>2 0 0 3 1 1 5 2 2</p>
+          <p>5 3 2 4 4 3 2 5 0</p>
+          <p>4 6 3 5 7 2 7 8 6</p>
+          <p>7 9 6 6 10 7 4 11 3</p>
+          <p>1 12 8 7 13 6 5 14 2</p>
+          <p>5 15 2 3 16 4 1 17 8</p>
+          <p>6 18 7 0 19 9 2 20 5</p>
+          <p>2 21 5 4 22 3 6 23 7</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="lipinhe2-lib" name="lipinhe2Mesh">
+      <mesh>
+        <source id="lipinhe2-lib-Position">
+          <float_array id="lipinhe2-lib-Position-array" count="21">
+0.673759 -0.673759 0.673759
+-0.673759 0.673759 0.673759
+0.673759 0.673759 0.673759
+-0.673759 0.673759 -0.673759
+0.673759 0.673759 -0.673759
+-0.673759 -0.673759 -0.673759
+0.673759 -0.673759 -0.673759
+</float_array>
+          <technique_common>
+            <accessor source="#lipinhe2-lib-Position-array" count="7" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="lipinhe2-lib-Normal0">
+          <float_array id="lipinhe2-lib-Normal0-array" count="54">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#lipinhe2-lib-Normal0-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="lipinhe2-lib-UV0">
+          <float_array id="lipinhe2-lib-UV0-array" count="16">
+0.671553 0.928166
+0.342015 0.928166
+0.342158 0.598690
+0.671399 0.598379
+0.012808 0.598686
+0.342136 0.269186
+0.671376 0.268875
+0.012808 0.269148
+</float_array>
+          <technique_common>
+            <accessor source="#lipinhe2-lib-UV0-array" count="8" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="lipinhe2-lib-Vertex">
+          <input semantic="POSITION" source="#lipinhe2-lib-Position"/>
+        </vertices>
+        <polygons material="lambert1" count="6">
+          <input semantic="VERTEX" offset="0" source="#lipinhe2-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#lipinhe2-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#lipinhe2-lib-UV0"/>
+          <p>1 0 0 2 1 1 4 2 2</p>
+          <p>4 3 2 3 4 3 1 5 0</p>
+          <p>3 6 3 4 7 2 6 8 5</p>
+          <p>6 9 5 5 10 6 3 11 3</p>
+          <p>0 12 7 6 13 5 4 14 2</p>
+          <p>4 15 2 2 16 4 0 17 7</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="lipinhe3-lib" name="lipinhe3Mesh">
+      <mesh>
+        <source id="lipinhe3-lib-Position">
+          <float_array id="lipinhe3-lib-Position-array" count="24">
+-0.673759 -0.673759 0.673759
+0.673759 -0.673759 0.673759
+-0.673759 0.673759 0.673759
+0.673759 0.673759 0.673759
+-0.673759 0.673759 -0.673759
+0.673759 0.673759 -0.673759
+-0.673759 -0.673759 -0.673759
+0.673759 -0.673759 -0.673759
+</float_array>
+          <technique_common>
+            <accessor source="#lipinhe3-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="lipinhe3-lib-Normal0">
+          <float_array id="lipinhe3-lib-Normal0-array" count="72">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#lipinhe3-lib-Normal0-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="lipinhe3-lib-UV0">
+          <float_array id="lipinhe3-lib-UV0-array" count="20">
+0.671553 0.928166
+0.342015 0.928166
+0.342158 0.598690
+0.671399 0.598379
+0.012808 0.598686
+1.000827 0.598063
+0.342136 0.269186
+0.671376 0.268875
+0.012808 0.269148
+1.000827 0.268525
+</float_array>
+          <technique_common>
+            <accessor source="#lipinhe3-lib-UV0-array" count="10" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="lipinhe3-lib-Vertex">
+          <input semantic="POSITION" source="#lipinhe3-lib-Position"/>
+        </vertices>
+        <polygons material="lambert1" count="8">
+          <input semantic="VERTEX" offset="0" source="#lipinhe3-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#lipinhe3-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#lipinhe3-lib-UV0"/>
+          <p>2 0 0 3 1 1 5 2 2</p>
+          <p>5 3 2 4 4 3 2 5 0</p>
+          <p>4 6 3 5 7 2 7 8 6</p>
+          <p>7 9 6 6 10 7 4 11 3</p>
+          <p>1 12 8 7 13 6 5 14 2</p>
+          <p>5 15 2 3 16 4 1 17 8</p>
+          <p>6 18 7 0 19 9 2 20 5</p>
+          <p>2 21 5 4 22 3 6 23 7</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="xinxiang1-lib" name="xinxiang1Mesh">
+      <mesh>
+        <source id="xinxiang1-lib-Position">
+          <float_array id="xinxiang1-lib-Position-array" count="39">
+-1.510814 2.042216 0.827490
+-1.510814 3.578323 0.827490
+-0.343455 3.578323 1.825938
+0.459595 3.578323 -1.476256
+1.626953 3.578323 -0.477808
+0.459595 2.042216 -1.476256
+1.626953 2.042216 -0.477808
+-0.205102 -0.006083 0.239799
+-0.205102 2.295245 0.239799
+0.000000 2.295245 0.000000
+0.239800 2.295245 0.205102
+0.000000 -0.006083 0.000000
+0.239800 -0.006083 0.205102
+</float_array>
+          <technique_common>
+            <accessor source="#xinxiang1-lib-Position-array" count="13" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="xinxiang1-lib-Normal0">
+          <float_array id="xinxiang1-lib-Normal0-array" count="90">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.649986 0.000000 -0.759946
+0.649986 0.000000 -0.759946
+0.649986 0.000000 -0.759946
+0.649986 0.000000 -0.759946
+0.649986 0.000000 -0.759946
+0.649986 0.000000 -0.759946
+-0.759946 0.000000 -0.649986
+-0.759946 0.000000 -0.649986
+-0.759946 0.000000 -0.649986
+-0.759946 0.000000 -0.649986
+-0.759946 0.000000 -0.649986
+-0.759946 0.000000 -0.649986
+0.649986 0.000000 -0.759946
+0.649986 0.000000 -0.759946
+0.649986 0.000000 -0.759946
+0.649986 0.000000 -0.759946
+0.649986 0.000000 -0.759946
+0.649986 0.000000 -0.759946
+-0.759946 0.000000 -0.649986
+-0.759946 0.000000 -0.649986
+-0.759946 0.000000 -0.649986
+-0.759946 0.000000 -0.649986
+-0.759946 0.000000 -0.649986
+-0.759946 0.000000 -0.649986
+</float_array>
+          <technique_common>
+            <accessor source="#xinxiang1-lib-Normal0-array" count="30" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="xinxiang1-lib-UV0">
+          <float_array id="xinxiang1-lib-UV0-array" count="28">
+0.502083 0.756359
+0.249232 0.756356
+0.249469 0.255714
+0.502606 0.255714
+0.748768 0.756362
+0.875561 0.042606
+0.814065 0.042606
+0.748768 0.255714
+0.249828 0.001763
+0.502970 0.001763
+0.937058 0.042606
+0.937058 0.538719
+0.814065 0.538719
+0.875561 0.538719
+</float_array>
+          <technique_common>
+            <accessor source="#xinxiang1-lib-UV0-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="xinxiang1-lib-Vertex">
+          <input semantic="POSITION" source="#xinxiang1-lib-Position"/>
+        </vertices>
+        <polygons material="lambert20" count="10">
+          <input semantic="VERTEX" offset="0" source="#xinxiang1-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#xinxiang1-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#xinxiang1-lib-UV0"/>
+          <p>1 0 0 2 1 1 4 2 2</p>
+          <p>4 3 2 3 4 3 1 5 0</p>
+          <p>3 6 3 4 7 2 6 8 8</p>
+          <p>6 9 8 5 10 9 3 11 3</p>
+          <p>5 12 7 0 13 4 1 14 0</p>
+          <p>1 15 0 3 16 3 5 17 7</p>
+          <p>9 18 13 10 19 12 12 20 6</p>
+          <p>12 21 6 11 22 5 9 23 13</p>
+          <p>11 24 5 7 25 10 8 26 11</p>
+          <p>8 27 11 9 28 13 11 29 5</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="xiaoshu1-lib" name="xiaoshu1Mesh">
+      <mesh>
+        <source id="xiaoshu1-lib-Position">
+          <float_array id="xiaoshu1-lib-Position-array" count="24">
+0.065923 2.601986 1.094893
+-0.833537 2.601986 1.990930
+0.961961 2.601986 1.994353
+-0.004251 4.814400 2.229564
+0.000000 0.000000 0.000000
+-2.233815 0.000000 2.225314
+2.225314 0.000000 2.233814
+-0.004251 3.731636 2.229564
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshu1-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="xiaoshu1-lib-Normal0">
+          <float_array id="xiaoshu1-lib-Normal0-array" count="36">
+-0.667997 0.322714 -0.670548
+-0.667997 0.322714 -0.670548
+-0.667997 0.322714 -0.670548
+0.661273 0.358828 -0.658757
+0.661273 0.358828 -0.658757
+0.661273 0.358828 -0.658757
+-0.650119 0.389174 -0.652602
+-0.650119 0.389174 -0.652602
+-0.650119 0.389174 -0.652602
+0.652602 0.389174 -0.650119
+0.652602 0.389174 -0.650119
+0.652602 0.389174 -0.650119
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshu1-lib-Normal0-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="xiaoshu1-lib-UV0">
+          <float_array id="xiaoshu1-lib-UV0-array" count="16">
+0.499521 0.536748
+0.198448 0.536748
+0.500000 1.004075
+0.801552 0.536748
+0.499648 0.026392
+0.195122 0.026392
+0.500000 0.499013
+0.804878 0.026392
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshu1-lib-UV0-array" count="8" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="xiaoshu1-lib-Vertex">
+          <input semantic="POSITION" source="#xiaoshu1-lib-Position"/>
+        </vertices>
+        <polygons material="lambert22" count="4">
+          <input semantic="VERTEX" offset="0" source="#xiaoshu1-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#xiaoshu1-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#xiaoshu1-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 2 2</p>
+          <p>2 3 3 0 4 0 3 5 2</p>
+          <p>4 6 4 5 7 5 7 8 6</p>
+          <p>6 9 7 4 10 4 7 11 6</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="xiaoshu2-lib" name="xiaoshu2Mesh">
+      <mesh>
+        <source id="xiaoshu2-lib-Position">
+          <float_array id="xiaoshu2-lib-Position-array" count="24">
+0.352720 2.494154 1.000576
+-0.296464 2.494154 2.172127
+1.524272 2.494154 1.649760
+0.613904 4.806938 2.139790
+0.000000 0.000000 0.000000
+-1.525886 0.000000 2.753694
+2.753695 0.000000 1.525885
+0.613904 3.725852 2.139790
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshu2-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="xiaoshu2-lib-Normal0">
+          <float_array id="xiaoshu2-lib-Normal0-array" count="36">
+-0.828755 0.319797 -0.459233
+-0.828755 0.319797 -0.459233
+-0.828755 0.319797 -0.459233
+0.453659 0.352036 -0.818697
+0.453659 0.352036 -0.818697
+0.453659 0.352036 -0.818697
+-0.805732 0.389174 -0.446475
+-0.805732 0.389174 -0.446475
+-0.805732 0.389174 -0.446475
+0.446475 0.389174 -0.805732
+0.446475 0.389174 -0.805732
+0.446475 0.389174 -0.805732
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshu2-lib-Normal0-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="xiaoshu2-lib-UV0">
+          <float_array id="xiaoshu2-lib-UV0-array" count="16">
+0.499519 0.537818
+0.197182 0.537818
+0.500000 1.007107
+0.802818 0.537818
+0.499648 0.024785
+0.194972 0.024785
+0.500000 0.497639
+0.805028 0.024785
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshu2-lib-UV0-array" count="8" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="xiaoshu2-lib-Vertex">
+          <input semantic="POSITION" source="#xiaoshu2-lib-Position"/>
+        </vertices>
+        <polygons material="lambert22" count="4">
+          <input semantic="VERTEX" offset="0" source="#xiaoshu2-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#xiaoshu2-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#xiaoshu2-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 2 2</p>
+          <p>2 3 3 0 4 0 3 5 2</p>
+          <p>4 6 4 5 7 5 7 8 6</p>
+          <p>6 9 7 4 10 4 7 11 6</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="xiaoshu3-lib" name="xiaoshu3Mesh">
+      <mesh>
+        <source id="xiaoshu3-lib-Position">
+          <float_array id="xiaoshu3-lib-Position-array" count="24">
+0.336394 2.676680 1.077052
+-0.340368 2.676680 2.194092
+1.453434 2.676680 1.753815
+0.546715 4.952604 2.227459
+0.000000 0.000000 0.000000
+-1.680745 0.000000 2.774173
+2.774174 0.000000 1.680745
+0.546715 3.838758 2.227459
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshu3-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="xiaoshu3-lib-Normal0">
+          <float_array id="xiaoshu3-lib-Normal0-array" count="36">
+-0.809516 0.322714 -0.490448
+-0.809516 0.322714 -0.490448
+-0.809516 0.322714 -0.490448
+0.483664 0.358828 -0.798318
+0.483664 0.358828 -0.798318
+0.483664 0.358828 -0.798318
+-0.787850 0.389174 -0.477322
+-0.787850 0.389174 -0.477322
+-0.787850 0.389174 -0.477322
+0.477322 0.389174 -0.787850
+0.477322 0.389174 -0.787850
+0.477322 0.389174 -0.787850
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshu3-lib-Normal0-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="xiaoshu3-lib-UV0">
+          <float_array id="xiaoshu3-lib-UV0-array" count="16">
+0.499521 0.536748
+0.198448 0.536748
+0.500000 1.004075
+0.801552 0.536748
+0.499648 0.026392
+0.195122 0.026392
+0.500000 0.499013
+0.804878 0.026392
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshu3-lib-UV0-array" count="8" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="xiaoshu3-lib-Vertex">
+          <input semantic="POSITION" source="#xiaoshu3-lib-Position"/>
+        </vertices>
+        <polygons material="lambert22" count="4">
+          <input semantic="VERTEX" offset="0" source="#xiaoshu3-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#xiaoshu3-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#xiaoshu3-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 2 2</p>
+          <p>2 3 3 0 4 0 3 5 2</p>
+          <p>4 6 4 5 7 5 7 8 6</p>
+          <p>6 9 7 4 10 4 7 11 6</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="xiaoshu4-lib" name="xiaoshu4Mesh">
+      <mesh>
+        <source id="xiaoshu4-lib-Position">
+          <float_array id="xiaoshu4-lib-Position-array" count="24">
+0.254799 1.835495 0.729486
+-0.262887 1.835495 1.663728
+1.189040 1.835495 1.247171
+0.463077 3.625941 1.614074
+0.000000 0.000000 0.000000
+-1.150997 0.000000 2.077150
+2.077150 0.000000 1.150997
+0.463077 2.810462 1.614074
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshu4-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="xiaoshu4-lib-Normal0">
+          <float_array id="xiaoshu4-lib-Normal0-array" count="36">
+-0.827824 0.322932 -0.458718
+-0.827824 0.322932 -0.458718
+-0.827824 0.322932 -0.458718
+0.453710 0.351752 -0.818790
+0.453710 0.351752 -0.818790
+0.453710 0.351752 -0.818790
+-0.805732 0.389174 -0.446475
+-0.805732 0.389174 -0.446475
+-0.805732 0.389174 -0.446475
+0.446475 0.389174 -0.805732
+0.446475 0.389174 -0.805732
+0.446475 0.389174 -0.805732
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshu4-lib-Normal0-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="xiaoshu4-lib-UV0">
+          <float_array id="xiaoshu4-lib-UV0-array" count="16">
+0.503056 0.461051
+0.198073 0.461051
+0.500000 0.928960
+0.801927 0.461051
+0.502201 0.027655
+0.200211 0.027655
+0.500000 0.492388
+0.799789 0.027655
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshu4-lib-UV0-array" count="8" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="xiaoshu4-lib-Vertex">
+          <input semantic="POSITION" source="#xiaoshu4-lib-Position"/>
+        </vertices>
+        <polygons material="lambert22" count="4">
+          <input semantic="VERTEX" offset="0" source="#xiaoshu4-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#xiaoshu4-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#xiaoshu4-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 2 2</p>
+          <p>2 3 3 0 4 0 3 5 2</p>
+          <p>4 6 4 5 7 5 7 8 6</p>
+          <p>6 9 7 4 10 4 7 11 6</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cao1-lib" name="cao1Mesh">
+      <mesh>
+        <source id="cao1-lib-Position">
+          <float_array id="cao1-lib-Position-array" count="12">
+-0.600000 -0.000000 0.500000
+0.600000 -0.000000 0.500000
+-0.600000 0.000000 -0.500000
+0.600000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#cao1-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao1-lib-Normal0">
+          <float_array id="cao1-lib-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao1-lib-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao1-lib-UV0">
+          <float_array id="cao1-lib-UV0-array" count="8">
+1.000000 0.997829
+0.000000 0.997829
+1.000000 -0.000000
+0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao1-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cao1-lib-Vertex">
+          <input semantic="POSITION" source="#cao1-lib-Position"/>
+        </vertices>
+        <polygons material="lambert24" count="2">
+          <input semantic="VERTEX" offset="0" source="#cao1-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cao1-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cao1-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 3 3</p>
+          <p>3 3 3 2 2 2 0 0 0</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cao2-lib" name="cao2Mesh">
+      <mesh>
+        <source id="cao2-lib-Position">
+          <float_array id="cao2-lib-Position-array" count="12">
+-0.600000 -0.000000 0.500000
+0.600000 -0.000000 0.500000
+-0.600000 0.000000 -0.500000
+0.600000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#cao2-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao2-lib-Normal0">
+          <float_array id="cao2-lib-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao2-lib-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao2-lib-UV0">
+          <float_array id="cao2-lib-UV0-array" count="8">
+1.000000 0.997829
+0.000000 0.997829
+1.000000 -0.000000
+0.000000 -0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao2-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cao2-lib-Vertex">
+          <input semantic="POSITION" source="#cao2-lib-Position"/>
+        </vertices>
+        <polygons material="lambert24" count="2">
+          <input semantic="VERTEX" offset="0" source="#cao2-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cao2-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cao2-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 3 3</p>
+          <p>3 3 3 2 2 2 0 0 0</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cao3-lib" name="cao3Mesh">
+      <mesh>
+        <source id="cao3-lib-Position">
+          <float_array id="cao3-lib-Position-array" count="12">
+-0.600000 -0.000000 0.500000
+0.600000 -0.000000 0.500000
+-0.600000 0.000000 -0.500000
+0.600000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#cao3-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao3-lib-Normal0">
+          <float_array id="cao3-lib-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao3-lib-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao3-lib-UV0">
+          <float_array id="cao3-lib-UV0-array" count="8">
+1.000000 0.997829
+0.000000 0.997829
+1.000000 -0.000000
+0.000000 -0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao3-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cao3-lib-Vertex">
+          <input semantic="POSITION" source="#cao3-lib-Position"/>
+        </vertices>
+        <polygons material="lambert24" count="2">
+          <input semantic="VERTEX" offset="0" source="#cao3-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cao3-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cao3-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 3 3</p>
+          <p>3 3 3 2 2 2 0 0 0</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cao4-lib" name="cao4Mesh">
+      <mesh>
+        <source id="cao4-lib-Position">
+          <float_array id="cao4-lib-Position-array" count="12">
+-0.600000 -0.000000 0.500000
+0.600000 -0.000000 0.500000
+-0.600000 0.000000 -0.500000
+0.600000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#cao4-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao4-lib-Normal0">
+          <float_array id="cao4-lib-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao4-lib-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao4-lib-UV0">
+          <float_array id="cao4-lib-UV0-array" count="8">
+1.000000 0.997829
+0.000000 0.997829
+1.000000 -0.000000
+0.000000 -0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao4-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cao4-lib-Vertex">
+          <input semantic="POSITION" source="#cao4-lib-Position"/>
+        </vertices>
+        <polygons material="lambert24" count="2">
+          <input semantic="VERTEX" offset="0" source="#cao4-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cao4-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cao4-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 3 3</p>
+          <p>3 3 3 2 2 2 0 0 0</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cao5-lib" name="cao5Mesh">
+      <mesh>
+        <source id="cao5-lib-Position">
+          <float_array id="cao5-lib-Position-array" count="12">
+-0.600000 -0.000000 0.500000
+0.600000 -0.000000 0.500000
+-0.600000 0.000000 -0.500000
+0.600000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#cao5-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao5-lib-Normal0">
+          <float_array id="cao5-lib-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao5-lib-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao5-lib-UV0">
+          <float_array id="cao5-lib-UV0-array" count="8">
+1.000000 0.997829
+0.000000 0.997829
+1.000000 -0.000000
+0.000000 -0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao5-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cao5-lib-Vertex">
+          <input semantic="POSITION" source="#cao5-lib-Position"/>
+        </vertices>
+        <polygons material="lambert24" count="2">
+          <input semantic="VERTEX" offset="0" source="#cao5-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cao5-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cao5-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 3 3</p>
+          <p>3 3 3 2 2 2 0 0 0</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cao6-lib" name="cao6Mesh">
+      <mesh>
+        <source id="cao6-lib-Position">
+          <float_array id="cao6-lib-Position-array" count="12">
+-0.600000 -0.000000 0.500000
+0.600000 -0.000000 0.500000
+-0.600000 0.000000 -0.500000
+0.600000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#cao6-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao6-lib-Normal0">
+          <float_array id="cao6-lib-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao6-lib-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao6-lib-UV0">
+          <float_array id="cao6-lib-UV0-array" count="8">
+1.000000 0.997829
+0.000000 0.997829
+1.000000 -0.000000
+0.000000 -0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao6-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cao6-lib-Vertex">
+          <input semantic="POSITION" source="#cao6-lib-Position"/>
+        </vertices>
+        <polygons material="lambert24" count="2">
+          <input semantic="VERTEX" offset="0" source="#cao6-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cao6-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cao6-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 3 3</p>
+          <p>3 3 3 2 2 2 0 0 0</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="cao7-lib" name="cao7Mesh">
+      <mesh>
+        <source id="cao7-lib-Position">
+          <float_array id="cao7-lib-Position-array" count="12">
+-0.600000 -0.000000 0.500000
+0.600000 -0.000000 0.500000
+-0.600000 0.000000 -0.500000
+0.600000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#cao7-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao7-lib-Normal0">
+          <float_array id="cao7-lib-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao7-lib-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cao7-lib-UV0">
+          <float_array id="cao7-lib-UV0-array" count="8">
+1.000000 0.997829
+0.000000 0.997829
+1.000000 -0.000000
+0.000000 -0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#cao7-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cao7-lib-Vertex">
+          <input semantic="POSITION" source="#cao7-lib-Position"/>
+        </vertices>
+        <polygons material="lambert24" count="2">
+          <input semantic="VERTEX" offset="0" source="#cao7-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#cao7-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#cao7-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 3 3</p>
+          <p>3 3 3 2 2 2 0 0 0</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="xiaoshan-lib" name="xiaoshanMesh">
+      <mesh>
+        <source id="xiaoshan-lib-Position">
+          <float_array id="xiaoshan-lib-Position-array" count="12">
+-2.500000 -0.000000 1.264014
+2.500000 -0.000000 1.264014
+-2.500000 0.000000 -0.850000
+2.500000 0.000000 -0.850000
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshan-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="xiaoshan-lib-Normal0">
+          <float_array id="xiaoshan-lib-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshan-lib-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="xiaoshan-lib-UV0">
+          <float_array id="xiaoshan-lib-UV0-array" count="8">
+1.000000 0.998193
+0.000000 0.998193
+1.000000 0.000000
+0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#xiaoshan-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="xiaoshan-lib-Vertex">
+          <input semantic="POSITION" source="#xiaoshan-lib-Position"/>
+        </vertices>
+        <polygons material="lambert23" count="2">
+          <input semantic="VERTEX" offset="0" source="#xiaoshan-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#xiaoshan-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#xiaoshan-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 3 3</p>
+          <p>3 3 3 2 2 2 0 0 0</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="tree-lib" name="treeMesh">
+      <mesh>
+        <source id="tree-lib-Position">
+          <float_array id="tree-lib-Position-array" count="75">
+-3.238818 4.943701 -2.719553
+-3.238819 4.943701 2.589735
+2.070468 4.943701 -2.719552
+-0.584176 9.099825 -0.064908
+-4.981915 1.179563 -4.462649
+-4.981916 1.179563 4.332832
+3.813565 1.179563 -4.462649
+-1.746412 8.207466 -1.227145
+-1.746412 8.207466 1.097328
+0.578061 8.207466 -1.227145
+-0.584176 11.778083 -0.064908
+-0.816478 0.016920 0.500000
+-0.816478 2.016372 0.500000
+-0.816478 2.016372 -0.500000
+0.183522 2.016372 -0.500000
+-0.816478 0.016920 -0.500000
+0.183522 0.016920 -0.500000
+0.544151 4.956511 -1.193235
+-1.720871 4.956736 -1.201604
+-1.709471 4.956433 1.060387
+-4.981915 1.179563 -0.064909
+-1.715171 4.956584 -0.070609
+-0.588360 4.956624 -1.197420
+-0.584175 1.179563 -4.462649
+-1.911497 7.021763 -1.392231
+</float_array>
+          <technique_common>
+            <accessor source="#tree-lib-Position-array" count="25" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="tree-lib-Normal0">
+          <float_array id="tree-lib-Normal0-array" count="162">
+-0.842757 0.538294 -0.000000
+-0.842757 0.538294 -0.000000
+-0.842757 0.538294 -0.000000
+0.000000 0.538294 -0.842757
+0.000000 0.538294 -0.842757
+0.000000 0.538294 -0.842757
+-0.950894 0.309516 0.000000
+-0.950894 0.309516 0.000000
+-0.950894 0.309516 0.000000
+0.000000 0.309516 -0.950894
+0.000000 0.309516 -0.950894
+0.000000 0.309516 -0.950894
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+0.000000 0.653498 -0.756928
+0.000000 0.653498 -0.756928
+0.000000 0.653498 -0.756928
+-0.756350 0.654167 0.000000
+-0.756347 0.654167 0.001949
+-0.756347 0.654167 0.001949
+-0.755773 0.654834 -0.000000
+-0.755773 0.654834 -0.000000
+-0.755773 0.654834 -0.000000
+0.001430 0.653990 -0.756502
+0.001430 0.653990 -0.756502
+0.000000 0.653989 -0.756504
+0.001430 0.653990 -0.756502
+0.002860 0.653989 -0.756499
+0.001430 0.653990 -0.756502
+0.002854 0.655888 -0.754853
+0.002854 0.655888 -0.754853
+0.002854 0.655888 -0.754853
+-0.758590 0.651557 0.003910
+-0.758590 0.651557 0.003910
+-0.758590 0.651557 0.003910
+-0.756347 0.654167 0.001949
+-0.756341 0.654165 0.003898
+-0.756347 0.654167 0.001949
+0.000000 0.538295 -0.842757
+0.000000 0.538295 -0.842757
+0.000000 0.538295 -0.842757
+-0.842757 0.538295 -0.000000
+-0.842757 0.538295 -0.000000
+-0.842757 0.538295 -0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#tree-lib-Normal0-array" count="54" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="tree-lib-UV0">
+          <float_array id="tree-lib-UV0-array" count="50">
+0.315983 0.110559
+0.402254 0.287016
+0.218998 0.267000
+0.120028 0.110580
+0.959512 0.538501
+0.956047 0.957630
+0.514319 0.535591
+0.261659 0.725824
+0.345314 0.813031
+0.200929 0.867032
+0.140362 0.725532
+0.697462 0.349852
+0.605672 0.349722
+0.605672 0.074151
+0.697462 0.074282
+0.789252 0.074412
+0.789252 0.349983
+0.677354 0.703569
+0.792007 0.703892
+0.790535 0.811717
+0.957779 0.748065
+0.791271 0.757804
+0.734681 0.703731
+0.736915 0.537046
+0.267491 0.188779
+</float_array>
+          <technique_common>
+            <accessor source="#tree-lib-UV0-array" count="25" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="tree-lib-Vertex">
+          <input semantic="POSITION" source="#tree-lib-Position"/>
+        </vertices>
+        <polygons material="lambert21" count="18">
+          <input semantic="VERTEX" offset="0" source="#tree-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#tree-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#tree-lib-UV0"/>
+          <p>1 0 1 3 1 2 24 2 24</p>
+          <p>2 3 3 24 4 24 3 5 2</p>
+          <p>7 6 7 8 7 8 10 8 9</p>
+          <p>9 9 10 7 10 7 10 11 9</p>
+          <p>13 12 11 14 13 12 16 14 13</p>
+          <p>16 15 13 15 16 14 13 17 11</p>
+          <p>15 18 14 11 19 15 12 20 16</p>
+          <p>12 21 16 13 22 11 15 23 14</p>
+          <p>4 24 4 18 25 18 23 26 23</p>
+          <p>4 27 4 20 28 20 21 29 21</p>
+          <p>20 30 20 5 31 5 19 32 19</p>
+          <p>23 33 23 22 34 22 6 35 6</p>
+          <p>23 36 23 18 37 18 22 38 22</p>
+          <p>6 39 6 22 40 22 17 41 17</p>
+          <p>4 42 4 21 43 21 18 44 18</p>
+          <p>20 45 20 19 46 19 21 47 21</p>
+          <p>2 48 3 0 49 0 24 50 24</p>
+          <p>1 51 1 24 52 24 0 53 0</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="lu-lib" name="luMesh">
+      <mesh>
+        <source id="lu-lib-Position">
+          <float_array id="lu-lib-Position-array" count="12">
+-1.100000 -0.000000 0.700000
+1.100000 -0.000000 0.700000
+-1.100000 0.000000 -0.700000
+1.100000 0.000000 -0.700000
+</float_array>
+          <technique_common>
+            <accessor source="#lu-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="lu-lib-Normal0">
+          <float_array id="lu-lib-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#lu-lib-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="lu-lib-UV0">
+          <float_array id="lu-lib-UV0-array" count="8">
+0.000000 0.094668
+1.000000 0.094668
+0.000000 1.095780
+1.000000 1.095780
+</float_array>
+          <technique_common>
+            <accessor source="#lu-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="lu-lib-Vertex">
+          <input semantic="POSITION" source="#lu-lib-Position"/>
+        </vertices>
+        <polygons material="lambert19" count="2">
+          <input semantic="VERTEX" offset="0" source="#lu-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#lu-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#lu-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 3 3</p>
+          <p>3 3 3 2 2 2 0 0 0</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="yan-lib" name="yanMesh">
+      <mesh>
+        <source id="yan-lib-Position">
+          <float_array id="yan-lib-Position-array" count="12">
+-1.350000 0.000000 2.390000
+1.350000 0.000000 2.390000
+-1.350000 0.000000 -2.390001
+1.350000 0.000000 -2.390000
+</float_array>
+          <technique_common>
+            <accessor source="#yan-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="yan-lib-Normal0">
+          <float_array id="yan-lib-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#yan-lib-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="yan-lib-UV0">
+          <float_array id="yan-lib-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+1.000000 1.000000
+0.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#yan-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="yan-lib-Vertex">
+          <input semantic="POSITION" source="#yan-lib-Position"/>
+        </vertices>
+        <polygons material="lambert14" count="2">
+          <input semantic="VERTEX" offset="0" source="#yan-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#yan-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#yan-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 3 2</p>
+          <p>3 3 2 2 2 3 0 0 0</p>
+        </polygons>
+      </mesh>
+    </geometry>
+    <geometry id="niao-lib" name="niaoMesh">
+      <mesh>
+        <source id="niao-lib-Position">
+          <float_array id="niao-lib-Position-array" count="12">
+-11.500001 -0.000002 2.500001
+11.500001 0.000001 2.500000
+-11.500001 -0.000003 -2.499999
+11.500001 0.000001 -2.500001
+</float_array>
+          <technique_common>
+            <accessor source="#niao-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="niao-lib-Normal0">
+          <float_array id="niao-lib-Normal0-array" count="12">
+-0.000000 1.000000 -0.000000
+-0.000000 1.000000 -0.000000
+-0.000000 1.000000 -0.000000
+-0.000000 1.000000 -0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#niao-lib-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="niao-lib-UV0">
+          <float_array id="niao-lib-UV0-array" count="8">
+1.000000 1.000000
+0.000000 0.999999
+0.000000 -0.000000
+1.000000 0.000001
+</float_array>
+          <technique_common>
+            <accessor source="#niao-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="niao-lib-Vertex">
+          <input semantic="POSITION" source="#niao-lib-Position"/>
+        </vertices>
+        <polygons material="lambert26" count="2">
+          <input semantic="VERTEX" offset="0" source="#niao-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#niao-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#niao-lib-UV0"/>
+          <p>0 0 0 1 1 1 3 3 2</p>
+          <p>3 3 2 2 2 3 0 0 0</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="floor" name="floor">
+        <scale sid="scale">0.783908 0.783908 0.783908</scale>
+        <instance_geometry url="#floor-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert4" target="#lambert4"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="house" name="house">
+        <translate sid="translate">-5.367256 2.322466 4.845466</translate>
+        <translate sid="rotatePivot">-4.981465 3.319854 -0.877813</translate>
+        <translate sid="rotatePivotInverse">4.981465 -3.319854 0.877813</translate>
+        <translate sid="scalePivot">-4.981465 3.319854 -0.877813</translate>
+        <scale sid="scale">1.712115 1.712115 1.712115</scale>
+        <translate sid="scalePivotInverse">4.981465 -3.319854 0.877813</translate>
+        <node id="house_ncl1_1" name="house_ncl1_1">
+          <translate sid="rotatePivot">-4.981464 2.063078 -0.065471</translate>
+          <translate sid="rotatePivotInverse">4.981464 -2.063078 0.065471</translate>
+          <translate sid="scalePivot">-4.981464 2.063078 -0.065471</translate>
+          <translate sid="scalePivotInverse">4.981464 -2.063078 0.065471</translate>
+          <instance_geometry url="#house_ncl1_1-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="lambert2" target="#lambert2"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="yancong" name="yancong">
+          <translate sid="rotatePivot">-5.033331 3.461574 -1.670929</translate>
+          <translate sid="rotatePivotInverse">5.033331 -3.461574 1.670929</translate>
+          <translate sid="scalePivot">-5.033331 3.461574 -1.670929</translate>
+          <translate sid="scalePivotInverse">5.033331 -3.461574 1.670929</translate>
+          <instance_geometry url="#yancong-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="lambert3" target="#lambert3"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+      <node id="cell1" name="cell1">
+        <translate sid="translate">-0.476960 11.475953 -0.915294</translate>
+        <rotate sid="rotateZ">0 0 1 -25.136788</rotate>
+        <rotate sid="rotateY">0 1 0 6.550183</rotate>
+        <rotate sid="rotateX">1 0 0 -67.478438</rotate>
+        <scale sid="scale">0.120000 0.120000 0.120000</scale>
+        <instance_geometry url="#cell1-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert16" target="#lambert16"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cell2" name="cell2">
+        <translate sid="translate">-1.475437 9.171836 -1.049830</translate>
+        <rotate sid="rotateZ">0 0 1 11.230718</rotate>
+        <rotate sid="rotateY">0 1 0 33.625500</rotate>
+        <rotate sid="rotateX">1 0 0 -56.047023</rotate>
+        <scale sid="scale">0.120000 0.120000 0.120000</scale>
+        <instance_geometry url="#cell2-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert16" target="#lambert16"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cell3" name="cell3">
+        <translate sid="translate">1.179384 6.918662 -1.951967</translate>
+        <rotate sid="rotateZ">0 0 1 19.240046</rotate>
+        <rotate sid="rotateY">0 1 0 -26.139755</rotate>
+        <rotate sid="rotateX">1 0 0 -77.766324</rotate>
+        <scale sid="scale">0.120000 0.120000 0.120000</scale>
+        <instance_geometry url="#cell3-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert16" target="#lambert16"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cell4" name="cell4">
+        <translate sid="translate">-2.336852 6.327641 -2.318721</translate>
+        <rotate sid="rotateZ">0 0 1 5.453901</rotate>
+        <rotate sid="rotateY">0 1 0 8.788912</rotate>
+        <rotate sid="rotateX">1 0 0 -78.459505</rotate>
+        <scale sid="scale">0.120000 0.120000 0.120000</scale>
+        <instance_geometry url="#cell4-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert16" target="#lambert16"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cell5" name="cell5">
+        <translate sid="translate">-0.587115 7.384590 -2.163733</translate>
+        <rotate sid="rotateZ">0 0 1 -3.506083</rotate>
+        <rotate sid="rotateY">0 1 0 -8.519191</rotate>
+        <rotate sid="rotateX">1 0 0 -61.771381</rotate>
+        <scale sid="scale">0.120000 0.120000 0.120000</scale>
+        <instance_geometry url="#cell5-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert16" target="#lambert16"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cell6" name="cell6">
+        <translate sid="translate">-2.815947 3.375986 -3.101522</translate>
+        <rotate sid="rotateZ">0 0 1 -7.611558</rotate>
+        <rotate sid="rotateY">0 1 0 42.239043</rotate>
+        <rotate sid="rotateX">1 0 0 -59.602320</rotate>
+        <scale sid="scale">0.120000 0.120000 0.120000</scale>
+        <instance_geometry url="#cell6-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert16" target="#lambert16"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cell7" name="cell7">
+        <translate sid="translate">1.254262 3.923035 -2.861945</translate>
+        <rotate sid="rotateZ">0 0 1 6.290751</rotate>
+        <rotate sid="rotateY">0 1 0 -13.113380</rotate>
+        <rotate sid="rotateX">1 0 0 -61.886605</rotate>
+        <scale sid="scale">0.120000 0.120000 0.120000</scale>
+        <instance_geometry url="#cell7-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert16" target="#lambert16"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cell8" name="cell8">
+        <translate sid="translate">-0.685075 3.204552 -4.572331</translate>
+        <rotate sid="rotateZ">0 0 1 21.532955</rotate>
+        <rotate sid="rotateY">0 1 0 -1.920490</rotate>
+        <rotate sid="rotateX">1 0 0 -71.870310</rotate>
+        <scale sid="scale">0.120000 0.120000 0.120000</scale>
+        <instance_geometry url="#cell8-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert16" target="#lambert16"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="lipinhe1" name="lipinhe1">
+        <translate sid="translate">2.960714 0.681153 -6.246303</translate>
+        <instance_geometry url="#lipinhe1-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="lipinhe2" name="lipinhe2">
+        <translate sid="translate">1.495779 0.681153 -5.967136</translate>
+        <translate sid="rotatePivotTranslation">-0.559268 0.000000 -0.272177</translate>
+        <translate sid="rotatePivot">0.673759 -0.673759 -0.673759</translate>
+        <rotate sid="rotateY">0 1 0 38.098829</rotate>
+        <translate sid="rotatePivotInverse">-0.673759 0.673759 0.673759</translate>
+        <translate sid="scalePivot">0.673759 -0.673759 -0.673759</translate>
+        <scale sid="scale">0.755035 0.755035 0.755035</scale>
+        <translate sid="scalePivotInverse">-0.673759 0.673759 0.673759</translate>
+        <instance_geometry url="#lipinhe2-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="lipinhe3" name="lipinhe3">
+        <translate sid="translate">3.015143 2.035426 -5.677391</translate>
+        <translate sid="rotatePivotTranslation">-0.559268 0.000000 -0.272177</translate>
+        <translate sid="rotatePivot">0.673759 -0.673759 -0.673759</translate>
+        <rotate sid="rotateY">0 1 0 20.762688</rotate>
+        <translate sid="rotatePivotInverse">-0.673759 0.673759 0.673759</translate>
+        <translate sid="scalePivot">0.673759 -0.673759 -0.673759</translate>
+        <scale sid="scale">0.421196 0.421196 0.421196</scale>
+        <translate sid="scalePivotInverse">-0.673759 0.673759 0.673759</translate>
+        <instance_geometry url="#lipinhe3-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="xinxiang1" name="xinxiang1">
+        <translate sid="translate">9.148385 0.000000 -8.865212</translate>
+        <instance_geometry url="#xinxiang1-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert20" target="#lambert20"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="xiaoshu1" name="xiaoshu1">
+        <translate sid="translate">-12.605577 0.000000 -4.865210</translate>
+        <rotate sid="rotateY">0 1 0 -10.645123</rotate>
+        <instance_geometry url="#xiaoshu1-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert22" target="#lambert22"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="xiaoshu2" name="xiaoshu2">
+        <translate sid="translate">8.272637 0.000000 0.667747</translate>
+        <instance_geometry url="#xiaoshu2-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert22" target="#lambert22"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="xiaoshu3" name="xiaoshu3">
+        <translate sid="translate">4.844161 0.000000 4.444152</translate>
+        <rotate sid="rotateY">0 1 0 2.904436</rotate>
+        <instance_geometry url="#xiaoshu3-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert22" target="#lambert22"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="xiaoshu4" name="xiaoshu4">
+        <translate sid="translate">11.722661 0.000000 7.048436</translate>
+        <instance_geometry url="#xiaoshu4-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert22" target="#lambert22"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cao1" name="cao1">
+        <translate sid="translate">-1.279911 0.935247 -9.497469</translate>
+        <translate sid="rotatePivotTranslation">0.000000 -0.902642 0.902642</translate>
+        <translate sid="rotatePivot">0.009315 0.000000 -0.902642</translate>
+        <rotate sid="rotateX">1 0 0 -90.000000</rotate>
+        <translate sid="rotatePivotInverse">-0.009315 -0.000000 0.902642</translate>
+        <translate sid="scalePivotTranslation">0.004155 0.000000 -0.402642</translate>
+        <translate sid="scalePivot">0.005160 0.000000 -0.500000</translate>
+        <scale sid="scale">1.805285 1.805285 1.100000</scale>
+        <translate sid="scalePivotInverse">-0.005160 -0.000000 0.500000</translate>
+        <instance_geometry url="#cao1-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert24" target="#lambert24"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cao2" name="cao2">
+        <translate sid="translate">-4.340039 0.935247 -7.030507</translate>
+        <translate sid="rotatePivotTranslation">0.000000 -0.902642 0.902642</translate>
+        <translate sid="rotatePivot">0.002319 -0.000000 -0.902642</translate>
+        <rotate sid="rotateX">1 0 0 -90.000000</rotate>
+        <translate sid="rotatePivotInverse">-0.002319 0.000000 0.902642</translate>
+        <translate sid="scalePivotTranslation">0.001035 -0.000000 -0.402642</translate>
+        <translate sid="scalePivot">0.001285 0.000000 -0.500000</translate>
+        <scale sid="scale">1.805285 1.805285 1.100000</scale>
+        <translate sid="scalePivotInverse">-0.001285 -0.000000 0.500000</translate>
+        <instance_geometry url="#cao2-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert24" target="#lambert24"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cao3" name="cao3">
+        <translate sid="translate">5.601756 0.935247 0.114821</translate>
+        <translate sid="rotatePivotTranslation">0.000000 -0.902642 0.902642</translate>
+        <translate sid="rotatePivot">-0.044862 0.000000 -0.902642</translate>
+        <rotate sid="rotateX">1 0 0 -90.000000</rotate>
+        <translate sid="rotatePivotInverse">0.044862 -0.000000 0.902642</translate>
+        <translate sid="scalePivotTranslation">-0.020012 0.000000 -0.402642</translate>
+        <translate sid="scalePivot">-0.024851 0.000000 -0.500000</translate>
+        <scale sid="scale">1.805285 1.805285 1.100000</scale>
+        <translate sid="scalePivotInverse">0.024851 -0.000000 0.500000</translate>
+        <instance_geometry url="#cao3-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert24" target="#lambert24"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cao4" name="cao4">
+        <translate sid="translate">-12.740819 0.935247 -9.660918</translate>
+        <translate sid="rotatePivotTranslation">0.000000 -0.902642 0.902642</translate>
+        <translate sid="rotatePivot">-0.080165 0.000000 -0.902642</translate>
+        <rotate sid="rotateX">1 0 0 -90.000000</rotate>
+        <translate sid="rotatePivotInverse">0.080165 -0.000000 0.902642</translate>
+        <translate sid="scalePivotTranslation">-0.035759 0.000000 -0.402642</translate>
+        <translate sid="scalePivot">-0.044406 0.000000 -0.500000</translate>
+        <scale sid="scale">1.805285 1.805285 1.100000</scale>
+        <translate sid="scalePivotInverse">0.044406 -0.000000 0.500000</translate>
+        <instance_geometry url="#cao4-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert24" target="#lambert24"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cao5" name="cao5">
+        <translate sid="translate">-14.984628 0.935247 -9.399589</translate>
+        <translate sid="rotatePivotTranslation">0.000000 -0.902642 0.902642</translate>
+        <translate sid="rotatePivot">0.411614 0.000000 -0.902642</translate>
+        <rotate sid="rotateX">1 0 0 -90.000000</rotate>
+        <translate sid="rotatePivotInverse">-0.411614 -0.000000 0.902642</translate>
+        <translate sid="scalePivotTranslation">0.428053 0.000000 -0.402642</translate>
+        <translate sid="scalePivot">-0.016438 0.000000 -0.500000</translate>
+        <scale sid="scale">1.089414 1.089414 1.100000</scale>
+        <translate sid="scalePivotInverse">0.016438 -0.000000 0.500000</translate>
+        <instance_geometry url="#cao5-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert24" target="#lambert24"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cao6" name="cao6">
+        <translate sid="translate">6.439241 0.935247 -8.584495</translate>
+        <translate sid="rotatePivotTranslation">0.000000 -0.902642 0.902642</translate>
+        <translate sid="rotatePivot">0.065111 0.000000 -0.902642</translate>
+        <rotate sid="rotateX">1 0 0 -90.000000</rotate>
+        <translate sid="rotatePivotInverse">-0.065111 -0.000000 0.902642</translate>
+        <translate sid="scalePivotTranslation">0.029044 0.000000 -0.402642</translate>
+        <translate sid="scalePivot">0.036067 0.000000 -0.500000</translate>
+        <scale sid="scale">1.805285 1.805285 1.100000</scale>
+        <translate sid="scalePivotInverse">-0.036067 -0.000000 0.500000</translate>
+        <instance_geometry url="#cao6-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert24" target="#lambert24"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="cao7" name="cao7">
+        <translate sid="translate">13.264916 0.935247 3.904013</translate>
+        <translate sid="rotatePivotTranslation">0.000000 -0.902642 0.902642</translate>
+        <translate sid="rotatePivot">0.101572 0.000000 -0.902642</translate>
+        <rotate sid="rotateX">1 0 0 -90.000000</rotate>
+        <translate sid="rotatePivotInverse">-0.101572 -0.000000 0.902642</translate>
+        <translate sid="scalePivotTranslation">0.045308 -0.000000 -0.402642</translate>
+        <translate sid="scalePivot">0.056263 0.000000 -0.500000</translate>
+        <scale sid="scale">1.805285 1.805285 1.100000</scale>
+        <translate sid="scalePivotInverse">-0.056263 -0.000000 0.500000</translate>
+        <instance_geometry url="#cao7-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert24" target="#lambert24"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="xiaoshan" name="xiaoshan">
+        <translate sid="translate">1.881263 3.633542 10.567888</translate>
+        <rotate sid="rotateX">1 0 0 -90.000000</rotate>
+        <scale sid="scale">4.330956 4.330956 4.330956</scale>
+        <instance_geometry url="#xiaoshan-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert23" target="#lambert23"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="tree" name="tree">
+        <rotate sid="rotateY">0 1 0 -41.000000</rotate>
+        <instance_geometry url="#tree-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert21" target="#lambert21"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="lu" name="lu">
+        <translate sid="translate">-8.202984 1.428570 -2.666895</translate>
+        <rotate sid="rotateY">0 1 0 180.000000</rotate>
+        <rotate sid="rotateX">1 0 0 90.000000</rotate>
+        <scale sid="scale">2.047623 2.047623 2.047623</scale>
+        <instance_geometry url="#lu-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert19" target="#lambert19"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="yan" name="yan">
+        <translate sid="translate">-10.378187 9.255880 2.633889</translate>
+        <rotate sid="rotateX">1 0 0 90.000000</rotate>
+        <instance_geometry url="#yan-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert14" target="#lambert14"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="niao" name="niao">
+        <translate sid="translate">4.196610 5.188160 -11.262107</translate>
+        <rotate sid="rotateX">1 0 0 -90.000000</rotate>
+        <scale sid="scale">1.000000 1.000000 0.627670</scale>
+        <instance_geometry url="#niao-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert26" target="#lambert26"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

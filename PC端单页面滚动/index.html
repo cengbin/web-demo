@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单页面滚动</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>第一页</li
+            ><li>第二页</li
+            ><li>第三页</li>
+        </ul>
+    </nav>
+    <div class="page">
+        <div class="scene s1">
+            <a href="javascript:;" class="go-next">▽</a>
+        </div>
+        <div class="scene s2">
+            <a href="javascript:;" class="go-next">▽</a>
+        </div>
+        <div class="scene s3"></div>
+    </div>
+    <div class="onepage-pagination">
+        <a href="javascript:;" class="active"><i class="dotted"></i></a>
+        <a href="javascript:;"><i class="dotted"></i></a>
+        <a href="javascript:;"><i class="dotted"></i></a>
+    </div>
+</body>
+</html>
+<script src="Tool.js"></script>
+<script>
+    window.onload=function(){
+        var currentIndex=0;
+        var onmove=false;
+        var scenes=document.querySelectorAll('.go-next');
+        for(var i=0,len=scenes.length;i<len;i++){
+            scenes[i].onclick=onclickgonext;
+        }
+
+        function onclickgonext(evt){
+            var index=Tool.getElementIndex(evt.currentTarget.parentNode);
+            move(index+1);
+        }
+
+        var pagings=document.querySelectorAll('.onepage-pagination a');
+        for(var i=0,len=pagings.length;i<len;i++){
+            pagings[i].onclick=onclickpaging;
+        }
+        function onclickpaging(evt){
+            var index=Tool.getElementIndex(evt.currentTarget);
+            move(index);
+        }
+
+        function move(index){
+            if(onmove)return;
+            console.log('move:',index);
+            currentIndex=index;
+            onmove=true;
+            for(var i=0,len=pagings.length;i<len;i++){
+                Tool.removeClass(pagings[i],'active');
+            }
+            Tool.addClass(pagings[index],'active');
+
+            var pageEle=document.querySelector('.page');
+            pageEle.style.webkitTransform='translate(0,-'+index+'00%)';
+
+            setTimeout(function(){
+                onmove=false;
+            },500);
+        }
+    }
+</script>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            .lineChart--area {
+                fill: url("#lineChart--gradientBackgroundArea");
+            }
+            .lineChart--gradientBackgroundArea--top {
+                stop-color: #6bb7c7;
+                stop-opacity: 0.6;
+            }
+            .lineChart--gradientBackgroundArea--bottom {
+                stop-color: #6bb7c7;
+                stop-opacity: 0.1;
+            }
+        </style>
+    </head>
+    <body>
+    <svg width="100%" height="500">
+        <defs>
+            <linearGradient id="lineChart--gradientBackgroundArea" x1="0" x2="0" y1="0" y2="1">
+                <stop class="lineChart--gradientBackgroundArea--top" offset="0%"></stop>
+                <stop class="lineChart--gradientBackgroundArea--bottom" offset="100%"></stop>
+            </linearGradient>
+        </defs>
+    </svg>
+    </body>
+</html>
+
+<script src="d3.v4.min.js"></script>
+<script>
+
+    d3.request('http://116.62.100.69:5000/api/getprice').on('error',function(error){
+        console.log('error');
+    }).on('load',function(xhr){
+        console.log('load');
+    }).send("GET",function(xhr){
+        var data=JSON.parse(xhr.response);
+        console.log(data);
+    });
+
+    var svg = d3.select("svg"),
+        margin = {top: 100, right: 20, bottom: 30, left: 50},
+        width = +window.innerWidth - margin.left - margin.right,
+        height = +svg.attr("height") - margin.top - margin.bottom,
+        g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var parseTime = d3.timeParse("%H-%M-%S");
+
+    var color_hash = {
+        0 : ["Invite","#1f77b4"],
+        1 : ["Accept","#2ca02c"],
+        2 : ["Decline","#ff7f0e"]
+    };
+
+    var color = d3.scaleLinear()//创建定量线性比例尺。
+        .domain([0,10])//值域
+        .range(['yellow','red']);//相应的值范围
+
+    var x = d3.scaleTime()
+        .rangeRound([0, width]);
+
+    var y = d3.scaleLinear()
+        .rangeRound([height, 0]);
+
+    var line = d3.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.close); });
+
+    var area = d3.area()
+        .x(function(d) { return x(d.date); })
+        .y1(function(d) { return y(d.close); });
+
+    d3.tsv("data.tsv", function(d) {
+        d.date = parseTime(d.date);
+        d.close = +d.close;
+        return d;
+    }, function(error, data) {
+        if (error) throw error;
+
+        x.domain(d3.extent(data, function(d) { return d.date; }));//设置x轴的值域
+        y.domain([0, d3.max(data, function(d) { return d.close; })]);//设置y轴的数据
+
+        // x表示数据在横坐标的位置
+        // y0可以认为是总高度
+        // y1表示数据在纵坐标的高度
+        area.y0(y(0));
+
+        g.append("g")//添加X轴
+            .attr("class", "axis axis--x")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+
+        g.append("g")//添加y轴
+            .attr("class", "axis axis-y-left")
+            .call(d3.axisLeft(y))
+            .append("text")//添加y轴介绍
+            .attr("fill", "#000")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "0.71em")
+            .attr("text-anchor", "end")
+            .text("Price ($)");
+
+        //console.log(g.selectAll('.axis-y-left .tick line').attr('stroke','white'));
+
+        g.selectAll('.axis-y-left .tick')// 画背景线
+            .append('line')
+            .attr('class', 'bg-line')
+            .attr('stroke', '#dddddd')
+            .attr('shape-rendering', 'crispEdges')
+            .attr('x2', width-1).attr('transform','translate(1,0)');
+
+        g.select('.axis-y-left .bg-line:last-of-type').remove();
+
+        /*g.append("g")//添加右侧y轴
+            .attr("class", "axis axis-y-right")
+            .attr("transform","translate("+width+",0)")
+            .call(d3.axisRight(y));*/
+
+        var DURATION = 1500;
+        var DELAY    = 0;
+
+        console.log(data);
+
+        var startData = data.map( function( datum ) {
+            return {
+                date  : datum.date,
+                close : 0
+            };
+        } );
+
+        g.append("path")//画渐变区块
+            .datum(startData)
+            .attr("class", "lineChart--area")
+            .attr("d", area)
+            .transition()
+            .duration( DURATION )
+            .attrTween( 'd', tween( data, area ) );
+
+        g.append("path")//画走势图曲线
+            .datum(startData)
+            .attr("fill", "none")
+            .attr("stroke", "steelblue")
+            .attr("stroke-linejoin", "round")
+            .attr("stroke-linecap", "round")
+            .attr("stroke-width", 1)
+            .attr("stroke-dasharray","5,5")
+            .attr("d", line)
+            .transition()
+            .duration( DURATION )
+            .delay( DELAY )
+            .attrTween( 'd', tween( data, line ) );
+
+
+
+        function tween( b, callback ) {
+            return function( a ) {
+                var i = d3.interpolateArray( a, b );
+
+                return function( t ) {
+                    return callback( i ( t ) );
+                };
+            };
+        }
+
+        //添加右上角介绍
+        var legend = svg.selectAll(".legend")
+            .data(["Bitcoin", "Ethereum", "Ripple"])
+            .enter().append("g")
+            .attr("class", "legend")
+            .attr("transform", function(d, i) {
+                return "translate(0," + (i * 25 + 10) + ")";
+            });
+
+        legend.append("rect")
+            .attr("x",25)
+            .attr("width", 18)
+            .attr("height", 18)
+            .style("fill",function(currentValue,index){
+                return color_hash[index][1];
+            });
+
+        legend.append("text")
+            .attr("x", 55)
+            .attr("y", 9)
+            .attr("dy", ".35em")
+            .text(function(d) { return d; });
+
+    });
+
+</script>

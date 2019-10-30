@@ -1,0 +1,12 @@
+.sprite_sp {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url('sps.png');}
+
+.sp1  {width:50px; height:50px; background-position: 0px 0px}
+.sp2  {width:50px; height:100px; background-position: 0px -50px}
+
+.sp3  {width:300px; height:300px; background-position: 0px -150px}
+.sp4  {width:300px; height:300px; background-position: -300px -150px}
+.sp5  {width:300px; height:300px; background-position: -600px -150px}
+
+.music_open{width:60px;height:60px;background-position:-300px -50px;}
+.music_close{width:60px;height:60px;background-position:-600px -50px;}
+

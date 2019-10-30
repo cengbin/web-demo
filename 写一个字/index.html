@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="">
+    <!-- 删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <!-- 忽略页面中的数字识别为电话 -->
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="author" content="weibin.zeng@180china.com">
+    <title>写一个字</title>
+
+    <link rel="stylesheet" href="app.css"/>
+</head>
+<body>
+    <canvas id="game_canvas" class="game-canvas">
+        你得浏览器不支持canvas
+    </canvas>
+
+    <div class="button-group clearfix">
+        <a class="color-button button-red" data-color="red"></a>
+        <a class="color-button button-yellow" data-color="yellow"></a>
+        <a class="color-button button-blue" data-color="blue"></a>
+        <a class="color-button button-black button-selected" data-color="black"></a>
+    </div>
+    <div class="button-group clearfix">
+        <a id="remove_button" class="remove-button">清除</a>
+    </div>
+</body>
+</html>
+<script src="Utils.js"></script>
+<script src="Main.js"></script>
