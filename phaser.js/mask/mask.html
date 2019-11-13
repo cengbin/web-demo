@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/phaser@3.20.1/dist/phaser-arcade-physics.min.js"></script>
+<script src="JumpBuilding.js"></script>
+<script>
+  var game = new Phaser.Game({
+    type: Phaser.AUTO,
+    transparent: true,
+    backgroundColor: 0x1099bb,
+    scene: {
+      preload: preload,
+      create: create
+    }
+  });
+
+  function preload() {
+    this.load.image('sp_jump_bg_lock.png', '../../assets/img/sp_jump_bg_lock.png')
+    this.load.image('sp_jump_bar_bg.png', '../../assets/img/sp_jump_bar_bg.png')
+    this.load.image('sp_jump_bar_line.png', '../../assets/img/sp_jump_bar_line.png')
+    this.load.image('sp_jump_bar_mask.png', '../../assets/img/sp_jump_bar_mask.png')
+  }
+
+  function create() {
+    let jb = new JumpBuilding(this, 120, 203)
+    this.add.existing(jb)
+
+    // let jumpBarMask = this.add.image(
+    //   120 + 55 + 14,
+    //   203 + -155 + 37,
+    //   "sp_jump_bar_mask.png"
+    // ).setOrigin(0, 0)
+    // // this.add(jumpBarMask)
+    // let mask = jumpBarMask.createBitmapMask()
+    // jb.jumpBarLine.setMask(mask)
+
+
+    // setInterval(() => {
+    //   // jb.x += 1
+    //   jb.setx(jb.x + 1)
+    // }, 100)
+
+  }
+</script>

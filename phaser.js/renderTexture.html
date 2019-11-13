@@ -36,7 +36,11 @@
     bigMap.draw(circle, 100, 100)
 
     setTimeout(() => {
-      game.destroy(true)
+      bigMap.destroy()
+
+      setTimeout(() => {
+        game.destroy(true)
+      }, 1000)
     }, 1000)
   }
 </script>
