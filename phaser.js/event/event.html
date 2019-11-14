@@ -11,7 +11,7 @@
 </head>
 </html>
 <!--<script src="https://cdn.jsdelivr.net/npm/phaser@3.20.1/dist/phaser-arcade-physics.min.js"></script>-->
-<script src="../../libs/phaser/phaser-3.19.0.min.js"></script>
+<script src="../../assets/lib/phaser/phaser-3.19.0.min.js"></script>
 <script>
   class StarDialog extends Phaser.GameObjects.Container {
     constructor(scene, x = 0, y = 0) {
@@ -57,5 +57,9 @@
     let dialog = new StarDialog(this, 100, 100)
     layer.add(dialog)
     dialog.init()
+
+    // let dialog = new StarDialog(this, 0, 0)
+    // this.add.existing(dialog)
+    // dialog.init()
   }
 </script>
