@@ -81,7 +81,11 @@
     }
 
     set buttonMode(val) {
-      this.input.cursor = val ? 'pointer' : ''
+      if (val) {
+        this.input.cursor = 'pointer'
+      } else {
+        this.scene.input.manager.resetCursor(this)
+      }
     }
 
     set interactive(val) {
@@ -128,6 +132,11 @@
     setTimeout(() => {
       btn1.buttonMode = false
       btn1.interactive = false
+
+      setTimeout(() => {
+        btn1.buttonMode = true
+        btn1.interactive = true
+      }, 1000)
     }, 3000)
   }
 </script>
