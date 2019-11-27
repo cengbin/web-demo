@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/phaser@3.20.1/dist/phaser-arcade-physics.min.js"></script>
+<script>
+  var config = {
+    type: Phaser.AUTO,
+    parent: 'phaser-example',
+    width: 800,
+    height: 600,
+    backgroundColor: '#2d2d88',
+    scene: {
+      preload: preload,
+      create: create
+    }
+  };
+
+  var game = new Phaser.Game(config);
+
+  var rt;
+  var bubbles = [];
+
+  function preload() {
+    this.load.image('dude', '../../assets/img/bunny.png');
+  }
+
+  function create() {
+    rt = this.add.renderTexture(0, 0, 160, 160);
+
+    var circle = this.add.circle(0, 0, 80, 0x6666ff).setVisible(false);
+
+    rt.draw(circle, 80, 80);
+    rt.draw('dude', 24, 20);
+
+    rt.saveTexture('bubbleboy');
+
+    // for (var i = 0; i < 50; i++)
+    // {
+    //     var b = this.add.image(Phaser.Math.Between(100, 700), Phaser.Math.Between(100, 500), 'bubbleboy');
+
+    //     bubbles.push(b);
+    // }
+
+    this.input.on('pointerup', function () {
+
+      // rt.destroy()
+      game.destroy(true);
+
+    });
+  }
+
+</script>
