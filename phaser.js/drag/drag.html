@@ -23,44 +23,37 @@
       preload: preload,
       create: create
     }
-  });
+  })
 
   function preload() {
     this.load.image('s1', './s1_0_0.jpg')
   }
 
   function create() {
-    let layer1 = this.add.container(0, 0)
-    layer1.name = 'layer1'
-    /*layer1.setInteractive({
-      hitArea: new Phaser.Geom.Rectangle(0, 0, 100, 100),
-      hitAreaCallback: Phaser.Geom.Rectangle.Contains,
-      cursor: "pointer",
-      useHandCursor: false
+    let img1 = this.add.image(0, 0, 's1').setOrigin(0, 0).setInteractive({
+      pixelPerfect: true,
+      draggable: true,
     })
-    layer1.on('pointerup', () => {
-      console.log('layer1 pointerup')
-    })*/
+    img1.on('pointerdown', (pointer, localX, localY, event) => {
+      console.log('pointerdown')
+    }, this)
+    img1.on('pointermove', (pointer, localX, localY, event) => {
+      console.log('pointermove', pointer.worldX, pointer.worldY, localX, localY)
+    }, this)
+    img1.on('pointerup', (pointer, localX, localY, event) => {
+      console.log('pointerup')
+    }, this)
 
-    // let rect = this.add.graphics().fillStyle(0xff0000, 1).fillRect(0, 0, 1000, 100)
-    let rect = this.add.image(0, 0, 's1').setOrigin(0, 0)
-    rect.name = 'rect'
-    /*rect.setInteractive(new Phaser.Geom.Rectangle(0, 0, 1000, 100), Phaser.Geom.Rectangle.Contains);
-    rect.on('pointerup', () => {
-      console.log('rect pointerup')
-    })*/
-    layer1.add(rect)
+    img1.on('dragstart', (pointer, dragX, dragY) => {
+      console.log('dragstart')
+    }, this)
+    img1.on('drag', (pointer, dragX, dragY) => {
+      img1.setPosition(dragX, dragY)
+    }, this)
+    img1.on('dragend', (pointer, dragX, dragY) => {
+      console.log('dragend')
+    }, this)
 
-    let scrollView = new ScrollView({
-      content: rect,
-      wrapperWidth: 640,
-      wrapperHeight: 100,
-      scrollerWidth: 1000,
-      scrollerHeight: 100,
-      onUpdate: () => {
-      },
-      onComplete: () => {
-      }
-    })
+    let layer1 = this.add.container(-100, -100, [img1])
   }
 </script>
