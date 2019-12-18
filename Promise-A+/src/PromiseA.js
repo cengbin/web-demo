@@ -35,22 +35,85 @@ class PromiseA {
   }
 
   then(onFulfilled, onRejected) {
-    this.onFulfilledCallbacks.push(onFulfilled)
-    this.onRejectedCallbacks.push(onRejected)
-    return this
+    onFulfilled = onFulfilled === 'function' ? onFulfilled : value => value
+
+    onRejected = onRejected === 'function' ? onRejected : reason => {
+      throw reason
+    }
+
+    let promise2 = new PromiseA((resolve, reject) => {
+
+      if (this.state === PENDING) {
+
+        this.onFulfilledCallbacks.push((value) => {
+          setTimeout(() => {
+            try {
+              let x = onFulfilled(value)
+            } catch (e) {
+              reject(e)
+            }
+          })
+        })
+
+        this.onRejectedCallbacks.push((reason) => {
+          setTimeout(() => {
+            try {
+              let x = onRejected(reason)
+            } catch (e) {
+              reject(e)
+            }
+          })
+        })
+      }
+    })
+
+    return promise2
   }
 }
 
-console.log('1')
-let p = new PromiseA((resolve, reject) => {
+/**
+ *
+ * @param promise2 then函数返回的promise
+ * @param x 调用onFulfilled函数返回的promise
+ * @param resolve promise2的resolve
+ * @param reject promise2的reject
+ */
+function resolvePromise(promise2, x, resolve, reject) {
+  if (promise2 === x) {
+    throw new Error(`TypeError: Chaining cycle detected for promise`)
+  }
+
+  if (x instanceof PromiseA) {
+    if (x.state === PENDING) {
+
+    } else if (x.state === FULFILLED) {
+
+    } else if (x.state === REJECTED) {
+
+    }
+  } else if (typeof x === 'object' || typeof x === 'function') {
+
+  } else {
+
+  }
+}
+
+let p1 = new PromiseA((resolve, reject) => {
   console.log('2')
   setTimeout(() => {
     resolve(1)
   }, 1000)
-}).then((value) => {
-  console.log('4 -> value:', value)
-}, (error) => {
+  // resolve(1)
+})
+
+let p2 = p1.then(value => {
+  console.log('4.1 -> onFulfilled value:', value, this)
+}, error => {
+  console.log('4.2 -> onRejected')
+}).then(value => {
+  console.log('5.1 -> onFulfilled value:', value, this)
+}, error => {
 
 })
-console.log('3')
+console.log(p1 === p2)
 // console.log(p)
