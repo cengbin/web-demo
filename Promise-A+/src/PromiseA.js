@@ -10,12 +10,15 @@ class PromiseA {
     if (typeof executor !== 'function') throw new Error(`TypeError: Promise resolver ${executor} is not a function`)
 
     this.state = PENDING
+    this.value = null
+    this.reason = null
     this.onFulfilledCallbacks = []
     this.onRejectedCallbacks = []
 
     let resolve = (value) => {
       if (this.state === PENDING) {
         this.state = FULFILLED
+        this.value = value
         this.onFulfilledCallbacks.forEach(fn => fn(value))
       }
     }
@@ -23,6 +26,7 @@ class PromiseA {
     let reject = (reason) => {
       if (this.state === PENDING) {
         this.state = REJECTED
+        this.reason = reason
         this.onRejectedCallbacks.forEach(fn => fn(reason))
       }
     }
@@ -35,33 +39,37 @@ class PromiseA {
   }
 
   then(onFulfilled, onRejected) {
-    onFulfilled = onFulfilled === 'function' ? onFulfilled : value => value
+    onFulfilled = (typeof onFulfilled === 'function' ? onFulfilled : value => value)
 
-    onRejected = onRejected === 'function' ? onRejected : reason => {
-      throw reason
-    }
+    onRejected = (typeof onRejected === 'function' ? onRejected : reason => {throw reason})
 
     let promise2 = new PromiseA((resolve, reject) => {
 
-      if (this.state === PENDING) {
-
-        this.onFulfilledCallbacks.push((value) => {
-          setTimeout(() => {
-            try {
-              let x = onFulfilled(value)
-            } catch (e) {
-              reject(e)
-            }
-          })
+      if (this.state === FULFILLED) {
+        // then 函数是异步，模拟异步
+        setTimeout(() => {
+          let x = onFulfilled(this.value)
+          resolve(x)
         })
+      }
 
-        this.onRejectedCallbacks.push((reason) => {
-          setTimeout(() => {
-            try {
-              let x = onRejected(reason)
-            } catch (e) {
-              reject(e)
-            }
+      if (this.state === REJECTED) {
+        setTimeout(() => {
+          let x = onRejected(this.reason)
+          // resolve(x)
+        })
+      }
+
+      if (this.state === PENDING) {
+        setTimeout(() => {
+          this.onFulfilledCallbacks.push((value) => {
+            let x = onFulfilled(value)
+            // resolve(x)
+          })
+
+          this.onRejectedCallbacks.push((reason) => {
+            let x = onRejected(reason)
+            // resolve(x)
           })
         })
       }
@@ -98,22 +106,30 @@ function resolvePromise(promise2, x, resolve, reject) {
   }
 }
 
+console.log('1')
 let p1 = new PromiseA((resolve, reject) => {
+  // throw new Error('error...')
   console.log('2')
-  setTimeout(() => {
-    resolve(1)
-  }, 1000)
-  // resolve(1)
+  // setTimeout(() => {
+  //   resolve(1)
+  // })
+  resolve(1)
 })
 
 let p2 = p1.then(value => {
   console.log('4.1 -> onFulfilled value:', value, this)
+  return 'haha ' + value
 }, error => {
   console.log('4.2 -> onRejected')
-}).then(value => {
+})
+
+let p3 = p2.then(value => {
   console.log('5.1 -> onFulfilled value:', value, this)
 }, error => {
 
 })
-console.log(p1 === p2)
-// console.log(p)
+
+// console.log(p1 === p2)
+console.log('3')
+
+// 05.28
