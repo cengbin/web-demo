@@ -1,0 +1,17 @@
+<meta charset="UTF-8">
+<title>Title</title>
+<script>
+  let i = 0
+
+  function a() {
+    // console.log(i++)
+    setTimeout(a)
+  }
+
+  a()
+
+  let b = () => {
+    console.log('click')
+  }
+  document.addEventListener('click', b)
+</script>
