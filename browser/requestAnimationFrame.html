@@ -1,0 +1,51 @@
+<meta charset="UTF-8">
+<title>Title</title>
+<script>
+
+  // 第一次事件循环开始
+
+  // 执行 宏任务队列中的一个任务： <script/>
+  //  setTimeout 注册异步事件
+  //  requestAnimationFrame 注册事件
+  //  Promise 构造函数同步执行
+  //  Promise.then 注册异步事件
+
+  // 执行 微任务队列中的所有任务
+  //  Promise.then任务
+
+  // 执行 requestAnimationFrame 回调函数
+
+  // 第二次事件循环开始
+
+  // 执行 宏任务队列中的一个任务
+  //   setTimeout 回调函数
+
+  // 执行 微任务队列中的所有任务
+  //   无
+
+  let setTimeoutID = setTimeout(() => {
+    console.log('3. setTimeout')
+  })
+
+  function animate(timeStamp) {
+    console.log('2.1 requestAnimationFrame', timeStamp)
+    // window.requestAnimationFrame() 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画
+    window.requestAnimationFrame(animate)
+  }
+
+  animate()
+
+  // function animate2(timeStamp) {
+  //   console.log('2.2 requestAnimationFrame', timeStamp)
+  //   window.requestAnimationFrame(animate2)
+  // }
+  //
+  // animate2()
+
+  let p = new Promise((resolve, reject) => {
+    resolve()
+  }).then(() => {
+    console.log('1. promise.then')
+  })
+
+</script>

@@ -3,6 +3,7 @@
 <script>
   let i = 0
 
+  // 递归调用并不会导致JS线程挂起
   function a() {
     // console.log(i++)
     setTimeout(a)
