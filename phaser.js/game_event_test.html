@@ -14,6 +14,12 @@
       height: 100%;
     }
 
+    #phaser_player{
+      width:100%;
+      height:400px;
+      background-color:#ccc;
+    }
+
     .animated {
       -webkit-animation-duration: 2s;
       animation-duration: 2s;
@@ -45,18 +51,17 @@
 </body>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/phaser@3.20.1/dist/phaser-arcade-physics.min.js"></script>
-<!--<script src="../../assets/lib/phaser/phaser-3.19.0.min.js"></script>-->
 <script>
   setTimeout(() => {
     let game = new Phaser.Game({
       type: Phaser.AUTO,
       transparent: true,
       autoFocus: true,
+      width:500,
+      height:400,
       backgroundColor: 0x1099bb,
       scale: {
-        parent: "phaser_player",
-        mode: Phaser.Scale.FIT,
-        autoCenter: Phaser.Scale.CENTER_BOTH
+        parent: "phaser_player"
       },
       scene: {
         preload,
@@ -65,14 +70,15 @@
     })
 
     setTimeout(() => {
-      let playerEle = document.getElementById('phaser_player')
-      playerEle.style.width = '50%'
-    }, 3000)
+      // let playerEle = document.getElementById('phaser_player')
+      // playerEle.style.width = '50%'
+      game.scale.refresh()
+    }, 2000)
   }, 1000)
 
 
   function preload() {
-    this.load.image('icon_energy.png', '../../assets/img/icon_energy.png')
+    this.load.image('icon_energy.png', '../assets/img/icon_energy.png')
   }
 
   function create() {
