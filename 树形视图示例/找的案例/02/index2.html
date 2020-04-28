@@ -1,0 +1,121 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>静态图片-加载中国</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.1.1/css/ol.css" type="text/css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style type="text/css">
+      body, #map {
+        border: 0px;
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        height: 100%;
+        font-size: 13px;
+        overflow: hidden;
+      }
+      #map{
+        background: url("../../images/bgImg.gif");
+        background-repeat: inherit;
+      }
+      #sortable {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        z-index: 999;
+        list-style-type: none;
+        margin: 0;
+        padding: 5px;
+        padding-top: 10px;
+        width: 200px;
+        background: #D2E959;
+        border: 1px solid #cccccc;
+        box-shadow: 2px 2px 3px #bbbbbb;
+        border-radius: 4px;
+      }
+      #sortable li { cursor:move; margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+      #sortable li span { position: absolute; margin-left: -1.3em; }
+    </style>
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v4.1.1/build/ol.js"></script>
+    <script type="text/javascript" src="../../../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+      var map, image;
+      function init(){
+        var projection = ol.proj.get("EPSG:3857");
+
+        var vec_w = getTdtLayer("vec_w");
+        var img_w = getTdtLayer("img_w");
+        var ter_w = getTdtLayer("ter_w");
+
+        var layers = [vec_w, img_w, ter_w];
+
+        map = new ol.Map({
+          controls: ol.control.defaults({
+            attribution: false
+          }),
+          target: 'map',
+          layers: layers,
+          view: new ol.View({
+            center: ol.proj.transform([104.214, 35.847], 'EPSG:4326', 'EPSG:3857'),
+            zoom: 4
+          })
+        });
+
+        var cva_w = getTdtLayer("cva_w");
+        cva_w.setZIndex(100);
+        map.addLayer(cva_w);
+
+        var _layers = [{
+          name:"矢量图",
+          layer:vec_w
+        },{
+          name:"影像图",
+          layer:img_w
+        },{
+          name:"地形图",
+          layer:ter_w
+        }];
+        _layers = _layers.reverse();
+        var _layerUl = $("#sortable");
+
+        for(var i=0, len = _layers.length;i<len;i++){
+          var li = $("<li/>").addClass("ui-state-default").html(_layers[i]["name"]);
+          li.data("layer",_layers[i]["layer"]);
+          _layerUl.append(li);
+        }
+
+        updateLayersIndex();
+
+        _layerUl.sortable({stop: function(event, ui) {
+            updateLayersIndex();
+          }});
+
+        function updateLayersIndex(){
+          var _index = [30, 20, 10];
+          for(var i=0,len=_index.length;i<len;i++){
+            var _layer = $(_layerUl.children()[i]).data("layer");
+            _layer.setZIndex(_index[i]);
+          }
+        }
+      }
+
+      function getTdtLayer(lyr){
+        var url = "http://t0.tianditu.com/DataServer?T="+lyr+"&X={x}&Y={y}&L={z}";
+        var layer = new ol.layer.Tile({
+          source: new ol.source.XYZ({
+            url:url
+          })
+        });
+        return layer;
+      }
+    </script>
+  </head>
+  <body onLoad="init()">
+    <div id="map">
+      <ul id="sortable"></ul>
+    </div>
+  </body>
+</html>

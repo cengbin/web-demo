@@ -1,0 +1,40 @@
+
+div.ft, div.droppable {
+  color: grey;
+  padding: 5px 10px;
+  background-color: lightgrey;
+  width: 180px;
+  border: dashed 2px transparent;
+}
+
+div.droppable {
+  color: white;
+  background-color: orange !important;
+  width: 150px;
+  border: dashed 2px darkorange;
+}
+
+div[draggable=true] {
+  cursor: pointer;
+  color: black
+}
+
+div[draggable=true]:hover {
+  background-color: lightorange;
+}
+
+span.recipe {
+  display:inline-block;
+  width: 85%;
+}
+
+span.eff {
+  display:inline;
+  width: 15%;
+  text-align: right;
+}
+
+span.eff[contenteditable=true]:focus {
+  background-color: white;
+  color: blue;
+}
