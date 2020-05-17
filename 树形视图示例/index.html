@@ -9,7 +9,7 @@
         box-sizing: border-box;
       }
 
-      html, body, #app {
+      html, body, #app, #app > div {
         width: 100%;
         height: 100%;
         margin: 0;
@@ -19,7 +19,7 @@
         color: #444;
       }
 
-      #app {
+      #app >div{
         display: flex;
         flex-direction: column;
       }
@@ -61,200 +61,17 @@
         padding-left: 1em;
         line-height: 1.5em;
         list-style-type: dot;
+        border-left:1px solid red;
       }
     </style>
   </head>
   <body>
     <div id="app">
-      <div class="f1-1">
-        <a>文件</a>
-        <a>编辑</a>
-        <a>下载</a>
-      </div>
-      <div class="f1-2">
-        <div class="f2-1">
-          <ul>
-            <item v-for="mod in treeData" v-bind:model="mod"></item>
-          </ul>
-        </div>
-        <div class="f2-2"></div>
-        <div class="f2-3"></div>
-      </div>
+      <app></app>
     </div>
   </body>
 </html>
-<script type="text/x-template" id="item-template">
-  <li class="item">
-    <div class="dropzone" v-bind:class="{bold:isFolder}" draggable="true"
-         ondragstart="event.dataTransfer.setData('text/plain',null)">
-      <span>&lt;{{model.name}}&gt;</span>
-      <span v-if="isFolder" v-on:click="toggle">[{{open?'-':'+'}}]</span>
-    </div>
-    <ul v-show="open" v-if="isFolder">
-      <item v-for="treeData in model.children" v-bind:model="treeData"></item>
-      <li v-if="isAdd" class="add" v-on:click="addChild2"><span>+</span></li>
-    </ul>
-  </li>
-</script>
-<script src="./vue.min.js"></script>
-<script>
-  Vue.component('item', {
-    template: '#item-template',
-    props: {
-      model: Object
-    },
-    beforeCreate: function () {
-      //console.log(this.model);
-    },
-    created: function () {
-      console.log(this.model.children);
-    },
-    data: function () {
-      return {
-        open: true
-      }
-    },
-    computed: {
-      isFolder: function () {
-        return this.model.children && this.model.children.length;
-      },
-      isAdd: function () {
-        return this.model.name !== 'html'
-      }
-    },
-    methods: {
-      toggle: function () {
-        this.open = !this.open;
-      },
-      addChild2: function () {
-        this.model.children.push({
-          name: 'div'
-        })
-      }
-    }
-  });
-
-  new Vue({
-    el: '#app',
-    data: {
-      "treeData": [
-        {
-          name: 'html',
-          children: [
-            {
-              name: 'head',
-              children: [
-                {
-                  name: 'meta'
-                }, {
-                  name: 'title'
-                }, {
-                  name: 'style'
-                }
-              ]
-            }, {
-              name: 'body',
-              children: [
-                {
-                  name: 'div',
-                  children: [
-                    {
-                      name: 'p',
-                      children: [
-                        {
-                          name: 'p'
-                        }, {
-                          name: 'span'
-                        }
-                      ]
-                    }, {
-                      name: 'span'
-                    }, {
-                      name: 'span'
-                    }, {
-                      name: 'div',
-                      children: [
-                        {name: 'span'},
-                        {name: 'span'}
-                      ]
-                    }
-                  ]
-                }, {
-                  name: 'div'
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    methods: {
-      addChild: function () {
-        this.treeData.push({
-          name: 'new tree data'
-        });
-      }
-    }
-  })
-
-  window.onload = function () {
-    // document.oncontextmenu = new Function('event.returnValue=false;'); //禁止右键
-    document.onselectstart = new Function('event.returnValue=false;'); //禁止选中
-
-    var dragged;
-
-    /* 可拖动的目标元素会触发事件 */
-    document.addEventListener("drag", function (event) {
-
-    }, false);
-
-    document.addEventListener("dragstart", function (event) {
-      // 保存拖动元素的引用(ref.)
-      dragged = event.target;
-      // 使其半透明
-      event.target.style.opacity = .5;
-    }, false);
-
-    document.addEventListener("dragend", function (event) {
-      // 重置透明度
-      event.target.style.opacity = "";
-    }, false);
-
-    /* 放下目标节点时触发事件 */
-    document.addEventListener("dragover", function (event) {
-      // 阻止默认动作
-      event.preventDefault();
-    }, false);
-
-    // 当拖动的元素或选择文本输入有效的放置目标时，会触发此事件。
-    document.addEventListener("dragenter", function (event) {
-      // 当可拖动的元素进入可放置的目标高亮目标节点
-      if (event.target.className.indexOf('dropzone') !== -1 && dragged !== event.target) {
-        event.target.style.background = "purple";
-      }
-
-    }, false);
-
-    // 当拖动的元素或文本选择离开有效的放置目标时，会触发此事件。
-    document.addEventListener("dragleave", function (event) {
-      // 当拖动元素离开可放置目标节点，重置其背景
-      if (event.target.className.indexOf('dropzone') !== -1) {
-        event.target.style.background = "";
-      }
-
-    }, false);
-
-    // 当在有效放置目标上放置元素或选择文本时触发此事件。
-    document.addEventListener("drop", function (event) {
-      // 阻止默认动作（如打开一些元素的链接）
-      event.preventDefault();
-      // 移动拖动的元素到所选择的放置目标节点
-      if (event.target.className == "dropzone" && dragged !== event.target) {
-        event.target.style.background = "";
-        dragged.parentNode.removeChild(dragged);
-        event.target.appendChild(dragged);
-      }
-
-    }, false);
-  }
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+<script src="src/Item.js"></script>
+<script src="src/App.js"></script>
+<script src="src/main.js"></script>
