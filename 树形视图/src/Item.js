@@ -5,6 +5,7 @@ Vue.component('item', {
       ref="drop">
          <!--ondragstart="event.dataTransfer.setData('text/plain',null)">-->
       <span>{{index}}&lt;{{model.name}}&gt;</span>
+      <span v-if="!hasChildren" @click="addChildren">+</span>
       <span v-if="isFolder" v-on:click="toggle">[{{open?'-':'+'}}]</span>
     </div>
     <ul v-show="open" v-if="isFolder">
@@ -14,7 +15,7 @@ Vue.component('item', {
   </li>`,
   props: {
     model: Object,
-    index:Number
+    index: Number
   },
   data() {
     return {
@@ -22,6 +23,9 @@ Vue.component('item', {
     }
   },
   computed: {
+    hasChildren: function () {
+      return this.model['children'] && this.model['children'].length > 0;
+    },
     isFolder: function () {
       return this.model.children && this.model.children.length;
     },
@@ -51,6 +55,13 @@ Vue.component('item', {
     },
     toggle: function () {
       this.open = !this.open;
+    },
+    addChildren: function () {
+      if (!this.model.hasOwnProperty('children')) this.$set(this.model, 'children', [])
+
+      this.model.children.push({
+        name: 'div'
+      })
     },
     addChild2: function () {
       this.model.children.push({

@@ -3,5 +3,9 @@
 
 node_modules
 package-lock.json
-example/video-player/film.mp4
-example/pixi_filter
+
+4.2_Egret.js/**/bin-debug
+4.2_Egret.js/**/bin-release
+4.2_Egret.js/**/libs
+
+4.3_Three.js/Christmas3D/assets/layout.psd

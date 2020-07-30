@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/phaser@3.20.1/dist/phaser-arcade-physics.min.js"></script>
+<!--<script src="../../assets/lib/phaser/phaser-3.19.0.min.js"></script>-->
+<script>
+  class Button extends Phaser.GameObjects.Container {
+    hotArea
+    bg
+    image
+    text
+    config
+
+    constructor(config, x = 0, y = 0) {
+      super(config.scene, x, y)
+
+      let {hotArea, bg, image, text, interactive, buttonMode} = this.config = Object.assign({
+        w: 100,
+        h: 50,
+        p: [10, 20],
+        hotArea: false,
+        interactive: true,
+        buttonMode: true
+      }, config)
+
+      if (text) this.text = this.addText(text)
+
+      if (this.config.s === "auto") {
+        this.config.w = this.txt.width + (this.config.p[1] * 2)
+        this.config.h = this.txt.height + (this.config.p[0] * 2)
+      }
+
+      if (hotArea) this.hotArea = this.addRect({c: 0xff0000, a: 0.3})
+
+      if (bg) this.bg = this.addRect(bg)
+
+      if (image) this.image = this.addImage(image)
+
+      if (this.text) this.bringToTop(this.text)
+
+      this.interactive = interactive
+
+      this.buttonMode = buttonMode
+
+      this.on("pointerup", (pointer) => {
+        this.emit("pointertap", pointer)
+      }, this)
+    }
+
+    addRect(config, index = this.list.length) {
+      let {c: color = 0xffffff, a: alpha = 1, r: rounded, w = this.config.w, h = this.config.h, x = (this.config.w - w) / 2, y = (this.config.h - h) / 2} = config
+      let graphics = this.scene.add.graphics({x, y}).fillStyle(color, alpha)
+      if (rounded) graphics.fillRoundedRect(0, 0, w, h, rounded)
+      else graphics.fillRect(0, 0, w, h)
+      this.addAt(graphics, index)
+      return graphics
+    }
+
+    addImage(config, index = this.list.length) {
+      let {x = this.config.w / 2, y = this.config.h / 2, t: texture, f: frame} = config
+      let img = this.scene.add.image(x, y, texture, frame)
+      this.addAt(img, index)
+      return img
+    }
+
+    addText(config, index = this.list.length) {
+      let {x = this.config.w / 2, y = this.config.h / 2, t: text = "", s: style} = config
+      style = Object.assign({fontFamily: "Arial", fontSize: 16, color: "#ffffff"}, style)
+      let txt = this.scene.add.text(x, y, text, style).setOrigin(0.5, 0.5)
+      this.addAt(txt, index)
+      return txt
+    }
+
+    set buttonMode(val) {
+      if (val) {
+        this.input.cursor = 'pointer'
+      } else {
+        this.scene.input.manager.resetCursor(this)
+      }
+    }
+
+    set interactive(val) {
+      if (!val) {
+        this.disableInteractive()
+      } else {
+        this.setInteractive({
+          hitArea: new Phaser.Geom.Rectangle(0, 0, this.config.w, this.config.h),
+          hitAreaCallback: Phaser.Geom.Rectangle.Contains
+        })
+      }
+    }
+  }
+
+  var game = new Phaser.Game({
+    type: Phaser.AUTO,
+    transparent: true,
+    backgroundColor: 0x1099bb,
+    scene: {
+      preload,
+      create
+    }
+  });
+
+  function preload() {
+    this.load.image('icon_energy.png', './icon_energy.png')
+  }
+
+  function create() {
+    let btn1 = new Button({
+      scene: this,
+      hotArea: true,
+      w: 110,
+      h: 60,
+      bg: {c: 0xff0000, w: 100, h: 50, r: 10},
+      image: {t: 'icon_energy.png', x: 30},
+      text: {t: '按钮', x: 70}
+    }, 100, 100)
+    this.add.existing(btn1)
+    btn1.on('pointertap', () => {
+      console.log('pointer tap btn1')
+    })
+
+    setTimeout(() => {
+      btn1.buttonMode = false
+      btn1.interactive = false
+
+      setTimeout(() => {
+        btn1.buttonMode = true
+        btn1.interactive = true
+      }, 1000)
+    }, 3000)
+  }
+</script>

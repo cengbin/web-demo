@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    #phaser_player{
+      width:100%;
+      height:400px;
+      background-color:#ccc;
+    }
+
+    .animated {
+      -webkit-animation-duration: 2s;
+      animation-duration: 2s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+
+    @-webkit-keyframes fadeInRight {
+      0% {
+        opacity: 0;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0)
+      }
+      100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none
+      }
+    }
+
+    .fadeInRight {
+      -webkit-animation-name: fadeInRight;
+      animation-name: fadeInRight
+    }
+  </style>
+</head>
+<body>
+<div id="phaser_player" class="animated fadeInRight"></div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/phaser@3.20.1/dist/phaser-arcade-physics.min.js"></script>
+<script>
+  setTimeout(() => {
+    let game = new Phaser.Game({
+      type: Phaser.AUTO,
+      transparent: true,
+      autoFocus: true,
+      width:500,
+      height:400,
+      backgroundColor: 0x1099bb,
+      scale: {
+        parent: "phaser_player"
+      },
+      scene: {
+        preload,
+        create
+      }
+    })
+
+    setTimeout(() => {
+      // let playerEle = document.getElementById('phaser_player')
+      // playerEle.style.width = '50%'
+      game.scale.refresh()
+    }, 2000)
+  }, 1000)
+
+
+  function preload() {
+    this.load.image('icon_energy.png', '../assets/img/icon_energy.png')
+  }
+
+  function create() {
+    let img = this.add.image(0, 0, 'icon_energy.png').setOrigin(0, 0).setInteractive()
+    img.on('pointerup', () => {
+      console.log('pointerup img')
+    })
+  }
+</script>

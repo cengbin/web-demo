@@ -1,25 +1,30 @@
-function Router(route) {
-  var _this = this;
-  this.routes = {};
-  this.model = 'hash'
+class Router {
+  constructor (route) {
+    this.routes = {};
+    this.model = 'hash';
 
-  if (route)
-    this.addRoute(route);
+    if (route)
+      this.addRoute(route);
 
-  if ('onpopstate' in window) {
-    window.addEventListener('popstate', function (event) {
-      console.log("onpopstate, location: " + document.location + ", state: " + JSON.stringify(event.state));
-      if (event.state) {
-        _this.routes[event.state.route].updateEnter();
-      } else {
-        _this.routes['/'].updateEnter();
-      }
-    });
+    this.init();
+  }
+
+  init () {
+    if ('onpopstate' in window) {
+      window.addEventListener('popstate', function (event) {
+        console.log("onpopstate, location: " + document.location + ", state: " + JSON.stringify(event.state));
+        if (event.state) {
+          this.routes[event.state.route].updateEnter();
+        } else {
+          this.routes['/'].updateEnter();
+        }
+      });
+    }
   }
 }
 
 Router.prototype.addRoute = function (route) {
-  function setRoute(key, val) {
+  function setRoute (key, val) {
     this.routes[key] = val;
     val['loaded'] = false
   }

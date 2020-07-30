@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/phaser@3.20.1/dist/phaser-arcade-physics.min.js"></script>
+<script>
+  var game = new Phaser.Game({
+    type: Phaser.AUTO,
+    transparent: true,
+    backgroundColor: 0x1099bb,
+    scene: {
+      preload: preload,
+      create: create
+    }
+  });
+
+  function preload() {
+    // this.load.image('number_0.png', '../assets/number_0.png')
+    // this.load.image('number_1.png', '../assets/number_1.png')
+  }
+
+  function create() {
+    let bigMap = this.add.renderTexture(0, 0, 1000, 1000)
+    // bigMap.draw('number_0.png', 0, 0)
+    // bigMap.draw('number_1.png', 32, 0)
+
+    var circle = this.add.circle(200, 200, 80, 0x6666ff);
+    bigMap.draw(circle, 100, 100)
+
+    setTimeout(() => {
+      bigMap.destroy()
+
+      setTimeout(() => {
+        game.destroy(true)
+      }, 1000)
+    }, 1000)
+  }
+</script>

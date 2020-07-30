@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    /*svg{
+        background-image: url(vz-skin-galaxy_2.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 5px;
+    }*/
+</style>
+<link rel="stylesheet" href="example-styles.css">
+
+<svg width="100%" height="500">
+    <defs>
+        <linearGradient id="BackgroundArea-Invite" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#6bb7c7" stop-opacity="0.6"></stop>
+            <stop offset="100%" stop-color="#6bb7c7" stop-opacity="0.1"></stop>
+        </linearGradient>
+        <linearGradient id="BackgroundArea-Accept" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#2ca02c" stop-opacity="0.6"></stop>
+            <stop offset="100%" stop-color="#2ca02c" stop-opacity="0.1"></stop>
+        </linearGradient>
+        <linearGradient id="BackgroundArea-Decline" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#ff7f0e" stop-opacity="0.6"></stop>
+            <stop offset="100%" stop-color="#ff7f0e" stop-opacity="0.1"></stop>
+        </linearGradient>
+    </defs>
+</svg>
+
+<script src="d3.v4.min.js"></script>
+<script src="d3.tip.v0.6.3.js"></script>
+<script src="data.js"></script>
+<script src="chart.js"></script>
