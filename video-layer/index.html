@@ -1,33 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+  <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <!-- 删除苹果默认的工具栏和菜单栏 -->
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <!-- 设置苹果工具栏颜色 -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <!-- 忽略页面中的数字识别为电话 -->
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="author" content="weibin.zeng@180china.com">
     <title></title>
-    <style>
-        .ljl{
-            width:auto;
-            padding:20px;
-            color: red;
-        }
-    </style>
-</head>
-<body>
-    <video onended="endFunction()" class="video-box" id="video1" src="static/testVideo.mp4" preload="auto" autoplay="autoplay"
+  </head>
+  <body>
+    <!--<video onended="endFunction()" class="video-box" id="video1"
+           src="./static/testVideo.mp4"
+           preload="auto"
+           autoplay="autoplay"
+           x5-video-player-type="h5"
+           x5-video-player-fullscreen="true"
+           x-webkit-airplay="true"
+           webkit-playsinline="true"></video>-->
+    <video width="200" src="./testVideo.mp4"
+           controls
+           preload="auto"
+           autoplay="autoplay"
            x5-video-player-type="h5"
            x5-video-player-fullscreen="true"
            x-webkit-airplay="true"
            webkit-playsinline="true"></video>
-
-    <div class="ljl">
-        播放刘嘉玲
-    </div>
-</body>
+  </body>
 </html>
