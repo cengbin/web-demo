@@ -22,7 +22,7 @@
         }
 
         function moment (format) {
-          var date = new Date();
+          var date = new Date('Thu Aug 13 2020 15:04:1 GMT+0800 (中国标准时间)');
           var o = {
             "Y": date.getFullYear(),                    // 年份
             "M": date.getMonth() + 1,                   // 月份
@@ -38,7 +38,11 @@
             var key = Object.keys(o).find(ele => match.indexOf(ele) !== -1);
             var val = (key && o[key] && String(o[key])) || '';
             var len1 = val.length, len2 = match.length;
-            if (len1 > len2) val = val.slice(len2 - len1);
+            if (len1 > len2) {
+              val = val.slice(len2 - len1);
+            } else if (len1 < len2) {
+              val = zeroFill(val, len2)
+            }
             // console.log('match:', match, 'key:', key, 'val:', val)
             return val
           })
@@ -47,7 +51,7 @@
         console.log(moment('YY/MM/DD'));
         console.log(moment('YYYY/MM/DD'));
         console.log(moment('hh:mm:ss'));
-        console.log(moment('YYYY/MM/DD hh:mm:ss'));
+        console.log(moment('YYYY/MM/DD hh:m:s'));
         console.log(moment('____ YYYY[xyzXYZ]/MM/DD hh:mm:ss S___'));
       }());
     </script>

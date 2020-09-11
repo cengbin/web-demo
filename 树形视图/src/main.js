@@ -29,7 +29,7 @@ window.onload = function () {
 
       // 放下目标节点时触发事件
       document.addEventListener("dragover", function (event) {
-        // console.log('dragover')
+        console.log('dragover')
         // 阻止默认动作
         event.preventDefault();
       }, false);

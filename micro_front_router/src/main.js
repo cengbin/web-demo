@@ -1,5 +1,7 @@
+import Router from './Router';
+
 $(function () {
-  function setBackgroundColor(color) {
+  function setBackgroundColor (color) {
     document.body.style.backgroundColor = color;
   }
 
@@ -8,15 +10,14 @@ $(function () {
       name: '首页',
       path: '#',
       entry: {
-        html: ['./home/home.html'],
-        scripts: ['./home/home.js'],
+        html: ['./component/home/home.html'],
+        scripts: ['./component/home/home.js'],
         styles: []
       },
-      beforeEnter(next) {
+      beforeEnter (next) {
         next();
       },
-      updateEnter() {
-        // console.log(this)
+      updateEnter () {
         setBackgroundColor("transparent")
       }
     },
@@ -24,8 +25,8 @@ $(function () {
       name: '蓝色',
       path: '#blue',
       entry: {
-        html: ['./blue/blue.html'],
-        scripts: ['./blue/blue.js'],
+        html: ['./component/blue/blue.html'],
+        scripts: ['./component/blue/blue.js'],
         styles: []
       },
       updateEnter: function () {
@@ -47,46 +48,43 @@ $(function () {
   ]);
 
   $('#def').click(function () {
-    router.historyTo("#");
+    router.push("#");
   })
   $('#blue').click(function () {
-    router.historyTo("#blue");
+    router.push("#blue");
   })
   $('#purple').click(function () {
-    router.historyTo("#purple");
-  })
-  $('#red').click(function () {
-    router.historyTo("#red");
+    router.push("#purple");
   })
 
-  console.log(router)
-  var hash = window.location.hash || "#";
-  router.historyTo(hash);
+  // console.log(router)
+  // var hash = window.location.hash || "#";
+  // router.historyTo(hash);
 })
 
-function registerMicroApps() {
+function registerMicroApps () {
 
 }
 
-function bootstrap() {
+function bootstrap () {
 
 }
 
-function mount() {
+function mount () {
 
 }
 
-function unmount() {
+function unmount () {
 
 }
 
-function parseDom(str) {
+function parseDom (str) {
   var ele = document.createElement("div");
   ele.innerHTML = str
   return ele.childNodes;
 }
 
-function loadScript(url) {
+function loadScript (url) {
   return new Promise(function (resolve, reject) {
     var script = document.createElement('script');
     script.onload = function () {
@@ -100,7 +98,7 @@ function loadScript(url) {
   })
 }
 
-function handleResponse(response) {
+function handleResponse (response) {
   let contentType = response.headers.get('content-type')
   // console.log('contentType:', contentType)
   if (contentType.includes('application/json')) {
@@ -120,7 +118,7 @@ function handleResponse(response) {
   }
 }
 
-function loadHtml(url) {
+function loadHtml (url) {
   return fetch(url).then(handleResponse).then(data => {
     // console.log("data is:", data)
 
@@ -139,7 +137,7 @@ function loadHtml(url) {
   })
 }
 
-function loadStyle(url) {
+function loadStyle (url) {
   return new Promise(function (resolve, reject) {
     var style = document.createElement('link');
     style.href = 'style.css';
