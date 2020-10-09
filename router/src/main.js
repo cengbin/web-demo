@@ -6,56 +6,43 @@ $(function () {
     document.body.style.backgroundColor = color;
   }
 
-  var router = new Router([
+  var router = new Router({
+    model: 'hash'
+  });
+
+  router.addRoutes([
     {
-      path: '/home',
-      entry: {
-        html: ['./component/home/home.html'],
-        scripts: ['./component/home/home.js'],
-        styles: []
-      },
+      path: 'home',
       meta: {
         title: '首页',
-      },
-      beforeEnter (next) {
-        next();
-      },
-      updateEnter () {
-        setBackgroundColor("transparent")
       }
     },
     {
-      path: '/user',
-      entry: {
-        html: ['./component/blue/blue.html'],
-        scripts: ['./component/blue/blue.js'],
-        styles: []
-      },
+      path: 'user',
       meta: {
         title: '用户'
       },
       children: [
         {
-          path: 'foo/profile',
+          path: '/foo/profile',
           meta: {
             title: '用户简况'
           }
         },
         {
-          path: 'foo/posts',
+          path: '/foo/posts',
           meta: {
             title: '用户邮件'
           }
         }
-      ],
-      updateEnter: function () {
-        setBackgroundColor("#a1c4fd")
-      }
+      ]
     }
-  ]);
+  ])
+
+  console.log(router)
 
   router.on(EVENT_ENUM.PARSE_PATH, (event) => {
-    console.log(event);
+    console.log('parse_path:', event);
   })
 
   router.on('pre_jump', (data) => {

@@ -16,12 +16,18 @@ export default class History {
 
   // 解析路径和参数
   parse (path = '', param = '') {
-    let pathArr = this.parsePath(path);
+    let routes = this.parsePath(path);
+    let pathArr = routes.map(route => {
+      let arr = route.fullPath.split('/')
+      return route.fullPath + (arr.length ? '/' + arr[arr.length - 1] : '')
+    });
 
     console.log('module pathArr:', pathArr)
 
     let params = this.parseParam(param);
     console.log('params:', params)
+
+    this.router.changeView(pathArr,params)
   }
 
   // 解析路径
@@ -35,20 +41,17 @@ export default class History {
 
         this.router.emit(EVENT_ENUM.PARSE_PATH, {path});
 
-        let mapVal = this.router.routeMap[path];
-
-        // 路由映射 添加加载路径
-        if (mapVal && (typeof mapVal === 'string')) {
-          pathArr.push(mapVal)
+        // 找到已注册的路由，包括嵌套路由
+        let route = this.router.pathMap[path];
+        if (route) {
+          pathArr.push(route)
         }
-
-        // 最终路径必须有对应的模块
-        if (idx === arr.length - 1) pathArr.push(path)
       })
 
       // 去重
       return Array.from(new Set(pathArr));
     }
+    return []
   }
 
   // 解析参数

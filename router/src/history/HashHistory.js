@@ -11,10 +11,6 @@ export default class HashHistory extends History {
     window.addEventListener(HASH_CHANGE, this.onHashChangeListener);
   }
 
-  init () {
-
-  }
-
   onHashChangeListener (event) {
     // console.log('onHashChangeListener:', event)
     let hash = this.getHash();

@@ -2,16 +2,25 @@ import EventEmitter from 'eventemitter3'
 import HashHistory from './history/HashHistory'
 
 export default class Router extends EventEmitter {
-  constructor (route) {
+  constructor (options) {
     super();
-    this.routes = {};
 
-    this.model = 'hash';
+    let {model = 'hash', routes} = options
+
+    this.model = model;
+
+    // 存储所有的 path
+    this.pathLsit = [];
+
+    // path 映射
+    this.pathMap = {};
+
+    // 记录当前路由映射的所有模块
+    this.currentModels = []
 
     this.init();
 
-    if (route)
-      this.addRoutes(route);
+    routes && this.addRoutes(routes);
   }
 
   init () {
@@ -20,18 +29,46 @@ export default class Router extends EventEmitter {
     this.history.init();
   }
 
-  addRoutes (route) {
-    route = (Object.prototype.toString.call(route) == "[object Array]"
-      ? route
-      : [route])
+  addRoutes (route, parent = null) {
+    route = (Object.prototype.toString.call(route) == "[object Array]" ? route : [route])
 
     for (let i = 0; i < route.length; i++) {
-      this.setRoute(route[i].path, route[i])
+      this.addRoute(route[i], parent)
     }
   }
 
-  setRoute (key, val) {
-    this.routes[key] = val;
+  addRoute (route, parent = null) {
+    let {path, children} = route
+
+    let fullPath = parent ? (parent.fullPath + path) : path
+
+    route.fullPath = fullPath;
+
+    this.pathLsit.push(fullPath);
+
+    this.pathMap[fullPath] = route;
+
+    if (children) {
+      for (let i = 0; i < children.length; i++) {
+        this.addRoute(children[i], route)
+      }
+    }
+  }
+
+  changeView (pathArr, params) {
+    if (!pathArr.length) return;
+
+    seajs.use(pathArr, function () {
+
+      this.currentModels && this.currentModels.forEach(model => model.exit && model.exit())
+
+      // console.log('arguments:', arguments)
+      let arr = Array.from(arguments)
+      console.log('arr:', arr)
+      arr.forEach(model => model.entry && model.entry())
+
+      this.currentModels = arr
+    })
   }
 
   go (route) {
@@ -40,7 +77,7 @@ export default class Router extends EventEmitter {
     this.history.go(route)
     // window.history.pushState({'route': path}, 'default', path);
 
-    $('main').empty();
+    // $('main').empty();
 
     // let route = this.routes[path];
     // console.log(route)
