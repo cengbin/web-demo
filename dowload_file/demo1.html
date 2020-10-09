@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="main" class="main">
+      <canvas id="canvas"></canvas>
+      <canvas id="canvas2"></canvas>
+      <button onclick="download()">下载</button>
+    </div>
+    <script src="./xlsx.full.min.js"></script>
+    <script>
+      function $ (id) {
+        return document.getElementById(id)
+      }
+
+      function download () {
+
+        let strategyRecommend = {
+          'recommendS': {fun: ' recommendS', name: '整体净推荐值统计'},//整体净推荐值统计(.xlsx)
+          'recommendD': {fun: 'recommendD', name: '整体净推荐值动态明细'},//整体净推荐值动态明细(.xlsx)
+          'recommendDImg': {fun: 'recommendDImg', name: '整体净推荐值动态图表'},//整体净推荐值动态图表(.jpg)
+          'recommendStore': {fun: 'recommendStore', name: '门店排行榜'},//门店排行榜(.xlsx)
+        }
+
+        let i = 0;
+        for (let sitem in strategyRecommend) {
+
+          setTimeout(() => {
+            // let canvas2 = $('canvas2')
+            // exportImg(canvas2.toDataURL(), 'file2.xlsx')
+
+            let data = [];
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "SheetJS");
+            /* generate file and send to client */
+            XLSX.writeFile(wb, "file" + i + ".xlsx");
+          }, ++i * 1000)
+        }
+
+
+        /*let canvas = $('canvas')
+        exportImg(canvas.toDataURL(), 'file.png');
+
+
+
+        setTimeout(() => {
+          // let canvas2 = $('canvas2')
+          // exportImg(canvas2.toDataURL(), 'file2.xlsx')
+
+          let data = [];
+          const ws = XLSX.utils.aoa_to_sheet(data);
+          const wb = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(wb, ws, "SheetJS");
+          /!* generate file and send to client *!/
+          XLSX.writeFile(wb, "file3.xlsx");
+        }, 2000)*/
+      }
+
+      function exportImg (imgData, name) {
+        // 将canvas转换成img的src流
+        let type = "image/png";
+        // let imgData = canvas.toDataURL(type);
+        // 加工image data，替换mime type
+        imgData = imgData.replace(type, "image/octet-stream");
+        // 下载后的文件名
+        let filename = name;
+        // // 下载
+        // let save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+        // save_link.href = imgData;
+        // save_link.download = filename;
+        // // let event = document.createEvent('MouseEvents');
+        // // event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+        // save_link.dispatchEvent(new Event('CLICK'));
+
+        // 下载
+        let save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+        save_link.href = imgData;
+        save_link.download = filename;
+        let event = document.createEvent('MouseEvents');
+        event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+        save_link.dispatchEvent(event);
+      }
+    </script>
+  </body>
+</html>
