@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>2.基于现有PDF库生成方案</title>
+
+    <script src="./jquery-1.7.2.min.js"></script>
+    <script src="./jspdf.min.1.0.272.js"></script>
+    <script src="./echarts/echarts.min.js"></script>
+  </head>
+  <body>
+    <button onclick="printPDF()">下载</button>
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('main'));
+
+      // 指定图表的配置项和数据
+      var option = {
+        title: {
+          id: 'aaaa',
+          text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+          data: ['销量']
+        },
+        xAxis: {
+          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        },
+        yAxis: {},
+        series: [{
+          name: '销量',
+          type: 'bar',
+          data: [5, 20, 36, 10, 10, 20]
+        }]
+      };
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+    </script>
+    <div id="main2" style="width: 600px;height:400px;"></div>
+    <script>
+      // 绘制图表。
+      echarts.init(document.getElementById('main2')).setOption({
+        backgroundColor: '#2c343c',
+        visualMap: {
+          show: false,
+          min: 80,
+          max: 600,
+          inRange: {
+            colorLightness: [0, 1]
+          }
+        },
+        series: [
+          {
+            name: '访问来源',
+            type: 'pie',
+            radius: '55%',
+            data: [
+              {value: 235, name: '视频广告'},
+              {value: 274, name: '联盟广告'},
+              {value: 310, name: '邮件营销'},
+              {value: 335, name: '直接访问'},
+              {value: 400, name: '搜索引擎'}
+            ],
+            roseType: 'angle',
+            label: {
+              normal: {
+                textStyle: {
+                  color: 'rgba(255, 255, 255, 0.3)'
+                }
+              }
+            },
+            labelLine: {
+              normal: {
+                lineStyle: {
+                  color: 'rgba(255, 255, 255, 0.3)'
+                }
+              }
+            },
+            itemStyle: {
+              normal: {
+                color: '#c23531',
+                shadowBlur: 200,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      });
+    </script>
+
+    <!--<script src="jspdf.min.js"></script>-->
+    <!--<script src="html2canvas.min.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>-->
+    <!--<script src="jspdf.debug.js"></script>-->
+    <script>
+      window.onload = function () {
+
+
+        // printPDF();
+      }
+
+      window.printPDF = function printPDF () {
+        var img = new Image();
+        img.onload = function () {
+          // document.body.append(img)
+        }
+        img.src = myChart.getDataURL({
+          pixelRatio: 2,
+          backgroundColor: '#fff'
+        });
+
+        var doc = new jsPDF('p', 'px')
+        doc.text(20, 20, 'This is the default font.');
+
+        doc.setFont("courier");
+        doc.setFontType("normal");
+        doc.text(20, 30, 'This is courier normal.');
+
+        doc.setFont("times");
+        doc.setFontType("italic");
+        doc.text(20, 40, 'This is times italic.');
+
+        doc.setFont("helvetica");
+        doc.setFontType("bold");
+        doc.text(20, 50, 'This is helvetica bold.');
+
+        doc.setFont("courier");
+        doc.setFontType("bolditalic");
+        doc.text(20, 60, 'This is courier bolditalic.');
+
+        doc.addPage();
+        // doc.setFont("helvetica");
+        // doc.setFontType("bold");
+        doc.text(20, 50, 'Echarts 入门实力');
+
+        doc.addImage(img, 'JPEG', 0, 100, 300, 200)
+
+        doc.save();
+
+        /*var width = window.innerWidth;
+        var height = window.innerHeight;
+
+
+        doc.html(domElement, {
+          callback: function (doc) {
+            doc.save();
+          }
+        });*/
+
+        /*window.html2canvas = html2canvas;
+        var dddoc = new jsPDF('p', 'px', 'a4');
+
+        dddoc.addHTML(domElement, function () {
+          console.log('saving');
+          dddoc.save('test.pdf');
+        });*/
+
+      }
+    </script>
+  </body>
+</html>
