@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <title>实时搜索菜单</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="text">
+      <button>搜索</button>
+    </div>
+    <div id="app"></div>
+    <script id="tpl" type="text/html">
+      <div>
+        <%for(var i = 0; i < arr.length; i++) {%>
+        <span><%= arr[i]%></span>
+        <%}%>
+      </div>
+    </script>
+  </body>
+</html>
+<script src="../assets/lib/jquery/jquery-1.7.2.min.js"></script>
+<script src="../assets/lib/template-native.js"></script>
+<script>
+
+  let tpl = document.getElementById('tpl').innerHTML;
+
+  let render = template.compile(tpl);
+
+  let str = 'template.js JavaScript 模板引擎'
+  let arr = str.split('');
+
+  $('#app').html(render({arr}));
+</script>
