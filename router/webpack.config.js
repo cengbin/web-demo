@@ -4,11 +4,13 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  mode: "development",
   entry: {
     main: './src/main.js'
   },
-  devtool: 'inline-source-map',
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, "dist"),
+  },
   plugins: [
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false
@@ -32,10 +34,8 @@ module.exports = {
       }
     ])
   ],
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, "dist"),
-  },
+  mode: "development",
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
   }
