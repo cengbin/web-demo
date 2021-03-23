@@ -1,0 +1,122 @@
+{
+  "desc": "type:1 标题,2 文本,3 md文件,4 占位,5 Demo链接,6 外部链接",
+  "root": true,
+  "children": [
+    {
+      "name": "软件工程",
+      "type": 1
+    },
+    {
+      "name": "软件开发方法",
+      "type": 2
+    },
+    {
+      "name": "结构化方法",
+      "type": 3,
+      "children": [
+        {
+          "name": "模块",
+          "type": 3,
+          "link": "/static/a.md"
+        },
+        {
+          "name": "Jvascript模块化解决方案",
+          "type": 3,
+          "link": "/static/b.md"
+        }
+      ]
+    },
+    {
+      "name": "面向对象方法",
+      "type": 3
+    },
+    {
+      "name": "前端",
+      "type": 1
+    },
+    {
+      "name": "微前端",
+      "type": 2
+    },
+    {
+      "name": "微前端历史",
+      "type": 3,
+      "link": "/static/b.md"
+    },
+    {
+      "name": "微前端解决方案 - 市面上流行的",
+      "type": 5,
+      "link": "/static/demo1.html",
+      "children": [
+        {
+          "name": "Single-spa",
+          "type": 3
+        },
+        {
+          "name": "乾坤"
+        },
+        {
+          "name": "..."
+        }
+      ]
+    },
+    {
+      "name": "微前端解决方案 - 多点",
+      "type": 5,
+      "link": "/static/demo1.html"
+    },
+    {
+      "name": "后端",
+      "type": 1
+    },
+    {
+      "name": "Animation"
+    },
+    {
+      "name": "Animation",
+      "type": 3,
+      "children": [
+        {
+          "name": "div",
+          "children": [
+            {
+              "name": "p",
+              "children": [
+                {
+                  "name": "p"
+                },
+                {
+                  "name": "span"
+                }
+              ]
+            },
+            {
+              "name": "span"
+            },
+            {
+              "name": "span"
+            },
+            {
+              "name": "div",
+              "children": [
+                {
+                  "name": "span"
+                },
+                {
+                  "name": "span"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "div"
+        }
+      ]
+    },
+    {
+      "name": "客户端",
+      "type": 1
+    }
+  ]
+}
