@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    <title>WEB前端单位转换</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .flex {
+        display: flex;
+        width: 500px;
+        justify-items: center;
+        border: 1px solid #000;
+
+      }
+
+      .flex div {
+        flex: 1 1 auto;
+      }
+
+      #inc {
+        background-color: #1ba1e6;
+      }
+
+      #cm {
+        background-color: gray;
+      }
+
+      #mm {
+        background-color: deepskyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex">
+      <div>
+        <div id="inc"></div>
+        宽高是1英寸
+      </div>
+      <div>
+        <div id="cm"></div>
+        宽高是1厘米
+      </div>
+      <div>
+        <div id="mm"></div>
+        宽高是1毫米
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+const PPI = (function () {
+  var tmpNode = document.createElement("div");
+  tmpNode.style.cssText = "width:1in;height:0;position:absolute;visibility:hidden";
+  document.body.appendChild(tmpNode);
+  var width = parseInt(tmpNode.offsetWidth);
+  tmpNode.parentNode.removeChild(tmpNode);
+  return width;
+}())
+
+function mm2px (val, digits = 0) {
+  return Number((val / 25.4 * PPI).toFixed(digits));
+}
+
+function px2mm (val, digits = 0) {
+  return Number((val / PPI * 25.4).toFixed(digits));
+}
+
+function cm2px (val, digits = 0) {
+  return Number((val / 2.54 * PPI).toFixed(digits));
+}
+
+function px2cm (val, digits = 0) {
+  return Number((val / PPI * 2.54).toFixed(digits))
+}
+
+function inc2px (val, digits = 0) {
+  return Number((val * PPI).toFixed(digits))
+}
+
+function px2inc (val, digits = 0) {
+  return Number((val / PPI).toFixed(digits))
+}
+</script>
+<script>
+  window.onload = function () {
+    $('inc').style = `width:${inc2px(1, 2)}px;height:${inc2px(1, 2)}px;`;
+
+    $('cm').style = `width:${cm2px(1, 2)}px;height:${cm2px(1, 2)}px;`;
+
+    $('mm').style = `width:${mm2px(1, 2)}px;height:${mm2px(1, 2)}px;`;
+  }
+
+  function $ (selector) {
+    return document.getElementById(selector)
+  }
+</script>
