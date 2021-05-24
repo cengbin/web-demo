@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+  <body>
+    <input type='file' onchange='readfile(this.files[0])'></input>
+    <pre id='output' style="word-wrap:break-word;"></pre>
+  </body>
+</html>
+<script src="./download.js"></script>
+<script>
+  function readfile (file) {
+    console.log(file)
+    let type = file.type.split("/")[1];
+
+    /*var bufferPromise = file.arrayBuffer();
+    bufferPromise.then(buffer => {
+      console.log("buffer:", buffer)
+
+      var base64 = ArrayBufferToBase64(buffer);
+
+      setTimeout(() => {
+        downloadBase64File(base64, 'test', type, true)
+      }, 1000)
+    });*/
+
+    var fileReader = new FileReader();
+    fileReader.onload = function (fileLoadedEvent) {
+      var base64 = fileLoadedEvent.target.result;
+
+      let out = document.getElementById('output');
+      out.innerHTML = '';
+      out.appendChild(document.createTextNode(base64));
+
+      setTimeout(() => {
+        downloadBase64File(base64, 'test', type)
+      }, 1000)
+    };
+    fileReader.readAsDataURL(file);
+  }
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+</html>
+<script src="./download.js"></script>
+<script>
+  var xhr = new XMLHttpRequest()
+  xhr.open('GET', './a.txt', true);
+  xhr.responseType = 'blob';
+  xhr.onload = function (res) {
+    console.log(this)
+    if (this.status === 200) {
+      var type = xhr.getResponseHeader('Content-Type');
+      var blob = new Blob([this.response], {type: type});
+      console.log('blob:', blob)
+
+      let fileReader = new FileReader();
+      fileReader.onload = function (e) {
+        // console.log(e.target.result);
+        let base64 = e.target.result;
+
+        // downloadBase64File(base64, 'test', 'txt');
+      }
+      fileReader.onerror = function (e) {
+        alert('error:', e)
+      }
+      fileReader.onprogress = function (e) {
+        console.log('progress:', e.loaded, e.total)
+      }
+      fileReader.readAsDataURL(blob);
+    }
+  }
+  xhr.send()
+</script>
