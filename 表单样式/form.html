@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./form.css">
+  </head>
+  <body>
+    <div class="form">
+
+      <div class="form-item require">
+        <label class="form-item-label" for="a">
+          <span>单行文本框：</span>
+        </label>
+        <div class="form-item-content">
+          <input type="text" id="a" placeholder="请输入姓名">
+        </div>
+      </div>
+
+      <div class="form-item require">
+        <label class="form-item-label" for="e">
+          <span>多行文本框：</span>
+        </label>
+        <div class="form-item-content">
+          <textarea name="e" id="e" cols="30" rows="10" placeholder="请输入描述"></textarea>
+        </div>
+      </div>
+
+      <div class="form-item require">
+        <label class="form-item-label" for="d">
+          <span>选择框：</span>
+        </label>
+        <div class="form-item-content">
+          <select id="d" placeholder="请选择">
+            <option value="boy">男</option>
+            <option value="girl">女</option>
+            <option value="unkonwn">未知</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-item">
+        <label class="form-item-label" for="d">多选选择框：</label>
+        <div class="form-item-content">
+          <select id="d" multiple placeholder="请选择">
+            <option value="boy">男</option>
+            <option value="girl">女</option>
+            <option value="unkonwn">未知</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="form-item">
+        <label class="form-item-label" for="d">复选框：</label>
+        <div class="form-item-content">
+          <div class='checkbox'>
+            <input type='checkbox' id='checkbox1' name='checkboox'>
+            <label for='checkbox1'>篮球</label>
+          </div>
+          <div class='checkbox'>
+            <input type='checkbox' id='checkbox2' name='checkboox'>
+            <label for='checkbox2'>乒乓球</label>
+          </div>
+          <div class='checkbox'>
+            <input type='checkbox' id='checkbox3' name='checkboox' checked>
+            <label for='checkbox3'>足球</label>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-item">
+        <label class="form-item-label">单选按钮：</label>
+        <div class="form-item-content">
+          <div class="radio">
+            <input type="radio" id="title_1" name="title" value="A" checked>
+            <label for="title_1">冰淇淋</label>
+          </div>
+
+          <div class="radio">
+            <input type="radio" id="title_2" name="title" value="A" checked>
+            <label for="title_2">King</label>
+          </div>
+
+          <div class="radio">
+            <input type="radio" id="title_3" name="title" value="A" checked>
+            <label for="title_3">Queen</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-item">
+        <label class="form-item-label" for="e">文件上传：</label>
+        <div class="form-item-content">
+          <a class="b-file" href="javascript:void(0);">
+            选择文件
+            <input type="file" name="">
+          </a>
+        </div>
+      </div>
+
+      <div class="form-item">
+        <label class="form-item-label"></label>
+        <div class="form-item-content">
+          <button class="blue" type="submit">
+            提交
+          </button>
+          <button class="white" type="reset">
+            重置
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

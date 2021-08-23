@@ -1,0 +1,21 @@
+{
+  "name": "micro_router",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.4"
+  },
+  "scripts": {
+    "build": "rollup --config rollup.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eventemitter3": "4.0.7"
+  }
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>微前端之路由</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+
+        --background-color: #fff;
+        --secondary-background-color: #f7f7f7;
+
+        --color-blue: #049EF4;
+        --text-color: #444;
+        --secondary-text-color: #9e9e9e;
+
+        --font-size: 16px;
+        --line-height: 26px;
+
+        --border-style: 1px solid #E8E8E8;
+        --header-height: 48px;
+        --panel-width: 300px;
+        --panel-padding: 16px;
+        --icon-size: 20px;
+      }
+
+      h1 {
+
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--color-blue);
+        border-bottom: 1px solid var(--color-blue);
+      }
+
+      section {
+        padding: 15px 0;
+        border-bottom: 1px solid gray;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <section>
+        <h1>Hash 模式</h1>
+        <div>
+          <a href="#home">home</a>
+        </div>
+        <div>
+          <a href="#user">user</a>
+          <a href="#user/foo">user/foo</a>
+          <a href="#user/foo/profile">user/foo/profile</a>
+          <a href="#user/foo/posts">user/foo/posts</a>
+          <a href="#user/foo/posts:name=chuck&age=18">user/foo/posts:name=chuck&age=18</a>
+        </div>
+        <div>
+          <a href="#contact">contact</a>
+          <a href="#contact/detail">contact/detail</a>
+        </div>
+      </section>
+      <section>
+        <h1>History 模式</h1>
+        <div>
+          <button id="home">home</button>
+        </div>
+        <div>
+          <button id="user">user</button>
+          <button id="user_foo">user/foo</button>
+          <button id="user_foo_profile">user/foo/profile</button>
+          <button id="user_foo_posts">user/foo/posts</button>
+          <button id="user_foo_posts2">user/foo/posts:name=chuck&age=18</button>
+        </div>
+      </section>
+    </nav>
+    <main>
+      <div id="content"></div>
+    </main>
+
+    <script src="../micro-router/dist/router.js"></script>
+    <script src="../micro-lib/jquery-1.7.2.min.js"></script>
+    <script src="../micro-lib/sea.js"></script>
+    <script src="../micro-lib/seajs-css.js"></script>
+    <script src="../micro-lib/seajs-text.js"></script>
+    <script>
+      seajs.config({
+
+        // 别名配置
+        alias: {
+          'es5-safe': 'gallery/es5-safe/0.9.3/es5-safe',
+          'json': 'gallery/json/1.0.2/json',
+          'jquery': 'jquery/jquery/1.10.1/jquery'
+        },
+
+        // 路径配置
+        paths: {
+          'gallery': 'https://a.alipayobjects.com/gallery'
+        },
+
+        // 变量配置
+        vars: {
+          'locale': 'zh-cn'
+        },
+
+        // 映射配置
+        map: [],
+
+        // 预加载项
+        preload: [],
+
+        // 调试模式
+        debug: true,
+
+        // Sea.js 的基础路径
+        base: '../',
+
+        // 文件编码
+        charset: 'utf-8'
+      });
+
+      var router = new Router({
+        model: 'hash'
+      });
+      router.addRoutes([
+        {
+          path: 'home',
+          meta: {
+            title: '首页',
+          }
+        },
+        {
+          path: 'user',
+          meta: {
+            title: '用户'
+          },
+          children: [
+            {
+              path: '/foo/profile',
+              meta: {
+                title: '用户简况'
+              }
+            },
+            {
+              path: '/foo/posts',
+              meta: {
+                title: '用户邮件'
+              }
+            }
+          ]
+        }
+      ])
+      // console.log(router);
+
+      router.on('parse_path', function (data) {
+        console.log('parse_path: ', data)
+      });
+      router.on('parse_route', function (data) {
+        console.log('parse_route: ', data)
+      });
+      router.on('parse_param', function (data) {
+        console.log('parse_param: ', data)
+      });
+      router.on('pre_load', function (data) {
+        console.log('pre_load: ', data)
+      });
+      router.on('load_complete', function (data) {
+        console.log('load_complete: ', data)
+      });
+      window.onload = function () {
+        router.history.onHashChangeListener();
+      }
+
+      $('#home').click(function () {
+        router.go("#home");
+      })
+      $("#user").click(function () {
+        router.go("#user");
+      })
+      $("#user_foo").click(function () {
+        router.go("#user/foo");
+      })
+      $("#user_foo_profile").click(function () {
+        router.go("#user/foo/profile");
+      })
+      $('#user_foo_posts').click(function () {
+        router.go("#user/foo/posts");
+      })
+      $('#user_foo_posts2').click(function () {
+        router.go("#user/foo/posts:name=chuck&age=18");
+      })
+    </script>
+  </body>
+</html>
