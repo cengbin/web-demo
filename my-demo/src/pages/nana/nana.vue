@@ -1,98 +1,46 @@
 <template>
   <div class="nana">
-    <div class="img-list" :style="{width:listWidth+'px',height:listHeight+'px'}">
-      <div class="img-list-item" :ref="item.id" :id="item.id" v-for="item,idx in imgArr" :style="{width:width+'px',left:item.left+'px',top:item.top+'px'}">
-        <div class="inner">
-          <div class="img">
-            <img :src="item.url" alt="">
-          </div>
-          <div class="bottom">
-            <div class="title">{{item.title}}</div>
-            <div class="desc">{{item.desc}}</div>
-            <div style="height:10px;"></div>
-            <span>{{idx}} | {{item.id}} | {{parseInt(item.img.width)}}/{{parseInt(item.img.height)}} | {{parseInt(item.width)}}/{{parseInt(item.height)}}</span>
-          </div>
-        </div>
-      </div>
+    <waterfall ref="waterfall"></waterfall>
+
+    <div class="loadtips" @click="onClickLoad" v-if="!loading">load more</div>
+
+    <div class="loading" v-if="loading">
+      <span>L</span>
+      <span>o</span>
+      <span>a</span>
+      <span>d</span>
+      <span>i</span>
+      <span>n</span>
+      <span>g</span>
+      <span>.</span>
+      <span>.</span>
+      <span>.</span>
     </div>
-    <div class="load-more" @click="onClickLoad">加载更多</div>
   </div>
 </template>
 
 <script>
+import waterfall from './waterfall';
 
 export default {
   name: 'nana',
-  components: {},
+  components: {
+    waterfall
+  },
   data() {
     return {
-      width: 250,
-      heightArr: [0, 0, 0, 0],
-      imgArr: [],
-      listHeight: 0,
-
-      //   column-count: 设置共有几列
-      // column-width: 设置每列宽度，列数由总宽度与每列宽度计算得出
-      // column-gap: 设置列与列之间的间距
+      loading: false
     }
   },
   computed: {
-    listWidth() {
-      return this.columns * this.width
-    },
-    columns() {
-      return this.heightArr.length;
-    }
+    /*loading() {
+      return this.$refs['waterfall'] && this.$refs['waterfall'].loading;
+    }*/
   },
   methods: {
-    async load(arr) {
-      for (let i = 0; i < arr.length; i++) {
-        let {img: url, title, desc} = arr[i];
-        let img = await asyncImg(url);
-
-        let imgItem = {
-          id: parseInt(Math.random() * 100000000),
-          url,
-          img: img,
-          width: this.width,
-          top: 0,
-          left: 0,
-          title,
-          desc
-        }
-
-        this.imgArr.push(imgItem);
-
-        this.$nextTick(() => {
-          let ele = this.$refs[imgItem.id][0];
-          // console.log(ele);
-          // console.log(ele.querySelectorAll('.bottom'));
-          let bottomEle = ele.querySelectorAll('.bottom')[0];
-          let {height} = bottomEle.getBoundingClientRect();
-          // console.log(imgItem.id, height);
-
-          let padding = 10;
-          let w = this.width;
-          let h = (w - 10) / (img.width / img.height);
-          //
-          let minVal = Math.min(...this.heightArr);
-          let index = this.heightArr.indexOf(minVal);
-
-          let left = index * w;
-          let top = minVal;
-
-          imgItem.left = left;
-          imgItem.top = top;
-          imgItem.height = h;
-
-          this.heightArr[index] += (h + height + padding);
-          this.listHeight = Math.max(...this.heightArr);
-        })
-      }
-      // console.log(arr);
-    },
     onClickLoad() {
-      this.load([
+      this.loading = true;
+      this.$refs['waterfall'].load([
         {
           img: './static/imgs/cx06.jpg',
           title: 'xxoo',
@@ -148,11 +96,14 @@ export default {
           title: 'xxoo',
           desc: 'xxoo',
         },
-      ]);
+      ]).then(() => {
+        this.loading = false;
+      });
     }
   },
   async mounted() {
-    this.load([
+    this.loading = true;
+    this.$refs['waterfall'].load([
       {
         img: './static/imgs/1.jpg',
         title: '结合刚才说的Grid实现的瀑布流布局中，不设置行高(grid-template-rows)',
@@ -164,9 +115,7 @@ export default {
         desc: '用一张花瓣网页的图片布局可以很清楚看出图片瀑布流的样子',
       },
       {
-        img: './static/imgs/3.jpg',
-        title: 'xxoo',
-        desc: 'xxoo',
+        img: './static/imgs/',
       },
       {
         img: './static/imgs/4.jpg',
@@ -175,13 +124,9 @@ export default {
       },
       {
         img: './static/imgs/5.png',
-        title: 'xxoo',
-        desc: 'xxoo',
       },
       {
         img: './static/imgs/6.png',
-        title: 'xxoo',
-        desc: 'xxoo',
       },
       {
         img: './static/imgs/7.jpg',
@@ -190,15 +135,13 @@ export default {
       },
       {
         img: './static/imgs/8.png',
-        title: 'xxoo',
-        desc: 'xxoo',
       },
       {
         img: './static/imgs/9.jpg',
         title: 'xxoo',
         desc: 'xxoo',
       },
-      {
+      /*{
         img: './static/imgs/cx01.jpg',
         title: '通过上面的介绍',
         desc: '通过上面的介绍',
@@ -222,33 +165,21 @@ export default {
         img: './static/imgs/cx05.jpg',
         title: 'xxoo',
         desc: 'xxoo',
-      },
-    ]);
-  },
+      },*/
+    ]).then(() => {
+      this.loading = false;
+    });
+  }
 }
-
-
-function asyncImg(url) {
-  return new Promise((resolve, reject) => {
-    let img = new Image();
-    img.src = url;
-    img.onload = () => {
-      resolve(img);
-    }
-    img.onerror = (err) => {
-      reject(err);
-    }
-  })
-}
-
-
 </script>
 
-<style lang="stylus" scoped>
+<style lang="scss" scoped>
 .nana {
   .img-list {
     position: relative;
     margin: 0 auto;
+    padding: 20px 0;
+
     .img-list-item {
       position: absolute;
       /*border: 1px solid black;*/
@@ -290,14 +221,7 @@ function asyncImg(url) {
           opacity: 1;
           transform: scale3d(1, 1, 1)
         }
-      } /*@keyframes fadeIn {
-          0% {
-            opacity: 0
-          }
-          100% {
-            opacity: 1
-          }
-        }*/
+      }
 
       .inner {
         border-radius: 10px;
@@ -305,18 +229,20 @@ function asyncImg(url) {
         overflow: hidden;
       }
       .img {
-        cursor pointer;
+        cursor: pointer;
         overflow: hidden;
+
+        img {
+          display: block;
+          width: 100%;
+          transition: all 0.5s ease;
+        }
+
         &:hover {
           img {
-            transform scale(1.05);
+            transform: scale(1.05);
           }
         }
-      }
-      img {
-        display: block;
-        width: 100%;
-        transition: all 0.5s ease;
       }
 
       span {
@@ -353,12 +279,45 @@ function asyncImg(url) {
       }
     }
   }
-  .load-more {
-    cursor pointer;
-    text-align center;
-    color gray;
+  .loadtips {
+    cursor: pointer;
+    text-align: center;
+    color: gray;
   }
-  padding: 20px 0;
-}
+  .loading {
+    text-align: center;
 
+    span {
+      color: rgb(255, 255, 255);
+      font-size: 16px;
+      animation-name: bounce_fountainTextG;
+      animation-duration: 2.09s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+      transform: scale(.5);
+    }
+
+    @for $i from 1 through 10 {
+      span:nth-child(#{$i}) {
+        animation-delay: 0.75s + ($i*0.15);
+      }
+    }
+
+    @keyframes bounce_fountainTextG {
+      0% {
+        transform: scale(1);
+        color: rgb(255, 255, 255);
+      }
+      20% {
+        transform: scale(1);
+        color: rgb(0, 0, 0);
+      }
+
+      100% {
+        transform: scale(.5);
+        color: rgb(255, 255, 255);
+      }
+    }
+  }
+}
 </style>

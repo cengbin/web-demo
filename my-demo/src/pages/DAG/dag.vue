@@ -120,8 +120,8 @@ for (let i = 0; i < map.length; i++) {
     let _width = (eleWidth + margin);
 
 
-    let _x = ((stageWidth - (colLength * _width)) / 2) + (j * _width);
-    // let _x = (j * _width);
+    // let _x = ((stageWidth - (colLength * _width)) / 2) + (j * _width);
+    let _x = (j * _width);
     let _y = i * (eleHeight + margin);
 
     // if (i === 0 && j === 0) {
