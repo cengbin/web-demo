@@ -21,7 +21,7 @@ export default {
     }
   },
   created() {
-    console.log('$route:', this.$router)
+    // console.log('$route:', this.$router)
     // console.log('$route:', this.$route)
   }
 }

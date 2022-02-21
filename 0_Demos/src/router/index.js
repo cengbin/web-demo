@@ -6,6 +6,7 @@ import AppE from '../pages/AppE/AppE'
 import FlowChart from '../pages/flow/flow'
 import DAG from '../pages/DAG/dag'
 import Nana from '../pages/nana/nana'
+import XMind from '../pages/xmind/xmind'
 
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -13,6 +14,14 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export let routes = [
+  {
+    path: '/xmind',
+    name: 'nana',
+    meta: {
+      title: '思维导图可视化'
+    },
+    component: XMind,
+  },
   {
     path: '/nana',
     name: 'nana',

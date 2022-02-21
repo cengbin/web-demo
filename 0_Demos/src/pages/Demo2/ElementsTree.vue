@@ -52,7 +52,7 @@ function DFS(arr, parent) {
 }
 
 DFS(rootElement.children, rootElement)
-console.log(rootElement)
+// console.log(rootElement)
 
 export default {
   name: 'elements-tree',
