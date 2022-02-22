@@ -1,0 +1,86 @@
+let graph = {
+  vertex: [
+    {id: 'v1'},
+    {id: 'v2'},
+    {id: 'v3'},
+    {id: 'v4'},
+    {id: 'v5'},
+    {id: 'v6'},
+    {id: 'v7'},
+    {id: 'v8'},
+  ],
+  edge: [
+    // 0  1  2  3  4  5  6  7
+    [0, 1, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+  ]
+}
+
+class Node {
+  constructor(data, index) {
+    this.data = data;
+    this.index = index;
+    this.width = 150;
+    this.height = 70;
+    this.vgap = 20;
+    this.hgap = 40;
+    this.x = 0;
+    this.y = 0;
+    this.children = [];
+    this.childrenHeight = 0;
+    this.familyHeight = 0;
+    this.id = (data.id && data.id.slice(0, 4));
+  }
+}
+
+for (let i = 0; i < graph.vertex.length; i++) {
+  graph.vertex[i] = new Node(graph.vertex[i], i);
+}
+
+var rootNode = graph.vertex[0];
+rootNode.x = 0;
+rootNode.y = 0;
+
+// DFS深度优先遍历思想：一条道走到黑，直到走不通了，就退回到上一步再走。
+// BFS
+function BFS(graph, idx) {
+  let visited = [];
+  let nodes = [];
+  let node;
+
+  visited[idx] = true;
+  nodes.push(graph.vertex[idx]);
+
+  while(node = nodes.shift()) {
+    console.log(node.data.id);
+    console.log(JSON.stringify(visited));
+
+    let edge = graph.edge[node.index];
+    for (let j = 0; j < edge.length; j++) {
+      if (edge[j] && !visited[j]) {
+        visited[j] = true;
+
+        let subNode = graph.vertex[j];
+
+        subNode.x = node.x + node.width + node.vgap;
+        // subNode.y = node.y + node.height + node.hgap;
+
+        nodes.push(subNode);
+
+
+      }
+    }
+  }
+}
+
+BFS(graph, 0);
+
+export {
+  graph,
+}
