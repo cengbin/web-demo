@@ -33,7 +33,6 @@ class Node {
   }
 }
 
-
 let tree = {
   "children": [
     {
@@ -214,11 +213,9 @@ function init() {
 
 init();
 
+// console.log(rootNode);
+
 export {
   nodeList,
   rootNode
 };
-
-console.log(rootNode);
-
-

@@ -6,7 +6,7 @@
     <br/>
     <!--{{node.depth}} / {{node.id}}-{{node.parent && node.parent.id || ''}} / {{node.index}}-->
     <!--depth:{{node.depth}} / {{node.path}}-->
-    childHeight:{{node.childrenAreaHeight}}
+    CH:{{node.childrenAreaHeight}}
 
     <div class="line" :style="{width:lineLength+'px',transform:rotate}"></div>
 

@@ -2,7 +2,7 @@
   <div class="xmind">
     <BisselCurve :width="100" :height="100"></BisselCurve>
 
-    <ListItem v-for="node,idx in nodeList" :node="node"></ListItem>
+    <ListItem v-for="node,idx in nodeList" :node="node" :key="idx"></ListItem>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
   import {
     nodeList,
     rootNode
-  } from './xmind'
+  } from './xmind-state'
   import ListItem from './list-item'
   import BisselCurve from './bissel-curve'
 
