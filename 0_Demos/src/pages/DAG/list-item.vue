@@ -1,6 +1,6 @@
 <template>
   <div class="list-item" :style="style">
-    {{node.id}}->{{(node.parent && node.parent.id) || null}} {{node.depth}}
+    {{node.id}}->{{(node.parent && node.parent.id) || 'null'}} {{node.depth}} outDegree:{{node.outDegree}}
     <br/>
     {{node.x}} / {{node.y}}
     <br/>
@@ -17,7 +17,7 @@
     props: ["node"],
     computed: {
       style() {
-        let {x, y} = this.node;
+        let {x, y} = this.node
         return {
           width: this.node.width + 'px',
           height: this.node.height + 'px',

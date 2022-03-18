@@ -165,17 +165,6 @@ class Graph {
           }
           current.box.position = RelativeRect.fromLTRB(familyPosition.left, top,
             familyPosition.left + nodeSize.width, top + nodeSize.height);
-        } else if (direction == Axis.vertical) {
-          familyPosition = current.box.familyPosition
-            .copyWith(right: familyCrossEnd, bottom: familyMainEnd);
-          var left = familyPosition.left;
-          if (centerLayout) {
-            left = familyPosition.left +
-              (familyPosition.right - familyPosition.left - nodeSize.width) /
-                2;
-          }
-          current.box.position = RelativeRect.fromLTRB(left, familyPosition.top,
-            left + nodeSize.width, familyPosition.top + nodeSize.height);
         }
 
         current.box.familyPosition = familyPosition;
