@@ -1,12 +1,12 @@
 <template>
   <div class="dag" style="width:1024px;height:768px;border:1px solid black;">
-    <List :nodes="graph.vertex"></List>
+    <List :nodes="vertices"></List>
   </div>
 </template>
 
 <script>
-  import List from './list.vue';
-  import {graph} from './dag-state';
+  import List from './list.vue'
+  import {graph, vertices} from './dag-state'
 
   export default {
     name: 'dag',
@@ -15,7 +15,8 @@
     },
     data() {
       return {
-        graph
+        graph,
+        vertices
       }
     },
     computed: {},

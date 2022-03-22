@@ -1,12 +1,12 @@
 <template>
   <div class="list-item" :style="style">
-    {{node.id}}->{{(node.parent && node.parent.id) || 'null'}} {{node.depth}} outDegree:{{node.outDegree}}
+    {{node.data.data}} | {{node.depth}}
     <br/>
     {{node.x}} / {{node.y}}
     <br/>
     ChildrenHeight:{{node.childrenAreaHeight}}
     <br/>
-    FamilyHeight:xxx
+    FamilyHeight:
   </div>
 </template>
 
