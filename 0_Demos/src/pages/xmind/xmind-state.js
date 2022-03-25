@@ -1,38 +1,3 @@
-class Node {
-  constructor(data, parent, index) {
-    this.data = data
-    this.width = 150;
-    this.height = 70;
-    this.vgap = 20;
-    this.hgap = 40;
-    this.x = 0;
-    this.y = 0;
-    this.children = [];
-    this.childrenAreaHeight = 0;
-    // this.id = parseInt(Math.random() * 10000);
-    this.id = data.id.slice(0, 4);
-
-
-    this.parent = parent;
-    this.index = index;
-    if (parent) {
-      this.depth = parent.depth + 1;
-      this.x = parent.x + parent.width + parent.hgap;
-
-      this.path = this.depth + '/' + parent.index + "." + this.index;
-    } else {
-      this.depth = 0;
-      this.path = '0';
-    }
-
-    if (parent) {
-      this.y = (parent.y - parent.childrenAreaHeight / 2) + ((this.height + this.vgap) * index) + (this.height / 2);
-
-      Nan(this);
-    }
-  }
-}
-
 let tree = {
   "children": [
     {
@@ -122,100 +87,125 @@ let tree = {
   "isRoot": true
 }
 
-let nodeList = [];
-let rootNode = new Node(tree, null, 0);
-rootNode.x = 0;
-rootNode.y = 400;
+class Node {
+  constructor(data, parent, index) {
+    this.data = data
+    this.width = 150
+    this.height = 70
+    this.vgap = 20
+    this.hgap = 40
+    this.x = 0
+    this.y = 0
+    this.children = []
+    this.childrenAreaHeight = 0
+    // this.id = parseInt(Math.random() * 10000);
+    this.id = data.id.slice(0, 4)
 
-function Nan(node) {
-  if (isNaN(node.y)) {
-    console.log(`node:${node.depth} / ${node.id}`);
+
+    this.parent = parent
+    this.index = index
+    if (parent) {
+      this.depth = parent.depth + 1
+      this.x = parent.x + parent.width + parent.hgap
+
+      this.path = this.depth + '/' + parent.index + "." + this.index
+    } else {
+      this.depth = 0
+      this.path = '0'
+    }
+
+    if (parent) {
+      this.y = (parent.y - parent.childrenAreaHeight / 2) + ((this.height + this.vgap) * index) + (this.height / 2)
+    }
   }
 }
+
+let nodeList = []
+let rootNode = new Node(tree, null, 0)
+rootNode.x = 0
+rootNode.y = 400
 
 function updateChildren(children, offset) {
   children.forEach(node => {
     // console.log('updateChildren:', node.depth, node.id, offset);
-    node.y += offset;
+    node.y += offset
 
     if (node.children && node.children.length)
-      updateChildren(node.children, offset);
+      updateChildren(node.children, offset)
   })
 }
 
 function updateBrothers(currentNode, addHeight) {
   if (currentNode.parent) {
-    let children = currentNode.parent.children;
+    let children = currentNode.parent.children
     // 当前节点在children中的索引
-    let index = currentNode.index;
+    let index = currentNode.index
 
     // console.log('updateBrothers', currentNode.depth, currentNode.id, 'addHeight: ', addHeight);
 
     children.forEach((node, idx) => {
-      if (index === idx) return;
+      if (index === idx) return
 
-      let offsetY = 0;
+      let offsetY = 0
       // 在当前结点的上面就减
       if (idx < index) {
-        offsetY = -addHeight;
+        offsetY = -addHeight
 
       } else {
         // 反之则加
-        offsetY = addHeight;
+        offsetY = addHeight
       }
 
       // console.log('updateBrothers:', node.depth, node.id, offsetY);
 
       // 移动兄弟节点
-      node.y += offsetY;
-
-      Nan(node);
+      node.y += offsetY
 
       // 兄弟节点移动了，还需要同步移动其所有子结点
       if (node.children && node.children.length)
-        updateChildren(node.children, offsetY);
+        updateChildren(node.children, offsetY)
     })
 
     // 移动所有的上层结点 和 上层节点的子节点
-    updateBrothers(currentNode.parent, addHeight);
+    updateBrothers(currentNode.parent, addHeight)
   }
 }
 
-function init() {
-  let nodes = [rootNode];
-  let node = null;
+function DFS() {
+  let nodes = [rootNode]
+  let node = null
 
   while(node = nodes.shift()) {
-    nodeList.push(node);
+    nodeList.push(node)
     // console.log(node.data.id.slice(0, 8));
 
-    let children = node.data.children;
+    let children = node.data.children
     if (children && children.length) {
       // 计算子节点的总高度
-      node.childrenAreaHeight = (node.height + node.vgap) * children.length - node.vgap;
+      node.childrenAreaHeight = (node.height + node.vgap) * children.length - node.vgap
 
       for (let i = 0; i < children.length; i++) {
-        var child = new Node(children[i], node, i);
-        node.children.push(child);
+        var child = new Node(children[i], node, i)
+        node.children.push(child)
 
-        nodes.push(child);
+        nodes.push(child)
       }
 
       // 判断子结点的高度是否大于自身高度
       // 如果大于自身高度，则调整前后兄弟结点的y
       // console.log(node.childrenAreaHeight > node.height);
       if (node.childrenAreaHeight > node.height) {
-        updateBrothers(node, (node.childrenAreaHeight - node.height) / 2);
+        updateBrothers(node, (node.childrenAreaHeight - node.height) / 2)
       }
     }
   }
 }
 
-init();
+DFS()
 
 // console.log(rootNode);
 
 export {
   nodeList,
   rootNode
-};
+}

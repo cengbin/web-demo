@@ -1,3 +1,5 @@
+// todo：求图中起点到终点有多少条路径，每个结点的"深度"是曾经访问过的最大的深度值。
+
 // 顶点
 class Vertex {
   constructor(data) {
@@ -5,11 +7,17 @@ class Vertex {
     this.data = data || null
     // 记录第一条边（或弧）
     this.firstArc = null
+    // 深度
+    // this.depth = 0
 
-    // 深度array
-    this.depth = 0
+    // 层次
+    this.layer = 0
 
-    this.idDegree = []
+    this.x = 0
+    this.y = 0
+
+    this.inDegree = []
+    this.outDegree = []
   }
 }
 
@@ -40,41 +48,41 @@ class Graph {
     }
   }
 
-  inDegree() {
-    // 求入度
+  degree() {
     let vertices = this.vertices
 
-    // 先遍历所有的头结点
+    // 遍历所有的头结点
     for (let i = 0; i < vertices.length; i++) {
       let vertex = vertices[i]
 
-      // 遍历所有的边连接的顶点
+      // 求"出度"（找以当前结点为弧头的结点）
+      // 思路：遍历领接链表，有多少条边就有多少个以当前结点为弧头的结点
+      let arc = vertex.firstArc
+      while(arc) {
+        vertex.outDegree.push(vertices[arc.adjvex])
+        arc = arc.nextArc
+      }
+
+      // 求"入度"（找以当前结点为弧尾的结点）
+      // 思路：遍历图中所有顶点的边，如果顶点的边指向的顶点的位置是i，则vertices[j]是vertex的入度结点
       for (let j = 0; j < vertices.length; j++) {
-        // 访问边连接的顶点
         let arc = vertices[j].firstArc
         while(arc) {
           if (arc.adjvex === i) {
-            vertex.idDegree.push(vertices[j])
+            vertex.inDegree.push(vertices[j])
           }
 
           arc = arc.nextArc
         }
       }
 
-      console.log(vertex.data, ' 入度:', vertex.idDegree.length)
-      let depth = null
-      vertex.idDegree.forEach(ele => {
-        // console.log(ele.depth)
-        depth = Math.max(ele.depth, depth)
-      })
-      console.log('current depth:', vertex.depth)
-      console.log('final   depth:', depth)
-
-      if (depth != null) {
-        vertex.depth = (++depth)
-      }
-
-      console.log('\n')
+      // console.log(
+      //   vertex.data,
+      //   `\n入度:${vertex.inDegree.length}`,
+      //   `\n出度：${vertex.outDegree.length}`,
+      //   `\n深度：${vertex.depth}`,
+      // )
+      // console.log('\n')
     }
   }
 
@@ -114,8 +122,11 @@ class Graph {
       callback && callback(vertex, index, depth)
 
       visited[index] = true
-      console.log(vertex.data, depth)
+      vertex.depth = depth
 
+      // console.log(vertex.data, depth)
+
+      // 增加深度
       ++depth
 
       // 访问边连接的顶点
@@ -123,8 +134,10 @@ class Graph {
       while(arc) {
         vertex = vertices[arc.adjvex]
 
-        vertex.depth = Math.max(vertex.depth, depth)
+        // 当前结点有可能访问过，但是需要重新计算"最大深度"
+        // vertex.depth = Math.max(vertex.depth, depth)
 
+        // 没有访问过，就继续深度遍历
         if (!visited[arc.adjvex]) {
           dfs(vertex, arc.adjvex, depth)
         }
@@ -134,6 +147,79 @@ class Graph {
     }
 
     dfs(vertices[0], 0, 0)
+  }
+
+  depth() {
+    let vertices = this.vertices
+
+    // 遍历所有的头结点
+    for (let i = 0; i < vertices.length; i++) {
+      let vertex = vertices[i]
+
+      if (vertex.inDegree.length) {
+        let depth2 = 0
+        vertex.inDegree.forEach(ele => {
+          depth2 = Math.max(ele.depth, depth2)
+        })
+        vertex.depth = (++depth2)
+      }
+
+      // console.log(
+      //   `${i} ${vertex.data}`,
+      //   `\n入度:${vertex.inDegree.length}`,
+      //   `\n出度：${vertex.outDegree.length}`,
+      //   `\n深度：${vertex.depth}`,
+      //   `\n `
+      // )
+    }
+  }
+
+  setY() {
+    let vertices = this.vertices
+    let visited = []
+
+
+    // todo 未完待做！！！
+    console.log(' --- 深度优先遍历开始 ---')
+
+    function dfs(vertex, vIndex) {
+      visited[vIndex] = true
+      console.log(vertex.data, vIndex)
+
+      vertex.y = vertex
+
+      let arc = vertex.firstArc
+      let aIndex = 0
+      while(arc) {
+        if (!visited[arc.adjvex]) {
+          dfs(vertices[arc.adjvex], arc.adjvex, aIndex)
+        }
+
+        arc = arc.nextArc
+      }
+
+      console.log(
+        `回溯结点：${vertex.data}`,
+        `${vIndex}`
+      )
+    }
+
+    dfs(vertices[0], 0)
+
+    console.log(' --- 深度优先遍历结束 ---')
+
+
+    // 计算Y坐标
+    // 思路：
+
+
+    function updateChildren(children, offset) {
+
+    }
+
+    function updateBrothers(currentNode, addHeight) {
+
+    }
   }
 }
 
@@ -186,8 +272,12 @@ graph.vertices[10].firstArc = new Arc(11)
 
 graph.vertices[11].firstArc = null
 
+graph.degree()
+
 graph.DFS()
 
-graph.inDegree()
+graph.depth()
+
+graph.setY()
 
 export default graph
