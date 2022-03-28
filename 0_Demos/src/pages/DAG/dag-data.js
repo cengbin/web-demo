@@ -16,8 +16,13 @@ class Vertex {
     this.x = 0
     this.y = 0
 
-    this.inDegree = []
-    this.outDegree = []
+    this.degreeIn = []
+    this.degreeOut = []
+
+    this.width = 150
+    this.height = 70
+    this.vgap = 20
+    this.hgap = 40
   }
 }
 
@@ -36,6 +41,10 @@ class Arc {
 // 图的邻接链表形式描述
 class Graph {
   constructor(vexnum, arcnum) {
+
+    // 记录同层结点
+    this.map = new Map()
+
     // 顶点数
     this.vexnum = vexnum
     // 边数
@@ -59,7 +68,7 @@ class Graph {
       // 思路：遍历领接链表，有多少条边就有多少个以当前结点为弧头的结点
       let arc = vertex.firstArc
       while(arc) {
-        vertex.outDegree.push(vertices[arc.adjvex])
+        vertex.degreeOut.push(vertices[arc.adjvex])
         arc = arc.nextArc
       }
 
@@ -69,7 +78,7 @@ class Graph {
         let arc = vertices[j].firstArc
         while(arc) {
           if (arc.adjvex === i) {
-            vertex.inDegree.push(vertices[j])
+            vertex.degreeIn.push(vertices[j])
           }
 
           arc = arc.nextArc
@@ -78,8 +87,8 @@ class Graph {
 
       // console.log(
       //   vertex.data,
-      //   `\n入度:${vertex.inDegree.length}`,
-      //   `\n出度：${vertex.outDegree.length}`,
+      //   `\n入度:${vertex.degreeIn.length}`,
+      //   `\n出度：${vertex.degreeOut.length}`,
       //   `\n深度：${vertex.depth}`,
       // )
       // console.log('\n')
@@ -156,43 +165,60 @@ class Graph {
     for (let i = 0; i < vertices.length; i++) {
       let vertex = vertices[i]
 
-      if (vertex.inDegree.length) {
+      if (vertex.degreeIn.length) {
         let depth2 = 0
-        vertex.inDegree.forEach(ele => {
+        vertex.degreeIn.forEach(ele => {
           depth2 = Math.max(ele.depth, depth2)
         })
         vertex.depth = (++depth2)
       }
 
+      let arr = null
+      if (this.map.has(vertex.depth)) {
+        arr = this.map.get(vertex.depth)
+      } else {
+        arr = []
+        this.map.set(vertex.depth, arr)
+      }
+      arr.push(vertex)
+
       // console.log(
       //   `${i} ${vertex.data}`,
-      //   `\n入度:${vertex.inDegree.length}`,
-      //   `\n出度：${vertex.outDegree.length}`,
+      //   `\n入度:${vertex.degreeIn.length}`,
+      //   `\n出度：${vertex.degreeOut.length}`,
       //   `\n深度：${vertex.depth}`,
       //   `\n `
       // )
     }
+
+    this.map.forEach((value, key, map) => {
+      console.log(`${key} = `, value)
+    })
   }
 
-  setY() {
+  setX() {
     let vertices = this.vertices
     let visited = []
-
 
     // todo 未完待做！！！
     console.log(' --- 深度优先遍历开始 ---')
 
-    function dfs(vertex, vIndex) {
-      visited[vIndex] = true
-      console.log(vertex.data, vIndex)
+    function dfs(vertex, vertexIndex) {
+      visited[vertexIndex] = true
+      console.log(vertex.data, vertexIndex)
 
-      vertex.y = vertex
+      let children = vertex.degreeOut
+      if (children && children.length) {
+        vertex.childrenAreaHeight = (vertex.height + vertex.vgap) * children.length - vertex.vgap
+      }
 
       let arc = vertex.firstArc
-      let aIndex = 0
       while(arc) {
         if (!visited[arc.adjvex]) {
-          dfs(vertices[arc.adjvex], arc.adjvex, aIndex)
+          // console.log(`边指向的顶点 ${arc.adjvex} 未访问过,继续深度遍历子结点`)
+          dfs(vertices[arc.adjvex], arc.adjvex)
+        } else {
+          // console.log(`边指向的顶点 ${arc.adjvex} 访问过了`)
         }
 
         arc = arc.nextArc
@@ -200,7 +226,7 @@ class Graph {
 
       console.log(
         `回溯结点：${vertex.data}`,
-        `${vIndex}`
+        `${vertexIndex}`
       )
     }
 
@@ -278,6 +304,6 @@ graph.DFS()
 
 graph.depth()
 
-graph.setY()
+graph.setX()
 
 export default graph

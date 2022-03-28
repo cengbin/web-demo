@@ -171,11 +171,13 @@ function updateBrothers(currentNode, addHeight) {
   }
 }
 
-function DFS() {
-  let nodes = [rootNode]
-  let node = null
+function BFS() {
+  let queue = [rootNode]
 
-  while(node = nodes.shift()) {
+  while(queue.length) {
+
+    let node = queue.shift()
+
     nodeList.push(node)
     // console.log(node.data.id.slice(0, 8));
 
@@ -188,7 +190,7 @@ function DFS() {
         var child = new Node(children[i], node, i)
         node.children.push(child)
 
-        nodes.push(child)
+        queue.push(child)
       }
 
       // 判断子结点的高度是否大于自身高度
@@ -201,7 +203,7 @@ function DFS() {
   }
 }
 
-DFS()
+BFS()
 
 // console.log(rootNode);
 

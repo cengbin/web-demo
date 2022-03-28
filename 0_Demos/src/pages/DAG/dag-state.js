@@ -24,7 +24,8 @@ class Node {
   }
 
   set depth(val) {
-    this.x = val * (this.width + this.vgap)
+    // this.x = val * (this.width + this.vgap)
+    this.y = val * (this.height + this.vgap)
 
     this._depth = val
   }
