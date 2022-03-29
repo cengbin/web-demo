@@ -18,7 +18,7 @@ let tree = {
               "children": [
                 {
                   "children": [],
-                  "id": "8267aa96-3178-4607-9b20-8c3bb7176f5b",
+                  "id": "6782aa96-3178-4607-9b20-8c3bb7176f5b",
                   "name": "8"
                 },
                 {
@@ -120,11 +120,6 @@ class Node {
   }
 }
 
-let nodeList = []
-let rootNode = new Node(tree, null, 0)
-rootNode.x = 0
-rootNode.y = 400
-
 function updateChildren(children, offset) {
   children.forEach(node => {
     // console.log('updateChildren:', node.depth, node.id, offset);
@@ -150,7 +145,6 @@ function updateBrothers(currentNode, addHeight) {
       // 在当前结点的上面就减
       if (idx < index) {
         offsetY = -addHeight
-
       } else {
         // 反之则加
         offsetY = addHeight
@@ -158,28 +152,36 @@ function updateBrothers(currentNode, addHeight) {
 
       // console.log('updateBrothers:', node.depth, node.id, offsetY);
 
-      // 移动兄弟节点
+      // 1、移动兄弟节点
       node.y += offsetY
 
-      // 兄弟节点移动了，还需要同步移动其所有子结点
+      // 2、兄弟节点移动了，还需要同步移动其所有子结点
       if (node.children && node.children.length)
         updateChildren(node.children, offsetY)
     })
 
-    // 移动所有的上层结点 和 上层节点的子节点
+    // 3、移动所有的上层结点 和 上层节点的子节点
     updateBrothers(currentNode.parent, addHeight)
   }
 }
 
+let nodeList = []
+
+// 广度优先遍历树型数据结构
 function BFS() {
-  let queue = [rootNode]
+  let root = new Node(tree, null, 0)
+  root.x = 0
+  root.y = 400
+  // console.log(root);
+
+  let queue = [root]
 
   while(queue.length) {
 
     let node = queue.shift()
 
     nodeList.push(node)
-    // console.log(node.data.id.slice(0, 8));
+    // console.log(node.data.id.slice(0, 4))
 
     let children = node.data.children
     if (children && children.length) {
@@ -205,9 +207,6 @@ function BFS() {
 
 BFS()
 
-// console.log(rootNode);
-
 export {
   nodeList,
-  rootNode
 }

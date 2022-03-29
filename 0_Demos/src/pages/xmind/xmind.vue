@@ -9,7 +9,6 @@
 <script>
   import {
     nodeList,
-    rootNode
   } from './xmind-state'
   import ListItem from './list-item'
   import BisselCurve from './bissel-curve'
@@ -23,7 +22,6 @@
     data() {
       return {
         nodeList,
-        rootNode
       }
     },
     computed: {},

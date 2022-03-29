@@ -9,7 +9,7 @@ class Node {
     this.vgap = 30
     this.hgap = 40
     this.x = 0
-    this.y = 0
+    this.y = vertex.y
     this.children = []
     this.childrenHeight = 0
     this.familyHeight = 0
@@ -24,8 +24,8 @@ class Node {
   }
 
   set depth(val) {
-    // this.x = val * (this.width + this.vgap)
-    this.y = val * (this.height + this.vgap)
+    this.x = val * (this.width + this.vgap)
+    // this.y = val * (this.height + this.vgap)
 
     this._depth = val
   }

@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import {getAngle, getDistance} from "./mathematics";
+  import {getAngle, getDistance} from "./mathematics"
   import BisselCurve from './bissel-curve'
 
   export default {
@@ -26,7 +26,7 @@
     props: ["node"],
     computed: {
       style() {
-        let {x, y} = this.node;
+        let {x, y} = this.node
         return {
           width: this.node.width + 'px',
           height: this.node.height + 'px',
@@ -35,41 +35,41 @@
         }
       },
       lineLength() {
-        let {x, y, parent} = this.node;
+        let {x, y, parent} = this.node
 
         if (parent) {
-          let {x: x2, y: y2, width} = parent;
-          return getDistance(x, y, x2 + width, y2);
+          let {x: x2, y: y2, width} = parent
+          return getDistance(x, y, x2 + width, y2)
         }
 
-        return 0;
+        return 0
       },
       rotate() {
-        let {x, y, parent} = this.node;
+        let {x, y, parent} = this.node
 
         if (parent) {
-          let {x: x2, y: y2, width} = parent;
+          let {x: x2, y: y2, width} = parent
           return `rotate(${getAngle(x, y, x2 + width, y2)}deg)`
         }
 
         return `rotate(0deg)`
       },
       lineWidth() {
-        let {x, y, parent} = this.node;
+        let {x, y, parent} = this.node
 
         if (parent) {
-          let {x: x2, y: y2, width} = parent;
-          return Math.abs(x - (x2 + width)) + 2;
+          let {x: x2, y: y2, width} = parent
+          return Math.abs(x - (x2 + width)) + 2
         }
 
         return 0
       },
       lineHeight() {
-        let {x, y, parent} = this.node;
+        let {x, y, parent} = this.node
 
         if (parent) {
-          let {x: x2, y: y2} = parent;
-          return Math.abs(y - y2) + 2;
+          let {x: x2, y: y2} = parent
+          return Math.abs(y - y2) + 2
         }
 
         return 0
@@ -86,11 +86,12 @@
     position: absolute;
     left: 0;
     top: 0;
-    background-color: #2196F3;
+    /*background-color: #2196F3;*/
+    background-color: rgba(33, 150, 243, 0.3);
     color: white;
     font-size: 12px;
     /*transform-origin: center center;*/
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
 
     .line {

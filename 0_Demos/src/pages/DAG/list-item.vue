@@ -34,7 +34,8 @@
     position: absolute;
     left: 0;
     top: 0;
-    background-color: #2196F3;
+    /*background-color: #2196F3;*/
+    background-color: rgba(33, 150, 243, 0.5);
     color: white;
     font-size: 12px;
     /*transform-origin: center center;*/

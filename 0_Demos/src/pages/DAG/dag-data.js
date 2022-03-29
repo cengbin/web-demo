@@ -84,14 +84,6 @@ class Graph {
           arc = arc.nextArc
         }
       }
-
-      // console.log(
-      //   vertex.data,
-      //   `\n入度:${vertex.degreeIn.length}`,
-      //   `\n出度：${vertex.degreeOut.length}`,
-      //   `\n深度：${vertex.depth}`,
-      // )
-      // console.log('\n')
     }
   }
 
@@ -182,18 +174,64 @@ class Graph {
       }
       arr.push(vertex)
 
-      // console.log(
-      //   `${i} ${vertex.data}`,
-      //   `\n入度:${vertex.degreeIn.length}`,
-      //   `\n出度：${vertex.degreeOut.length}`,
-      //   `\n深度：${vertex.depth}`,
-      //   `\n `
-      // )
+      /*console.log(
+        `${i} ${vertex.data}`,
+        `\n入度: ${vertex.degreeIn.length}`,
+        `\n出度: ${vertex.degreeOut.length}`,
+        `\n深度: ${vertex.depth}`,
+        `\n `
+      )*/
     }
 
     this.map.forEach((value, key, map) => {
       console.log(`${key} = `, value)
     })
+  }
+
+  setY() {
+    console.log(' --- 广度优先遍历开始 ---')
+    let vertices = this.vertices
+    let visited = [true]
+    let queue = [vertices[0]]
+
+    while(queue.length) {
+      let vertex = queue.shift()
+      let index = vertices.indexOf(vertex)
+      let depth = vertex.depth
+      console.log(index, vertex.data, depth)
+
+      let arr = this.map.get(depth)
+      if (arr) {
+        let idx = arr.indexOf(vertex)
+        console.log('入度:', vertex.degreeIn.length, ' idx:', idx)
+
+        let degreeIn = vertex.degreeIn
+        if (degreeIn.length === 1) {
+          let degreeInVertex = degreeIn[0]
+
+          let idx2 = degreeInVertex.degreeOut.indexOf(vertex)
+          console.log('idx2:', idx2)
+
+          vertex.y = degreeInVertex.y + (idx * (vertex.height + vertex.vgap))
+
+          // degreeInVertex.y
+        } else {
+          vertex.y = idx * (vertex.height + vertex.vgap)
+        }
+      }
+
+      let arc = vertex.firstArc
+      while(arc) {
+        if (!visited[arc.adjvex]) {
+          visited[arc.adjvex] = true
+          queue.push(vertices[arc.adjvex])
+        }
+
+        arc = arc.nextArc
+      }
+    }
+
+    console.log(' --- 广度优先遍历结束 ---')
   }
 
   setX() {
@@ -304,6 +342,6 @@ graph.DFS()
 
 graph.depth()
 
-graph.setX()
+graph.setY()
 
 export default graph

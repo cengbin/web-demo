@@ -15,6 +15,13 @@ Vue.use(Router)
 
 export let routes = [
   {
+    path: '/dag',
+    meta: {
+      title: 'DAG数据可视化'
+    },
+    component: DAG,
+  },
+  {
     path: '/xmind',
     name: 'nana',
     meta: {
@@ -37,13 +44,6 @@ export let routes = [
       title: '流程图'
     },
     component: FlowChart,
-  },
-  {
-    path: '/dag',
-    meta: {
-      title: 'DAG数据可视化'
-    },
-    component: DAG,
   },
   {
     path: '/demo1',
