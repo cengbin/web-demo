@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://passionate.herokuapp.com/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="Keywords" content="音乐可视化,webAudio,passion,passionate,music,音乐,HTML5,canvas,CSS3,自适应"> 
+    <meta name="Description" content="利用HTML5 webAudio API 和canvas API以及CSS3制作成的自适应的音乐可视化应用">
+    <meta name="Author" content="Doving">
+    <meta name="Robots" content="all">
+    <title>passionate music</title>
+    <link rel="stylesheet" href="./passionate music_files/index.css">
+  <script src="chrome-extension://oofgjnalpjodkfmfomihdlchiiacnman/injectScripts.min.js"></script></head>
+  <body>
+  	<header>
+  		<h1>Passionate Music</h1>
+      <ul class="type">
+        <li class="selected">Dot</li>
+        <li class="">Column</li>
+      </ul>
+      <p>Volume <input id="volume" type="range" min="0" max="100" value="60"></p>
+      <div class="fork">
+        <div class="border">
+          <a target="_blank" href="https://github.com/doving/webAudio">Fork Me On GitHub</a>
+        </div>
+      </div>
+  	</header>  	
+    <div class="list" id="list">
+    	<button class="music-add" id="add" style="display: none;">
+    		Local music
+    	</button>
+      <input class="upload" type="file" id="upload">
+    	<ul class="music-list" id="music-list" style="top: 0px;">
+        
+        <li title="徐良&amp;孙羽幽-虐心.mp3" class="">徐良&amp;孙羽幽-虐心.mp3</li>
+        
+        <li title="徐良&amp;小凌-客官不可以.mp3" class="play">徐良&amp;小凌-客官不可以.mp3</li>
+        
+        <li title="徐良&amp;小凌-无颜女.mp3" class="">徐良&amp;小凌-无颜女.mp3</li>
+        
+        <li title="徐良&amp;李晟-I Will Be OK.mp3">徐良&amp;李晟-I Will Be OK.mp3</li>
+        
+        <li title="徐良&amp;阿悄-红妆.mp3">徐良&amp;阿悄-红妆.mp3</li>
+        
+        <li title="徐良-后会无期.mp3">徐良-后会无期.mp3</li>
+        
+        <li title="徐良-坏女孩.mp3">徐良-坏女孩.mp3</li>
+        
+        <li title="徐良-那时雨.mp3">徐良-那时雨.mp3</li>
+        
+    	</ul>
+    </div>
+    <div class="canvas" id="canvas">
+    <canvas height="1103" width="670"></canvas></div>
+    <div class="loading-box" id="loading-box" style="display: none;">
+      <ul id="loading" style="display: none;">
+        <li class="l"></li>
+        <li class="o"></li>
+        <li class="a"></li>
+        <li class="d"></li>
+        <li class="i"></li>
+      </ul>
+      <div class="play" id="play" style="display: block;">PLAY</div>
+    </div>
+    <script src="./passionate music_files/hm.js"></script><script type="text/javascript" src="./passionate music_files/MusicVisualizer.js"></script>
+    <script type="text/javascript" src="./passionate music_files/index.js"></script>
+    <div style="display: none">
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?93630333ea7779235e516f80f3dbfcda";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>
+    </div>
+  
+
+</body></html>
