@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="./Texture.js"></script>
+    <script>
+      function loadImageAsync(src) {
+        return new Promise((resolve, reject) => {
+          let img = new Image()
+          img.onload = function (event) {
+            resolve(event)
+          }
+          img.onerror = function (err) {
+            reject(err)
+          }
+          img.src = src
+        })
+      }
+
+      var texture
+
+      loadImageAsync('p1118963889.jpg').then((value) => {
+        texture = new Texture(value.target)
+
+        return loadImageAsync('p50270.jpg')
+      }).then((value) => {
+        texture.ctx.drawImage(value.target, 10, 10, 150, 150)
+      }).finally(() => {
+        document.body.appendChild(texture.canvas)
+      })
+    </script>
+  </body>
+</html>
+
+
