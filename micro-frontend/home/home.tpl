@@ -1,11 +1,6 @@
-<div class="home">
-  <h1>home page</h1>
-  <div>
-    home page desc
-    <button id="btn1">按钮1</button>
-  </div>
-  <!--<script src="./app1.js"></script>-->
-  <!--<script>-->
-  <!--console.log('home.html, js log')-->
-  <!--</script>-->
+<div id="app" class="home">
+  <h1>(Vue Project)</h1>
+  <div>{{name}}</div>
+  <div>{{id}}</div>
+  <button @click="onClickBtn">跳转到用户</button>
 </div>
