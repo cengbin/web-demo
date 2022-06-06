@@ -1,1 +1,0 @@
-[http://localhost:8085/micro-frontend/micro-index/index.html#home](http://localhost:8085/micro-frontend/micro-index/index.html#home)
