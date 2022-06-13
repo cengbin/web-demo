@@ -8,6 +8,7 @@
     <input type="file" onchange="onChange(this.files)" multiple/>
 
     <script>
+      // 自己实现一个大文件切片上传+断点续传 https://mp.weixin.qq.com/s/SyP0zUsRHsTDyEQoab4fXg
       function onChange(files) {
         Array.from(files).forEach((file, index) => {
           let f = file
