@@ -24,7 +24,8 @@
           reader.readAsArrayBuffer(f)
           reader.onload = function () {
             let buffer = reader.result
-            let size = 1 * 1024 * 1024
+            // let size = 1 * 1024 // 1kb
+            let size = 1 * 1024 * 1024 // 1MB
             let length = Math.ceil(buffer.byteLength / size)
 
             for (let i = 0; i < length; i++) {
