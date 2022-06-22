@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="../../assets/lib/pixi/pixi-4.5.1.min.js"></script>
+    <script src="Game.js"></script>
+    <script>
+      function calcHypotenuse(x1, y1, x2, y2) {
+        let x = x2 - x1
+        let y = y2 - y1
+
+        let distance = Math.sqrt((x * x) + (y * y))
+
+        return Math.abs(distance)
+      }
+
+      function getTriangleArea(x1, y1, x2, y2, x3, y3) {
+        let a = calcHypotenuse(x1, y1, x2, y2)
+        let b = calcHypotenuse(x2, y2, x3, y3)
+        let c = calcHypotenuse(x3, y3, x1, y1)
+
+        let p = (a + b + c) / 2
+
+        let S = Math.sqrt(p * (p - a) * (p - b) * (p - c))
+
+        return S
+      }
+
+      var menuWidth = 200
+      var stageWidth = document.documentElement.clientWidth || document.body.clientWidth
+      var stageHeight = document.documentElement.clientHeight || document.body.clientHeight
+
+      var A = {x: menuWidth, y: 0}
+      var B = {x: menuWidth, y: stageHeight}
+      var C = {x: 0, y: 150}
+      var S = getTriangleArea(A.x, A.y, B.x, B.y, C.x, C.y)
+      console.log("S=", S)
+
+      var sto = null
+
+      document.addEventListener('mousemove', (event) => {
+        sto && window.clearTimeout(sto)
+
+        var M = {x: event.x, y: event.y}
+        var S1 = getTriangleArea(A.x, A.y, B.x, B.y, M.x, M.y)
+        var S2 = getTriangleArea(B.x, B.y, C.x, C.y, M.x, M.y)
+        var S3 = getTriangleArea(C.x, C.y, A.x, A.y, M.x, M.y)
+        var T = S1 + S2 + S3
+
+        if (M.x > 200) return
+
+        if (Math.abs(T - S) < 0.0001) {
+          sto = window.setTimeout(() => {
+            sto = null
+
+            // C = {x: M.x, y: (parseInt(M.y / 50) * 50) + 25}
+            C = {x: M.x, y: M.y}
+            S = getTriangleArea(A.x, A.y, B.x, B.y, C.x, C.y)
+            console.log('C.x:', C.x)
+
+            if (C.x <= 200) {
+              resetGraphics(A, B, C, 'true')
+              window.menutext.text = `菜单${parseInt(M.y / 50)}`
+            }
+          }, 100)
+        } else {
+          C = {x: M.x, y: M.y}
+          S = getTriangleArea(A.x, A.y, B.x, B.y, C.x, C.y)
+
+          if (C.x <= 200) {
+            resetGraphics(A, B, C, 'false')
+            window.menutext.text = `菜单${parseInt(M.y / 50)}`
+          }
+        }
+      })
+
+      function resetGraphics(p1, p2, p3, msg) {
+        console.log(`resetGraphics:${msg}`)
+        var graphics = window.graphics
+        graphics.clear()
+        graphics.beginFill(0xFF3300, 0.3)
+        graphics.moveTo(p1.x, p1.y)
+        graphics.lineTo(p2.x, p2.y)
+        graphics.lineTo(p3.x, p3.y)
+        graphics.closePath()
+        graphics.endFill()
+      }
+    </script>
+    <script>
+      var game = new Game({
+        width: stageWidth,
+        height: stageHeight,
+        // backgroundColor: 0x1099bb
+        backgroundColor: 0xffffff
+      })
+    </script>
+  </body>
+</html>
