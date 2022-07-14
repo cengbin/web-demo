@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script>
+  let item  = {"overTimeStr":"超时26天","nodeName":"货架陈列调整确认","instNodeIdStr":"164","taskKey":"43","instNodeId":"164","customFields":[{"value":"联想桥店（银座）","key":"门店名称"},{"value":"1477","key":"门店编号"}],"overTime":{"date":{"year":2022,"month":6,"day":16},"time":{"hour":2,"minute":30,"second":14,"nano":0}},"creatorName":"陈列系统","venderId":"1","runInstId":"7109411119735767381","actionButtons":[11],"templateId":"43","waterMarkStrs":[],"handleTerminal":1,"handleLimitStr":"仅可在APP端处理","tag":0,"taskStatus":10,"isCheckStore":true,"runInstIdStr":"7109411119735767381","created":{"date":{"year":2022,"month":7,"day":8},"time":{"hour":17,"minute":17,"second":48,"nano":0}},"textFeedBackConfig":{"isSwitchOpen":false},"nodeType":6,"storeId":"308","userId":"118","taskStatusStr":"运行中","attachmentFeedBackConfig":{"isSwitchOpen":false},"venderName":"北京物美","nodeIdStr":"7109411119735767387","imageFeedBackConfig":{"isSwitchOpen":false},"allowBatchApproval":false,"createTime":"2022-07-08 17:17","templateName":"【新】货架陈列调整","allowBatchApprove":0,"appActionUrl":"https://testdsp.dmall.com/padshelves/?dmShowTitleBar=false#full/padshelvesbuild/home:v=1&listData={\"\":\"displayDbpmTask#12241\",\"modelId\":\"43\",\"old\":false,\"sceneId\":\"43\",\"taskId\":\"7109411119735767387\",\"taskNodeInstId\":\"7109411119735767387\"}","nodeId":"7109411119735767387","":"displayDbpmTask#12241","modelId":"43","old":false,"sceneId":"43","taskId":"7109411119735767387","taskNodeInstId":"7109411119735767387"}
+  let str = encodeURIComponent(JSON.stringify(item))
+  console.log(str);
+
+  // let str = `{"overTimeStr"%3A"超时26天"%2C"nodeName"%3A"货架陈列调整确认"%2C"instNodeIdStr"%3A"164"%2C"taskKey"%3A"43"%2C"instNodeId"%3A"164"%2C"customFields"%3A[{"value"%3A"联想桥店（银座）"%2C"key"%3A"门店名称"}%2C{"value"%3A"1477"%2C"key"%3A"门店编号"}]%2C"overTime"%3A{"date"%3A{"year"%3A2022%2C"month"%3A6%2C"day"%3A16}%2C"time"%3A{"hour"%3A2%2C"minute"%3A30%2C"second"%3A14%2C"nano"%3A0}}%2C"creatorName"%3A"陈列系统"%2C"venderId"%3A"1"%2C"runInstId"%3A"7109411119735767381"%2C"actionButtons"%3A[11]%2C"templateId"%3A"43"%2C"waterMarkStrs"%3A[]%2C"handleTerminal"%3A1%2C"handleLimitStr"%3A"仅可在APP端处理"%2C"tag"%3A0%2C"taskStatus"%3A10%2C"isCheckStore"%3Atrue%2C"runInstIdStr"%3A"7109411119735767381"%2C"created"%3A{"date"%3A{"year"%3A2022%2C"month"%3A7%2C"day"%3A8}%2C"time"%3A{"hour"%3A17%2C"minute"%3A17%2C"second"%3A48%2C"nano"%3A0}}%2C"textFeedBackConfig"%3A{"isSwitchOpen"%3Afalse}%2C"nodeType"%3A6%2C"storeId"%3A"308"%2C"userId"%3A"118"%2C"taskStatusStr"%3A"运行中"%2C"attachmentFeedBackConfig"%3A{"isSwitchOpen"%3Afalse}%2C"venderName"%3A"北京物美"%2C"nodeIdStr"%3A"7109411119735767387"%2C"imageFeedBackConfig"%3A{"isSwitchOpen"%3Afalse}%2C"allowBatchApproval"%3Afalse%2C"createTime"%3A"2022-07-08 17%3A17"%2C"templateName"%3A"【新】货架陈列调整"%2C"allowBatchApprove"%3A0%2C"appActionUrl"%3A"https%3A%2F%2Ftestdsp.dmall.com%2Fpadshelves%2F%3FdmShowTitleBar%3Dfalse%23full%2Fpadshelvesbuild%2Fhome%3Av%3D1%26listData%3D{\\"\\"%3A\\"displayDbpmTask%2312241\\"%2C\\"modelId\\"%3A\\"43\\"%2C\\"old\\"%3Afalse%2C\\"sceneId\\"%3A\\"43\\"%2C\\"taskId\\"%3A\\"7109411119735767387\\"%2C\\"taskNodeInstId\\"%3A\\"7109411119735767387\\"}"%2C"nodeId"%3A"7109411119735767387"%2C""%3A"displayDbpmTask%2312241"%2C"modelId"%3A"43"%2C"old"%3Afalse%2C"sceneId"%3A"43"%2C"taskId"%3A"7109411119735767387"%2C"taskNodeInstId"%3A"7109411119735767387"}`
+  console.log(decodeURIComponent(str))
+  // console.log(encodeURI(decodeURIComponent(str)));
+  // console.log(JSON.parse(decodeURIComponent(str)))
+</script>
