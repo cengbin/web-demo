@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://browser.sentry-cdn.com/5.20.1/bundle.min.js" integrity="sha384-O8HdAJg1h8RARFowXd2J/r5fIWuinSBtjhwQoPesfVILeXzGpJxvyY/77OaPPXUo" crossorigin="anonymous"></script>
+    <script>
+      Sentry.init({dsn: 'http://28de76608cf4472599c56268113360ec@0.0.0.0:9000/2'})
+
+      Sentry.configureScope((scope) => {
+        // 设置Sentry区分不同用户的信息，此处以UserId区分不同用户
+        scope.setUser({"id": '12345'})
+        // 设置额外的上传信息
+        scope.setExtra("userInfo", {
+          name: "zengbin",
+          sex: "男",
+          age: 28
+        })
+      })
+
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          reject("promise reject info")
+        })
+      })
+
+      // Sentry.captureMessage("Hello, world!" + new Date()) // 上报信息
+      //
+      // Sentry.captureException(new Error("Good bye")) // 上报异常
+      //
+      // myUndefinedFunction()
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
