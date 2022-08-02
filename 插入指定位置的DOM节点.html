@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>之后插入节点</title>
+  </head>
+  <body>
+    <div>
+      <p id="two">1</p>
+      2
+    </div>
+    <script>
+      let video = document.createElement("video")
+      video.src = "https://stream7.iqilu.com/10339/upload_transcode/202002/18/20200218114723HDu3hhxqIT.mp4"
+      video.controls = true
+
+      insertAfter(video, document.getElementById("two"))
+
+      function insertAfter(newNode, existingNode) {
+        existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling)
+      }
+    </script>
+  </body>
+</html>
