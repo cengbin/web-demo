@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+</html>
+<script>
+  function power(base, exponent) {
+    let num = 1
+    for (var i = 0; i < exponent; i++) {
+      num = base * num
+    }
+    return num
+  }
+
+  console.log(power(3, 0))
+  console.log(power(3, 1))
+  console.log(power(3, 2))
+  console.log(power(3, 3))
+  console.log(power(10, 0))
+  console.log(power(10, 1))
+  console.log(power(10, 2))
+  console.log(power(10, 3))
+
+  console.log(Math.pow(3, 0))
+  console.log(Math.pow(3, 1))
+  console.log(Math.pow(3, 2))
+  console.log(Math.pow(3, 3))
+  console.log(Math.pow(10, 0))
+  console.log(Math.pow(10, 1))
+  console.log(Math.pow(10, 2))
+  console.log(Math.pow(10, 3))
+</script>
