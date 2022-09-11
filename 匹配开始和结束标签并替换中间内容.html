@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script>
+  var comment =
+    "## Props \n" +
+    "<!-- props:start -->\n" +
+    "|参数|说明|类型|默认值|\n" +
+    "|------|------|------|------|\n" +
+    "|type|类型|Object、String|\"success\"|\n" +
+    "|size|大小|String|middle|\n" +
+    "<!-- props:end -->"
+
+  var startTag = "<!-- props:start -->"
+  var endTag = "<!-- props:end -->"
+  // var index1 = comment.indexOf(startTag)
+  // var index2 = comment.indexOf(endTag)
+  // console.log(index1, index2)
+  // if (index1 !== -1 && index2 !== -1) {
+  //   var newStr = "\n123\n"
+  //   comment = comment.slice(0, index1 + startTag.length) + newStr + comment.slice(index2)
+  // }
+  // console.log(comment)
+
+
+  var lines = comment.split("\n")
+  console.log(lines)
+  var index1 = lines.indexOf(startTag)
+  var index2 = lines.indexOf(endTag)
+  console.log(index1, index2)
+  if (index1 !== -1 && index2 !== -1) {
+    var newStr = "123"
+    lines.splice(index1 + 1, index2 - index1 - 1, newStr)
+  }
+  console.log(lines.join("\n"))
+
+  var arr = [1, 2, 3, 4]
+  console.log(arr.splice(2, 0, 5, 5, 5, 5), arr)
+</script>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script>
+  var comment = `
+  /**
+   * 点击按钮侦听函数
+   * @param {Object} event 点击事件对象1
+   * @param {Object} event2 点击事件对象2
+   * @param {Object} event3 点击事件对象3
+   * @returns undefined
+   */
+   `
+  console.log([...comment.matchAll(/(@param)[\s]*{([a-zA-Z]*)}[\s]*(\w*)(.*)/g)])
+</script>
