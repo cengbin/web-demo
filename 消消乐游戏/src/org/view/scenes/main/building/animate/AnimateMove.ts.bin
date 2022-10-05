@@ -1,0 +1,39 @@
+import Animate from './Animate'
+
+export default class AnimateMove extends Animate {
+  constructor (obj) {
+    super(obj)
+
+    let start = { x: 225, y: 663, ease: window.Power0.easeNone }
+    let d1 = 320
+    let ang1 = 32
+    let p1 = {
+      x: start.x + Math.cos(Math.PI / 180 * ang1) * d1,
+      y: start.y + Math.sin(Math.PI / 180 * ang1) * d1,
+      ease: window.Power0.easeNone
+    }
+
+    let d2 = -450
+    let p2 = {
+      x: start.x + Math.cos(Math.PI / 180 * ang1) * d2,
+      y: start.y + Math.sin(Math.PI / 180 * ang1) * d2,
+      ease: window.Power0.easeNone
+    }
+
+    var tl = new window.TimelineMax({
+      repeat: -1,
+      onRepeat: () => {
+        // console.log('onRepeat:', p1, p2, start)
+      },
+      onStart: () => {
+        // console.log(p1, p2, start)
+      },
+      onUpdate: () => {
+        // console.log(this.obj.goodsData.chineseName)
+      }
+    })
+    tl.add(window.TweenMax.fromTo(this.obj, 3.2 * 2, start, p1))
+    tl.add(window.TweenMax.fromTo(this.obj, 4.5 * 2, p2, start))
+    this.tween = tl
+  }
+}
