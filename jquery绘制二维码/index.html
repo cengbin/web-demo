@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="code"></div>
+</body>
+</html>
+<script src="jquery-3.1.1.min.js"></script>
+<script src="jquery.qrcode.min.js"></script>
+<script>
+    $(function(){
+        $("#code").qrcode({
+            render: "canvas",
+            width: 170,
+            height:170,
+            text: 'http://www.baidu.com',
+            background:"#ffffff",
+            foreground:"#432011"
+        });
+    });
+</script>

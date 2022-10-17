@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>cache</title>
+</head>
+
+<body>
+<canvas id="Canvas" width="1200" height="450"></canvas>
+<script src="lib/d3.v3.min.js"></script>
+<script>
+
+// var canvas = document.querySelector("canvas"),
+var canvas = document.getElementById("Canvas");
+    context = canvas.getContext("2d"),
+    width = canvas.width,
+    height = canvas.height,
+    minDistance = 10,
+    maxDistance = 100,
+    minDistance2 = minDistance * minDistance,
+    maxDistance2 = maxDistance * maxDistance;
+
+var tau = 2 * Math.PI,
+    pn = 60,//number of points to add
+    particles = new Array(pn);
+
+for (var i = 0; i < pn; ++i) {
+    particles[i] = 
+    {
+	    x: Math.random() * width,
+	    y: Math.random() * height,
+	    vx: 0,
+	    vy: 0,
+	    r: Math.random()*10+3
+    };
+}
+
+function drawBgPoints()
+{
+  context.save();
+  context.clearRect(0, 0, width, height);
+
+  for (var i = 0; i < pn; ++i) {
+    var p = particles[i];
+    p.x += p.vx; if (p.x < -maxDistance) p.x += width + maxDistance * 2; else if (p.x > width + maxDistance) p.x -= width + maxDistance * 2;
+    p.y += p.vy; if (p.y < -maxDistance) p.y += height + maxDistance * 2; else if (p.y > height + maxDistance) p.y -= height + maxDistance * 2;
+    p.vx += 0.3 * (Math.random() - .5) - 0.02 * p.vx;
+    p.vy += 0.3 * (Math.random() - .5) - 0.02 * p.vy;
+
+    context.beginPath();
+    context.arc(p.x, p.y, p.r, 0, tau);
+    context.fillStyle = "#ddd";
+    context.fill();
+  }
+
+  for (var i = 0; i < pn; ++i) {
+    for (var j = i + 1; j < pn; ++j) {
+      var pi = particles[i],
+          pj = particles[j],
+          dx = pi.x - pj.x,
+          dy = pi.y - pj.y,
+          d2 = dx * dx + dy * dy;
+      if (d2 < maxDistance2) {
+        context.globalAlpha = d2 > minDistance2 ? (maxDistance2 - d2) / (maxDistance2 - minDistance2) : 1;
+        context.beginPath();
+        context.moveTo(pi.x, pi.y);
+        context.lineTo(pj.x, pj.y);
+        context.strokeStyle = "#ccc";
+        context.stroke();
+      }
+    }
+  }
+  context.restore();
+}
+
+d3.timer(function() 
+{
+	drawBgPoints();
+});
+
+
+
+
+
+var padding = 6, // separation between nodes
+    maxRadius = 70;
+
+var n = 20, // total number of nodes
+    m = 10; // number of distinct clusters
+
+var color = d3.scale.category10()
+    .domain(d3.range(m));
+
+var x = d3.scale.ordinal()
+    .domain(d3.range(m))
+    .rangePoints([0, width], 1);
+
+var nodes = d3.range(n).map(function() {
+  var i = Math.floor(Math.random() * m),
+      v = (i + 1) / m * -Math.log(Math.random());
+  return {
+    radius: Math.sqrt(v) * maxRadius,
+    color: color(i),
+    cx: x(i),
+    cy: height / 2
+  };
+});
+
+var force = d3.layout.force()
+    .nodes(nodes)
+    .size([width, height])
+    .gravity(0)
+    .charge(0)
+    .on("tick", tick)
+    .start();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .style("top", 0)
+    .style("left", 0)
+    .style("position", "absolute");
+
+var circle = svg.selectAll("circle")
+    .data(nodes)
+    .enter().append("circle")
+    .attr("r", function(d) { return d.radius; })
+    .style("fill", function(d) { return d.color; })
+    .call(force.drag);
+
+function tick(e) {
+  circle
+      .each(gravity(.2 * e.alpha))
+      .each(collide(.5))
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; });
+}
+
+// Move nodes toward cluster focus.
+function gravity(alpha) {
+  return function(d) {
+    d.y += (d.cy - d.y) * alpha;
+    d.x += (d.cx - d.x) * alpha;
+  };
+}
+
+// Resolve collisions between nodes.
+function collide(alpha) {
+  var quadtree = d3.geom.quadtree(nodes);
+  return function(d) {
+    var r = d.radius + maxRadius + padding,
+        nx1 = d.x - r,
+        nx2 = d.x + r,
+        ny1 = d.y - r,
+        ny2 = d.y + r;
+    quadtree.visit(function(quad, x1, y1, x2, y2) {
+      if (quad.point && (quad.point !== d)) {
+        var x = d.x - quad.point.x,
+            y = d.y - quad.point.y,
+            l = Math.sqrt(x * x + y * y),
+            r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
+        if (l < r) {
+          l = (l - r) / l * alpha;
+          d.x -= x *= l;
+          d.y -= y *= l;
+          quad.point.x += x;
+          quad.point.y += y;
+        }
+      }
+      return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+    });
+  };
+}
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
