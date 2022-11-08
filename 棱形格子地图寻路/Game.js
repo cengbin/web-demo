@@ -146,7 +146,7 @@ class Scene extends PIXI.Container {
       start = null
     })
 
-    let {x: x1, y: y1} = tiledMap.grid2xy(36, 44)
+    let {x: x1, y: y1} = tiledMap.grid2xy(17, 19)
     let target = new PIXI.Sprite.from('./assets/A_bianlidian1_4x4_85.28.png')
     this.addChild(target)
     target.anchor.set(0.5)
