@@ -1,12 +1,10 @@
-import Demo1 from '../pages/Demo1/Demo1'
-import Demo2 from '../pages/Demo2/Demo2'
-import AppA from '../pages/AppA/AppA'
-import AppC from '../pages/AppC/AppC'
-import AppE from '../pages/AppE/AppE'
+import TreeMindMap from '../pages/tree-mind-map'
+import DomTree from '../pages/dom-tree'
 import FlowChart from '../pages/flow/flow'
-import DAG from '../pages/DAG/dag'
 import Nana from '../pages/nana/nana'
 import XMind from '../pages/xmind/xmind'
+import Login from '../pages/login'
+import Registration from '../pages/registration'
 
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -15,87 +13,79 @@ Vue.use(Router)
 
 export let routes = [
   {
+    path: '/login',
+    meta: {
+      title: '登陆页'
+    },
+    component: Login,
+  },
+  {
+    path: '/registration',
+    meta: {
+      title: '注册页'
+    },
+    component: Registration,
+  },
+  /*{
     path: '/dag',
     meta: {
       title: 'DAG数据可视化'
     },
-    component: DAG,
-  },
-  {
-    path: '/xmind',
-    name: 'nana',
-    meta: {
-      title: '思维导图可视化'
-    },
-    component: XMind,
-  },
+    component: () => import(/!* webpackChunkName: "DAG" *!/'../pages/DAG/dag')
+  },*/
   {
     path: '/nana',
-    name: 'nana',
     meta: {
-      title: '欧阳娜娜'
+      title: '照片墙（多列展示自适应布局）'
     },
     component: Nana,
   },
   {
-    path: '/flow',
-    name: 'flow',
+    path: '/flow-chart',
     meta: {
       title: '流程图'
     },
     component: FlowChart,
   },
   {
-    path: '/demo1',
+    path: '/tree-mind-map1',
     meta: {
-      title: '省市数据图'
+      title: '树状思维导图1'
     },
-    component: Demo1,
+    component: TreeMindMap,
   },
   {
-    path: '/demo2',
+    path: '/tree-mind-map2',
     meta: {
-      title: '浏览器DOM结构可视化树图'
+      title: '树状思维导图2'
     },
-    component: Demo2,
+    component: XMind,
   },
   {
-    path: '/app1',
-    name: 'APP1',
+    path: '/dom-tree',
+    meta: {
+      title: '浏览器DOM结构可视化'
+    },
+    component: DomTree,
+  },
+  {
+    path: '/echart',
+    name: 'echart',
     meta: {
       title: 'EChart 图表'
     },
-    component: AppA
+    component: () => import(/* webpackChunkName: "Echart" */'../pages/echart-demo')
   },
   {
-    path: '/app2',
-    name: 'app2',
-    meta: {
-      title: 'PPT 报告'
-    },
-    component: () => import(/* webpackChunkName: "AppB" */'../pages/AppB/AppB')
-  },
-  {
-    path: '/app3',
-    name: 'APP3',
-    meta: {
-      title: '编辑器布局'
-    },
-    component: AppC
-  },
-  {
-    path: '/app4',
-    name: 'AppE',
+    path: '/menu-search',
     meta: {
       title: '菜单搜索高亮显示'
     },
-    component: AppE
+    component: () => import(/* webpackChunkName: "menu-search" */'../pages/menu-search')
   }
 ]
 
-const router = new Router({
+export default new Router({
   mode: 'hash',
   routes
 })
-
-export default router
