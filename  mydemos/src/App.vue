@@ -1,35 +1,21 @@
 <template>
-  <div id="app">
-    <ul v-if="menuVisible">
-      <li v-for="(route,idx) in routes" :key="idx">
-        <router-link :to="route.path">
-          {{(route.meta && route.meta.title) || route.path}}
-        </router-link>
-      </li>
-    </ul>
+  <div id="app" :class="[$route.path === '/'?'bg':'']">
+    <SidebarNavigation></SidebarNavigation>
     <router-view></router-view>
   </div>
 </template>
 <script>
-  // import routers
+  import SidebarNavigation from "./SidebarNavigation"
+
   export default {
     name: 'App',
-    computed: {
-      menuVisible() {
-        return this.$route.path === '/'
-      },
-      routes() {
-        return this.$router.options.routes
-      }
+    components: {
+      SidebarNavigation
     },
-    created() {
-      // console.log('$route:', this.$router)
-      // console.log('$route:', this.$route)
-    }
   }
 </script>
 
-<style>
+<style lang="scss">
   * {
     box-sizing: border-box;
     margin: 0;
@@ -46,5 +32,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100%;
+
+    &.bg {
+      background-image: url("./assets/images/background.png");
+      background-position: center;
+      background-size: cover;
+    }
   }
 </style>
