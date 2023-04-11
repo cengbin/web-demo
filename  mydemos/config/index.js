@@ -50,7 +50,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: 'http://localhost:9099/micro-app1/dist/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps
