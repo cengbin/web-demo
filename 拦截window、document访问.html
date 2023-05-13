@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+  <body>
+    demo1.html
+  </body>
+</html>
+<script>
+  const proxyWindow = new Proxy(window, {
+    set: function (target, property, value) {
+      console.log(`proxyWindow set: window.${property} = ${value}`)
+      console.error("不允许在window上设置属性")
+      return
+    },
+    get(target, property) {
+      console.log(`proxyWindow get: window.${property}`)
+      console.error("不允许访问window")
+      return
+    },
+  })
+
+  const obj = {}
+  const proxyDocument = new Proxy(document, {
+    set: function (target, property, value) {
+      console.log(`proxyDocument set: document.${property} = ${value}`)
+      if (property in target) {
+        target[property] = value
+      } else {
+        obj[property] = value
+      }
+    },
+    get(target, property) {
+      console.log(`proxyDocument get: document.${property}`)
+      if (property in target) {
+        return target[property]
+      } else {
+        return obj[property]
+      }
+    },
+  })
+
+
+  !(function (window, document) {
+
+    window.foo = "foo"
+
+    console.log(window.foo)
+
+    document.bar = "bar"
+    console.log("bar:", document.bar)
+    console.log("getElementById:", document.getElementById)
+
+    setTimeout(() => {
+      console.log("1秒之后输出")
+    }, 1000)
+  }(proxyWindow, proxyDocument))
+</script>
