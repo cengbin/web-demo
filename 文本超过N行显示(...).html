@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      div{
+        width:100px;
+        border:1px solid black;
+      }
+
+      .text-overflow{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .text-overflow-line2{
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .text-overflow-line3{
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>
+      大于等于1行文本显示...
+    </h2>
+    <div class="text-overflow">
+      我是文本，我是文本，我是文本，我是文本，我是文本，
+    </div>
+    <h2>
+      大于等于2行文本显示...
+    </h2>
+    <div class="text-overflow-line2">
+      我是文本，我是文本，我是文本，我是文本，我是文本，我是文本，我是文本，我是文本，我是文本，我是文本，
+    </div>
+    <h2>
+      大于等于3行文本显示...
+    </h2>
+    <div class="text-overflow-line3">
+      我是文本，我是文本，我是文本，我是文本，我是文本，我是文本，我是文本，我是文本，我是文本，我是文本，
+    </div>
+  </body>
+</html>
