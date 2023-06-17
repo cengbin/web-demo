@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>拖拽demo</title>
+  <style>
+    .dropzone {
+      width: 200px;
+      padding: 0 16px;
+      border-radius: 10px;
+      background-color: var(--color);
+    }
+
+    .dragover {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+
+<div style="display:flex;width:500px;height:400px;">
+  <div style="flex:0 0 100px;">
+    <button draggable="true">增加</button>
+  </div>
+  <div style="flex:1 0 0;" class="list">
+    <div class="dropzone" data-index="0" draggable="true" style="--color:#e63e31">1</div>
+    <div class="dropzone" data-index="1" draggable="true" style="--color:#70d265">2</div>
+    <div class="dropzone" data-index="2" draggable="true" style="--color:#f0e941">3</div>
+    <div class="dropzone" data-index="3" draggable="true" style="--color:#da8218">4</div>
+    <div class="dropzone" data-index="4" draggable="true" style="--color:#7ff0ec">5</div>
+  </div>
+</div>
+
+<script>
+  const items = document.querySelectorAll('.dropzone')
+  console.log(Array.from(items))
+
+  Array.from(items).forEach(item => {
+    function dragenter_handler(event) {
+      if (event.target.classList.contains("dropzone")) {
+        event.target.classList.add("dragover");
+      }
+    }
+
+    function dragleave_handler(event) {
+      if (event.target.classList.contains("dropzone")) {
+        event.target.classList.remove("dragover");
+      }
+    }
+
+    function dragover_handler(event) {
+      event.preventDefault();
+    }
+
+    function drop_handler(event) {
+      event.preventDefault();
+
+
+      var child = event.target;
+      var parent = child.parentNode;
+      console.log(child);
+      console.log(child.parentNode)
+      console.log(child.parentNode.indexOf)
+      var index = Array.prototype.indexOf.call(parent, child);
+      console.log("index:", index)
+
+      var dom = document.createElement('div');
+      dom.className = 'dropzone'
+      dom.innerHTML= document.querySelectorAll('.dropzone').length+1
+      parent.insertBefore(dom,child)
+
+      if (event.target.classList.contains("dropzone")) {
+        event.target.classList.remove("dragover");
+      }
+    }
+
+    item.ondragenter = dragenter_handler;
+    item.ondragleave = dragleave_handler;
+    item.ondragover = dragover_handler;
+    item.ondrop = drop_handler
+  })
+
+</script>
+</body>
+</html>
