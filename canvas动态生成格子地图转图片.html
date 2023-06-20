@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <style>
+    img{
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div style="margin-bottom: 10px;">
+  <textarea id="textarea" rows="20" cols="100">
+  {
+    "maps":[
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
+      [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
+      [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
+      [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
+      [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
+      [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
+      [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]
+  }
+  </textarea>
+  <br/>
+  <button style="margin-top: 10px;" onclick="onCLickBtn()">点我生成格子地图 ( 0可行走/1不可行走)</button>
+</div>
+
+<script type="text/javascript">
+  function onCLickBtn() {
+    let json = document.getElementById('textarea').value.trim()
+    console.log("json:", json)
+    const data = JSON.parse(json);
+    console.log("data:", data);
+    let canvas = document.createElement('canvas');
+    let ctx = canvas.getContext("2d");
+    let {gridWidth = 24, gridHeight = 24, maps,} = data;
+
+    let rows = maps.length;
+    let cols = maps[0].length;
+    canvas.width = cols * gridWidth;
+    canvas.height = rows * gridHeight;
+
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+        let x = j * gridWidth;
+        let y = i * gridHeight;
+        let color = maps[i][j] ? '#000001' : '#d3d3d3';
+
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, gridWidth, gridHeight);
+
+        ctx.strokeStyle = "#ffffff";
+        ctx.strokeRect(x, y, gridWidth, gridHeight);
+      }
+    }
+
+    const img = document.createElement("img");
+    img.src = canvas.toDataURL("image/png");
+    document.body.appendChild(img)
+  }
+
+  onCLickBtn()
+</script>
+</body>
+</html>
+
