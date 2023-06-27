@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+  <title>javascript动态调用input选择文件</title>
+  <style>
+    input[type='file'] {
+      display: none;
+    }
+
+    div {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div id="button" onclick="onClickBtn()">选择音频文件</div>
+</body>
+</html>
+<script>
+  function onClickBtn() {
+    const input = document.createElement("input");
+    input.addEventListener('change', (event) => {
+      const files = event.target.files;
+      console.log('files:', files);
+      if (!files.length || !files[0]) return;
+
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        var audio = document.createElement('audio');
+        audio.src = e.target.result;
+        audio.addEventListener('loadedmetadata', function () {
+          console.log({
+            name: file.name,
+            size: file.size,
+            duration: audio.duration,
+          })
+        }, false);
+      };
+
+      reader.readAsDataURL(file);
+    })
+    input.type = 'file';
+    input.accept = ".mp3,.ogg,.wav";
+    input.click();
+  }
+</script>
