@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script>
+  let str = `1,23,里程456费(88.99)元，时常费用（11.11）元`
+  // \d 匹配 数字
+  // \d+ 匹配包含至少一个 数字
+  // (\.\d+)?  匹配任何包含零个或一个 (\.\d+) 的字符串。
+  let found = str.match(/(\d+(\.\d+)?)/g)
+  console.log(found)
+</script>
