@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>生产固定长度，值随机数组</title>
+  </head>
+</html>
+<script>
+  var arr3 = Array.apply(null, {length: 100}).map(function (currentValue, index, array) {
+    return index
+  })
+  console.log(arr3)
+</script>
