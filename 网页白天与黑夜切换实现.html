@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <title>网页白天与黑夜切换实现</title>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
       /*
         CSS 自定义属性（变量）
 
@@ -39,6 +33,7 @@
       :root {
         /* 白天样式 */
         --main-bg-color: #f5f5f5;
+        --main-text-color: black;
       }
 
       html.light {
@@ -53,10 +48,12 @@
         /* 黑夜样式 */
         --main-bg-color: black;
         --button-text-color: brown;
+        --main-text-color: white;
       }
 
       body {
         background-color: var(--main-bg-color);
+        color: var(--main-text-color);
       }
 
       button {
@@ -67,6 +64,14 @@
   <body>
     <button onclick="onClickButton('light')">切换成白天</button>
     <button onclick="onClickButton('dark')">切换成黑夜</button>
+
+    <ul>
+      <li>webpack/webpack</li>
+      <li>angular/angular</li>
+      <li>angular/angular-cli</li>
+      <li>angular/components</li>
+    </ul>
+
     <script>
 			let root = document.getElementsByTagName('html')[0]
 
