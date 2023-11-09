@@ -35,7 +35,7 @@
     data() {
       return {
         DefaultIcon,
-        isClose: false,
+        isClose: true,
         isFold: false,
       }
     },
