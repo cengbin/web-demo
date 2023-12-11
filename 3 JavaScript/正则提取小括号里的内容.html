@@ -9,10 +9,17 @@
   </body>
 </html>
 <script>
-  let str = `里程费(88.99)元，时常费用（11.11）元`
-  // \( 匹配 "左小括号"
-  // .+ 匹配包含至少一个 "任意字符串" 的字符串
-  // \) 匹配 "又小括号"
-  let found = str.match(/\((.+)\)|\（(.+)\）/g)
-  console.log(found)
+
+	// let str = `里程费(88.99)元，时常费用（11.11）元`
+	// \( 匹配 "左小括号"
+	// .+ 匹配包含至少一个 "任意字符串" 的字符串
+	// \) 匹配 "又小括号"
+	// let found = str.match(/\((.+)\)|\（(.+)\）/g)
+	// console.log(found)
+
+	let str = `请说出购票的<span style='color:#FF6B00;'>出发地</span>和<span style='color:#FF6B00;'>目的地</span>。`
+	// let nstr = str.replace(`<span style='color:#FF6B00;'>`, "")
+	// .replace(`</span>`, "")
+	let nstr = str.replaceAll(`<span style='color:#FF6B00;'>`, "").replaceAll(`</span>`, "")
+	console.log(nstr)
 </script>
