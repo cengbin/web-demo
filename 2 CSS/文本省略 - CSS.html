@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .text-overflow {
+      overflow: hidden;
+      /*text-overflow 属性规定当文本溢出包含元素时发生的事情。*/
+      text-overflow: ellipsis;
+      /*文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。*/
+      white-space: nowrap;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="container" class="text-overflow" style="width:100px;border:1px solid black;line-height:1.6;text-align: justify;">
+      床前看月光，疑是地上霜。举头望山月，低头思故乡。
+    </div>
+  </body>
+</html>
