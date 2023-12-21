@@ -4,15 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
   </head>
-  <body>
-
-  </body>
 </html>
 <script>
-  let str = `里程费(88.99)元，时常费用（11.11）元`
-  // \( 匹配 "左小括号"
-  // .+ 匹配包含至少一个 "任意字符串" 的字符串
-  // \) 匹配 "又小括号"
-  let found = str.match(/\((.+)\)|\（(.+)\）/g)
-  console.log(found)
+let before_str = `abc贝斯特def贝斯特g`
+let after_str = before_str.replace(/贝斯特/g, '倍施特')
+console.log({before_str, after_str,});
 </script>

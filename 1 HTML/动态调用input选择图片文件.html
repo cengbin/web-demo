@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-  <title>javascript动态调用input选择文件</title>
-  <style>
-    input[type='file'] {
-      display: none;
-    }
-
-    div {
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-<div id="button">选择图片文件</div>
-<input type="file" id="file" accept="image/*"/>
-</body>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <title>javascript动态调用input选择文件</title>
+  </head>
+  <body>
+    <button id="button" onclick="onClickBtn()">选择图片文件</button>
+  </body>
 </html>
 <script>
-  var file = document.getElementById('file')
-  var button = document.getElementById('button')
-  button.onclick = function () {
-    file.click()
-  }
+function onClickBtn() {
+	const input = document.createElement("input");
+	input.addEventListener('change', (event) => {
+		const files = event.target.files;
+		console.log('files:', files);
+		if (!files.length || !files[0]) return;
+
+		const file = files[0];
+		const reader = new FileReader();
+		reader.onload = function (e) {
+			var audio = document.createElement('audio');
+			audio.src = e.target.result;
+			audio.addEventListener('loadedmetadata', function () {
+				console.log({
+					name: file.name,
+					size: file.size,
+					duration: audio.duration,
+				})
+			}, false);
+		};
+
+		reader.readAsDataURL(file);
+	})
+	input.type = 'file';
+	// 可以选择所有类型图片，例如：.png .jpg .gif .svg .bmp 等等
+	// input.accept = "image/*";
+	// 只能选择.jpg, .jpeg, .png 图片文件。
+	input.accept = "image/jpg, image/jpeg, image/png";
+	input.click();
+}
 </script>

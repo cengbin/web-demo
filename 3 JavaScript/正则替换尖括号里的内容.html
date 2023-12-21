@@ -9,7 +9,9 @@
   </body>
 </html>
 <script>
-	let str = `贝斯特 里程费 贝斯特（11.11）元 `
-	let str2 = str.replace(/贝斯特/g, '倍施特')
-	console.log(str2)
+let str = `请说出购票的<span style='color:#FF6B00;'>出发地</span>和<span style='color:#FF6B00;'>目的地</span>。`
+// let nstr = str.replace(`<span style='color:#FF6B00;'>`, "")
+// .replace(`</span>`, "")
+let nstr = str.replaceAll(`<span style='color:#FF6B00;'>`, "").replaceAll(`</span>`, "")
+console.log(nstr)
 </script>
