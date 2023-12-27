@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<script>
+  // https://www.coder.work/article/3941436
+  let url = "https://url.com/{{query}}/foo/{{query2}}"
+
+  let result = {'query': 'queryResult1', 'query2': 'queryResult2'}
+
+  let replaceDoubleBraces = (str, result) => {
+    return str.replace(/{{(.+?)}}/g, (_, g1) => result[g1] || g1)
+  }
+
+  console.log(replaceDoubleBraces(url, result))
+</script>

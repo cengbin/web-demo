@@ -6,8 +6,14 @@
   </head>
 </html>
 <script>
-  var arr3 = Array.apply(null, {length: 100}).map(function (currentValue, index, array) {
-    return index
-  })
-  console.log(arr3)
+	// 方法一
+	var arr1 = Array.apply(null, {length: 100}).map(function (currentValue, index, array) {
+		return index
+	})
+	console.log(arr1)
+
+	// 方法二
+	var arr2 = new Array(100).fill(null).map((value, index) => index);
+	console.log(arr2);
+	console.log(new Array(100))
 </script>
