@@ -17,14 +17,6 @@ import videochat from '../assets/images/video-chat.png'
 
 export default [
   {
-    path: '/case',
-    meta: {
-      title: '案例',
-      icon: dashboard,
-    },
-    component: () => import('../pages/case/index'),
-  },
-  {
     path: '/login',
     meta: {
       title: '登陆页',
