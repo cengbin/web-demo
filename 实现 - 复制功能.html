@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>复制功能</title>
+    <style>
+
+
+    </style>
+  </head>
+  <body>
+    <input type="text" id="input">
+    <button onclick="onClickBtn()">复制</button>
+    <script>
+			function onClickBtn() {
+				let text = document.getElementById('input').value;
+				copy(text)
+			}
+
+			const copy = (text) => {
+				// 创建输入框
+				let input = document.createElement('input')
+				// 给输入框value赋值
+				input.value = text
+				// 追加到body里面去
+				document.body.appendChild(input)
+				// 选择输入框的操作
+				input.select()
+				// 执行复制操作
+				document.execCommand('Copy')
+				// 删除加入的输入框
+				document.body.removeChild(input)
+				// 提示用户
+				alert(`复制成功`);
+			}
+    </script>
+  </body>
+</html>

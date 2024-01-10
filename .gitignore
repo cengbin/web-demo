@@ -3,9 +3,3 @@
 
 node_modules
 package-lock.json
-
-4.2_Egret.js/**/bin-debug
-4.2_Egret.js/**/bin-release
-4.2_Egret.js/**/libs
-
-4.3_Three.js/Christmas3D/assets/layout.psd
