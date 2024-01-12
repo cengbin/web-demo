@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+  <title>Vue</title>
+  <style>
+    .router-link-active {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <h1>Hello App!</h1>
+
+  <p>
+    <router-link to="/user/8888"> Go to /user</router-link>
+    <br/>
+    <router-link to="/user/8888/foo"> Go to /user/foo</router-link>
+    <br/>
+    <router-link to="/user/8888/bar"> Go to /user/bar</router-link>
+    <br/>
+  </p>
+
+  <router-view></router-view>
+</div>
+</body>
+</html>
+<script src="../../learning/libs/vue/vue.js"></script>
+<script src="../../learning/libs/vue/vue-router/vue-router.js"></script>
+<script>
+  let User = {
+    template: '<div>User component<router-view></router-view></div>',
+    created() {
+      console.log("User created")
+    },
+    mounted() {
+      console.log("User mounted")
+    }
+  }
+
+  let Foo = Vue.component("Foo", {
+    template: '<div>Foo component</div>',
+    created() {
+      console.log("Foo created")
+    },
+    mounted() {
+      console.log("Foo mounted")
+    }
+  });
+
+  let Bar = {
+    template: '<div>Bar component</div>',
+    created() {
+      console.log("Bar created")
+    },
+    mounted() {
+      console.log("Bar mounted")
+    }
+  }
+
+  let routes = [
+    {
+      path: '/user/:id',
+      name: 'u',
+      component: User,
+      children: [
+        {
+          path: 'foo',
+          name: 'f',
+          component: Foo,
+          beforeEnter: (to, from, next) => {
+            console.log('5. 路由独享的守卫')
+            next()
+          }
+        },
+        {
+          path: 'bar',
+          name: 'b',
+          component: Bar,
+        }
+      ]
+    }
+  ]
+
+  let router = new VueRouter({
+    routes: routes
+  });
+
+  var app = new Vue({
+    data: {},
+    router: router,
+    beforeCreate() {
+      if (this.$route.path !== '/') {
+        this.$router.push({path: '/'})
+      }
+    }
+  }).$mount('#app');
+</script>
