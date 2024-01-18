@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <script>
   // https://www.coder.work/article/3941436
-  let url = "https://url.com/{{query}}/foo/{{query2}}"
+  let url = "https://url.com/{{query}}/bar/{{id}}"
 
-  let result = {'query': 'queryResult1', 'query2': 'queryResult2'}
+  let result = {'query': 'foo', 'id': 8888}
 
   let replaceDoubleBraces = (str, result) => {
     return str.replace(/{{(.+?)}}/g, (_, g1) => result[g1] || g1)
