@@ -32,13 +32,13 @@ export default [
     },
     component: Registration,
   },
-  /*{
+  {
     path: '/dag',
     meta: {
       title: 'DAG数据可视化'
     },
-    component: () => import(/!* webpackChunkName: "DAG" *!/'../pages/DAG/dag')
-  },*/
+    component: () => import(/* webpackChunkName: "DAG" */'../pages/DAG/dag')
+  },
   {
     path: '/nana',
     meta: {

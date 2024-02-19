@@ -35,15 +35,24 @@ class Node {
   }
 }
 
-let vertices = []
+let nodes = graph.vexs.map(vex => {
+  return {
+    data: vex.data,
+    depth: vex.depth,
+    width: 160,
+    height: 70,
+    x: vex.x,
+    y: vex.y,
+  }
+})
 
-for (let i = 0; i < graph.vertices.length; i++) {
-  vertices[i] = new Node(graph.vertices[i], i)
-}
+// for (let i = 0; i < graph.vexs.length; i++) {
+//   nodes[i] = new Node(graph.vexs[i], i)
+// }
 
-console.log(vertices)
+console.log(nodes)
 
 export {
   graph,
-  vertices,
+  nodes,
 }

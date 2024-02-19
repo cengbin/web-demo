@@ -1,6 +1,6 @@
 <template>
   <div class="list-item" :style="style">
-    {{node.data.data}} | {{node.depth}}
+    {{node.data}} | {{node.depth}}
     <br/>
     {{node.x}} / {{node.y}}
     <br/>
