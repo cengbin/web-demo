@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+  let str1 = `请说出购票的<span style='color:#FF6B00;'>出发地</span>和<span style='color:#FF6B00;'>目的地</span>。`
+  let str2 = str1.replace(/\<(.+?)\>/g, (_, g1) => {
+    console.log({_, g1})
+    return ""
+  })
+  console.log({str1, str2})
+</script>
