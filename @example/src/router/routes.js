@@ -3,11 +3,6 @@ import DomTree from '../pages/dom-tree'
 import FlowChart from '../pages/flow/flow'
 import Nana from '../pages/nana/nana'
 import XMind from '../pages/xmind/xmind'
-import Login from '../pages/login'
-import Registration from '../pages/registration'
-
-import dashboard from '../assets/images/dashboard.png'
-import members from '../assets/images/members.png'
 import messages from '../assets/images/messages.png'
 import projects from '../assets/images/projects.png'
 import reports from '../assets/images/reports.png'
@@ -16,22 +11,6 @@ import setting from '../assets/images/setting.png'
 import videochat from '../assets/images/video-chat.png'
 
 export default [
-  {
-    path: '/login',
-    meta: {
-      title: '登陆页',
-      icon: dashboard,
-    },
-    component: Login,
-  },
-  {
-    path: '/registration',
-    meta: {
-      title: '注册页',
-      icon: members,
-    },
-    component: Registration,
-  },
   {
     path: '/dag',
     meta: {
