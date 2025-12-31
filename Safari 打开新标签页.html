@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function onClickBtn() {
+    // 异步跳转链接
+    setTimeout(function () {
+      // 方法一；可以打开新页面
+      location.href = "https://www.baidu.com";
+
+      // 方法二：在 IOS Safari 浏览器无法自动打开新标签页，这是 Apple 的安全限制。
+      // const link = document.createElement('a');
+      // link.href = 'https://www.baidu.com';
+      // link.target = '_blank';
+      // link.rel = 'noopener noreferrer';
+      // document.body.appendChild(link);
+      // link.click();
+      // document.body.removeChild(link);
+
+      // 方法三
+      // window.open("https://www.baidu.com");
+    }, 1000)
+  }
+</script>
+<button onclick="onClickBtn()">打开</button>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lodash模板示例</title>
+    <!-- 直接通过CDN引入lodash -->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+</head>
+<body>
+<div id="output"></div>
+
+<script>
+  // 准备模板字符串
+  const templateString = `
+      <div class="user-card">
+        <h2 style="color:red;"><%= user.name %></h2>
+        <p>年龄: <%= user.age %></p>
+        <p>职位: <%= user.job %></p>
+
+        <% if (user.skills && user.skills.length) { %>
+          <div class="skills">
+            <h3>技能:</h3>
+            <ul>
+              <% _.forEach(user.skills, function(skill) { %>
+                <li><%= skill %></li>
+              <% }); %>
+            </ul>
+          </div>
+        <% } %>
+
+        <div class="description">
+          <%- user.description %>
+        </div>
+      </div>
+    `;
+
+  // 准备数据
+  const data = {
+    user: {
+      name: '张三',
+      age: 28,
+      job: '前端开发工程师',
+      skills: ['JavaScript', 'React', 'TypeScript', 'CSS'],
+      description: '<strong>具有5年工作经验</strong>的资深前端开发'
+    }
+  };
+
+  // 编译模板
+  const compiled = _.template(templateString);
+
+  // 渲染模板
+  const result = compiled(data);
+
+  // 显示结果
+  document.getElementById('output').innerHTML = result;
+
+  // 控制台输出结果
+  console.log(result);
+
+
+  // 额外示例：自定义分隔符
+  const customTemplate = '你好 {{ name }}，欢迎来到 {{ company }}!';
+
+  // 使用自定义插值分隔符 {{ }}
+  const customCompiled = _.template(customTemplate, {
+    interpolate: /\{\{([\s\S]+?)\}\}/g
+  });
+
+  const customResult = customCompiled({
+    name: '李四',
+    company: '我的公司'
+  });
+
+  console.log('自定义分隔符示例：', customResult);
+
+
+  // 简单的一行式模板示例
+  const simpleTemplate = _.template('Hello <%= user %>!');
+  console.log(simpleTemplate({user: 'World'}));
+</script>
+</body>
+</html>
