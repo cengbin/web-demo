@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>marked 渲染示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+  <script>
+    window.marked.use({
+      hooks: {
+        // 将连续的 ** 打码替换为不可见占位符，解析后再还原
+        preprocess(markdown) {
+          // 匹配孤立的 ** （不构成加粗语法的情况）
+          // 敏感词打码特征：** 前后紧邻中文字符
+          return markdown.replace(/(?<=[\u4e00-\u9fa5])\*\*(?=[\u4e00-\u9fa5])/g, '\u200B**\u200B');
+        },
+        postprocess(html) {
+          // 还原零宽空格包裹的 **
+          return html.replace(/\u200B\*\*\u200B/g, '**');
+        }
+      }
+    });
+  </script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f7fa;
+      padding: 24px;
+      color: #333;
+    }
+
+    h1 { font-size: 20px; margin-bottom: 16px; color: #1677ff; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      height: calc(100vh - 120px);
+    }
+
+    .panel {
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      background: #fafafa;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    textarea {
+      flex: 1;
+      padding: 16px;
+      font-size: 14px;
+      font-family: 'Courier New', monospace;
+      line-height: 1.6;
+      border: none;
+      outline: none;
+      resize: none;
+      color: #333;
+    }
+
+    /* ===== Markdown 渲染区样式 ===== */
+    .preview {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .preview h1, .preview h2, .preview h3 {
+      margin: 12px 0 6px;
+      color: #111;
+    }
+    .preview h1 { font-size: 20px; border-bottom: 2px solid #e5e7eb; padding-bottom: 4px; }
+    .preview h2 { font-size: 17px; border-bottom: 1px solid #f0f0f0; padding-bottom: 3px; }
+    .preview h3 { font-size: 15px; }
+
+    .preview p { margin: 6px 0; }
+
+    .preview ul, .preview ol {
+      padding-left: 20px;
+      margin: 6px 0;
+    }
+
+    .preview li { margin: 3px 0; }
+
+    .preview blockquote {
+      border-left: 3px solid #1677ff;
+      padding: 6px 12px;
+      margin: 8px 0;
+      background: #f0f5ff;
+      color: #555;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .preview code {
+      background: #f5f5f5;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #c41d7f;
+    }
+
+    .preview pre {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 12px 16px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 8px 0;
+    }
+
+    .preview pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+      font-size: 13px;
+    }
+
+    .preview table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 8px 0;
+      font-size: 13px;
+    }
+
+    .preview th, .preview td {
+      border: 1px solid #e5e7eb;
+      padding: 6px 12px;
+    }
+
+    .preview th { background: #fafafa; font-weight: 600; }
+    .preview tr:nth-child(even) td { background: #fafafa; }
+
+    .preview a { color: #1677ff; text-decoration: none; }
+    .preview a:hover { text-decoration: underline; }
+
+    .preview hr { border: none; border-top: 1px solid #e5e7eb; margin: 12px 0; }
+
+    .preview strong { color: #111; }
+    .preview em { color: #555; }
+
+    /* ===== 流式模拟区 ===== */
+    .stream-section {
+      margin-top: 16px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+    }
+
+    .stream-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: #fafafa;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .stream-header span { font-size: 13px; font-weight: 600; color: #555; }
+
+    .stream-controls { display: flex; gap: 8px; }
+
+    button {
+      padding: 5px 14px;
+      border: 1px solid #1677ff;
+      border-radius: 5px;
+      background: #1677ff;
+      color: #fff;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: #fff;
+      color: #1677ff;
+    }
+
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .stream-output {
+      padding: 16px;
+      min-height: 80px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: #333;
+      vertical-align: text-bottom;
+      animation: blink 0.8s steps(1) infinite;
+      margin-left: 1px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>marked 渲染示例</h1>
+
+<div class="layout">
+  <!-- 左侧：输入区 -->
+  <div class="panel">
+    <div class="panel-header">Markdown 输入</div>
+    <textarea id="input">
+# 尘白禁区
+
+**尘白禁区**（Snowbreak: Containment Zone）是一款由积木游戏开发的3D射击手游。
+
+## 游戏特色
+
+- 末世科幻世界观
+- 拟人化武器角色（称为**感装**）
+- 三消 + TPS 射击玩法融合
+
+## 核心玩法对比
+
+| 模式 | 说明 | 难度 |
+|------|------|------|
+| 剧情关卡 | 推进主线故事 | ⭐⭐ |
+| 侵蚀战场 | 高难度挑战 | ⭐⭐⭐⭐ |
+| 协同作战 | 多人联机 | ⭐⭐⭐ |
+
+## 示例代码
+
+```js
+// 获取角色列表
+const characters = await api.getCharacters({
+  rarity: 5,
+  type: 'attacker'
+});
+```
+
+> 游戏目前支持 iOS / Android / PC 三端互通。
+
+---
+
+更多信息请访问 [官方网站](https://snowbreak.amazingpotatogames.com)
+    </textarea>
+  </div>
+
+  <!-- 右侧：渲染预览 -->
+  <div class="panel">
+    <div class="panel-header">渲染预览</div>
+    <div class="preview" id="preview"></div>
+  </div>
+</div>
+
+<!-- 流式输出模拟 -->
+<div class="stream-section">
+  <div class="stream-header">
+    <span>流式输出模拟（isFinal 后切换 Markdown 渲染）</span>
+    <div class="stream-controls">
+      <button id="startBtn" onclick="startStream()">开始流式输出</button>
+      <button id="stopBtn" class="secondary" onclick="stopStream()" disabled>停止</button>
+    </div>
+  </div>
+  <div class="stream-output" id="streamOutput"></div>
+</div>
+
+<script>
+  // ===== 实时渲染 =====
+  marked.setOptions({ breaks: true, gfm: true });
+
+  const input = document.getElementById('input');
+  const preview = document.getElementById('preview');
+
+  function render() {
+    const raw = input.value;
+    const html = marked.parse(raw);
+    preview.innerHTML = html;
+  }
+
+  input.addEventListener('input', render);
+  render();
+
+  // ===== 流式输出模拟 =====
+  const streamText = `## 充值未到账处理流程
+
+您好，我已收到您关于 **充值未到账** 的问题。
+
+请按以下步骤确认：
+
+1. 检查支付平台（微信/支付宝）是否已扣款
+2. 等待 **3-5分钟** 后刷新游戏邮件
+3. 若仍未到账，请提供以下信息：
+   - 充值订单号
+   - 充值时间
+   - 充值金额
+
+> 我们将在 **2小时内** 核实并处理。
+
+如需人工客服，请点击下方按钮。`;
+
+  let streamTimer = null;
+  let charIndex = 0;
+  let accumulated = '';
+  let isFinal = false;
+
+  function startStream() {
+    charIndex = 0;
+    accumulated = '';
+    isFinal = false;
+    document.getElementById('startBtn').disabled = true;
+    document.getElementById('stopBtn').disabled = false;
+    updateStreamOutput(false);
+
+    streamTimer = setInterval(() => {
+      if (charIndex >= streamText.length) {
+        // isFinal=true：用完整文本替换，切换为 Markdown 渲染
+        isFinal = true;
+        accumulated = streamText;
+        updateStreamOutput(true);
+        stopStream();
+        return;
+      }
+      // 模拟每次推送 1-3 个字符
+      const chunk = streamText.slice(charIndex, charIndex + 2);
+      accumulated += chunk;
+      charIndex += 2;
+      updateStreamOutput(false);
+    }, 40);
+  }
+
+  function stopStream() {
+    clearInterval(streamTimer);
+    document.getElementById('startBtn').disabled = false;
+    document.getElementById('stopBtn').disabled = true;
+  }
+
+  function updateStreamOutput(final) {
+    const container = document.getElementById('streamOutput');
+    if (final) {
+      // isFinal=true 且 accumulated 非空：渲染 Markdown
+      container.innerHTML = DOMPurify.sanitize(marked.parse(accumulated));
+    } else {
+      // 流式过程中：显示原始文本 + 打字光标
+      const escaped = accumulated.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      container.innerHTML = `<span style="white-space:pre-wrap">${escaped}</span><span class="cursor"></span>`;
+    }
+  }
+</script>
+</body>
+</html>
