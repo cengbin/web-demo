@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片编辑器 - 亮度调节</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #fff;
+            padding: 16px 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            padding: 24px;
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .canvas-container {
+            flex: 1;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .canvas-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .canvas-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .canvas-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .canvas-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            border-radius: 4px;
+            border: 1px dashed #d9d9d9;
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .canvas-wrapper canvas {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .upload-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .upload-overlay:hover {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .upload-overlay.hidden {
+            display: none;
+        }
+
+        .upload-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+            color: #1890ff;
+        }
+
+        .upload-text {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .upload-hint {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .controls-panel {
+            width: 320px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .control-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .control-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .label-text {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .label-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1890ff;
+            min-width: 40px;
+            text-align: right;
+        }
+
+        .slider-container {
+            position: relative;
+            height: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .slider-track {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: #f0f0f0;
+            border-radius: 2px;
+        }
+
+        .slider-fill {
+            position: absolute;
+            height: 4px;
+            background: #1890ff;
+            border-radius: 2px;
+            transition: width 0.1s;
+        }
+
+        .slider-thumb {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border: 2px solid #1890ff;
+            border-radius: 50%;
+            cursor: pointer;
+            transform: translateX(-50%);
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .slider-thumb:hover {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 2px 6px rgba(24, 144, 255, 0.3);
+        }
+
+        .slider-thumb:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+
+        .slider-input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .slider-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .preset-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .preset-btn {
+            padding: 8px 12px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            background: #fff;
+            font-size: 13px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .preset-btn:hover {
+            border-color: #1890ff;
+            color: #1890ff;
+        }
+
+        .preset-btn:active {
+            background: #e6f7ff;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #1890ff;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #40a9ff;
+        }
+
+        .btn-primary:active {
+            background: #096dd9;
+        }
+
+        .btn-default {
+            background: #fff;
+            color: #666;
+            border: 1px solid #d9d9d9;
+        }
+
+        .btn-default:hover {
+            border-color: #40a9ff;
+            color: #40a9ff;
+        }
+
+        .btn-default:active {
+            background: #e6f7ff;
+        }
+
+        .btn-danger {
+            background: #ff4d4f;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background: #ff7875;
+        }
+
+        .btn-danger:active {
+            background: #d9363e;
+        }
+
+        .btn-icon {
+            width: 14px;
+            height: 14px;
+        }
+
+        .preview-info {
+            display: flex;
+            gap: 16px;
+            padding: 12px;
+            background: #fafafa;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .info-icon {
+            width: 12px;
+            height: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                padding: 16px;
+            }
+
+            .controls-panel {
+                width: 100%;
+            }
+
+            .canvas-wrapper {
+                min-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>图片编辑器 - 亮度调节</h1>
+        <div class="canvas-actions">
+            <button class="btn btn-default" id="loadSampleBtn">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+                加载示例图片
+            </button>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <section class="canvas-container">
+            <div class="canvas-header">
+                <span class="canvas-title">预览</span>
+                <div class="preview-info" id="previewInfo" style="display: none;">
+                    <div class="info-item">
+                        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        </svg>
+                        <span id="imageSize">0 × 0</span>
+                    </div>
+                    <div class="info-item">
+                        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span id="imageFileName">未选择文件</span>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas-wrapper" id="canvasWrapper">
+                <div class="upload-overlay" id="uploadOverlay">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <div class="upload-text">点击或拖拽图片到此处</div>
+                    <div class="upload-hint">支持 JPG、PNG、GIF 格式</div>
+                </div>
+                <canvas id="pixiCanvas"></canvas>
+            </div>
+        </section>
+
+        <aside class="controls-panel">
+            <div class="control-section">
+                <div class="section-title">色彩调整</div>
+
+                <div class="control-item">
+                    <div class="control-label">
+                        <span class="label-text">亮度</span>
+                        <span class="label-value" id="brightnessValue">0</span>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <div class="slider-fill" id="brightnessFill" style="width: 50%"></div>
+                        <div class="slider-thumb" id="brightnessThumb" style="left: 50%"></div>
+                        <input type="range" class="slider-input" id="brightnessSlider" min="-100" max="100" value="0">
+                    </div>
+                </div>
+
+                <div class="control-item">
+                    <div class="control-label">
+                        <span class="label-text">对比度</span>
+                        <span class="label-value" id="contrastValue">0</span>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <div class="slider-fill" id="contrastFill" style="width: 50%"></div>
+                        <div class="slider-thumb" id="contrastThumb" style="left: 50%"></div>
+                        <input type="range" class="slider-input" id="contrastSlider" min="-100" max="100" value="0">
+                    </div>
+                </div>
+
+                <div class="control-item">
+                    <div class="control-label">
+                        <span class="label-text">饱和度</span>
+                        <span class="label-value" id="saturationValue">0</span>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <div class="slider-fill" id="saturationFill" style="width: 50%"></div>
+                        <div class="slider-thumb" id="saturationThumb" style="left: 50%"></div>
+                        <input type="range" class="slider-input" id="saturationSlider" min="-100" max="100" value="0">
+                    </div>
+                </div>
+
+                <div class="control-item">
+                    <div class="control-label">
+                        <span class="label-text">色相</span>
+                        <span class="label-value" id="hueValue">0°</span>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <div class="slider-fill" id="hueFill" style="width: 50%"></div>
+                        <div class="slider-thumb" id="hueThumb" style="left: 50%"></div>
+                        <input type="range" class="slider-input" id="hueSlider" min="-180" max="180" value="0">
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <div class="section-title">预设效果</div>
+                <div class="preset-buttons">
+                    <button class="preset-btn" data-preset="original">原始</button>
+                    <button class="preset-btn" data-preset="bright">明亮</button>
+                    <button class="preset-btn" data-preset="dark">暗调</button>
+                    <button class="preset-btn" data-preset="high-contrast">高对比度</button>
+                    <button class="preset-btn" data-preset="grayscale">黑白</button>
+                    <button class="preset-btn" data-preset="warm">暖色调</button>
+                    <button class="preset-btn" data-preset="cool">冷色调</button>
+                    <button class="preset-btn" data-preset="vintage">复古</button>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="downloadBtn" disabled>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    下载图片
+                </button>
+                <button class="btn btn-default" id="resetBtn" disabled>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="1 4 1 10 7 10"></polyline>
+                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                    </svg>
+                    重置调整
+                </button>
+                <button class="btn btn-danger" id="clearBtn" disabled>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    清除图片
+                </button>
+            </div>
+        </aside>
+    </main>
+
+    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.12/pixi.min.js"></script>
+    <script>
+        // 图片编辑器类
+        class ImageEditor {
+            constructor() {
+                // Pixi.js 应用实例
+                this.app = null;
+                // 图片精灵
+                this.sprite = null;
+                // 颜色矩阵滤镜
+                this.colorMatrixFilter = null;
+                // 当前图片数据
+                this.currentImage = null;
+                // 调整参数
+                this.adjustments = {
+                    brightness: 0,
+                    contrast: 0,
+                    saturation: 0,
+                    hue: 0
+                };
+
+                // DOM 元素
+                this.canvas = document.getElementById('pixiCanvas');
+                this.canvasWrapper = document.getElementById('canvasWrapper');
+                this.uploadOverlay = document.getElementById('uploadOverlay');
+                this.fileInput = document.getElementById('fileInput');
+                this.previewInfo = document.getElementById('previewInfo');
+                this.imageSize = document.getElementById('imageSize');
+                this.imageFileName = document.getElementById('imageFileName');
+
+                // 滑块元素
+                this.sliders = {
+                    brightness: document.getElementById('brightnessSlider'),
+                    contrast: document.getElementById('contrastSlider'),
+                    saturation: document.getElementById('saturationSlider'),
+                    hue: document.getElementById('hueSlider')
+                };
+
+                // 滑块填充元素
+                this.fills = {
+                    brightness: document.getElementById('brightnessFill'),
+                    contrast: document.getElementById('contrastFill'),
+                    saturation: document.getElementById('saturationFill'),
+                    hue: document.getElementById('hueFill')
+                };
+
+                // 滑块拇指元素
+                this.thumbs = {
+                    brightness: document.getElementById('brightnessThumb'),
+                    contrast: document.getElementById('contrastThumb'),
+                    saturation: document.getElementById('saturationThumb'),
+                    hue: document.getElementById('hueThumb')
+                };
+
+                // 值显示元素
+                this.values = {
+                    brightness: document.getElementById('brightnessValue'),
+                    contrast: document.getElementById('contrastValue'),
+                    saturation: document.getElementById('saturationValue'),
+                    hue: document.getElementById('hueValue')
+                };
+
+                // 按钮元素
+                this.downloadBtn = document.getElementById('downloadBtn');
+                this.resetBtn = document.getElementById('resetBtn');
+                this.clearBtn = document.getElementById('clearBtn');
+                this.loadSampleBtn = document.getElementById('loadSampleBtn');
+
+                // 预设效果
+                this.presets = {
+                    original: { brightness: 0, contrast: 0, saturation: 0, hue: 0 },
+                    bright: { brightness: 30, contrast: 10, saturation: 5, hue: 0 },
+                    dark: { brightness: -30, contrast: 20, saturation: -10, hue: 0 },
+                    'high-contrast': { brightness: 0, contrast: 50, saturation: 20, hue: 0 },
+                    grayscale: { brightness: 0, contrast: 0, saturation: -100, hue: 0 },
+                    warm: { brightness: 10, contrast: 5, saturation: 20, hue: 20 },
+                    cool: { brightness: 0, contrast: 10, saturation: -10, hue: -20 },
+                    vintage: { brightness: -10, contrast: 20, saturation: -30, hue: 10 }
+                };
+
+                this.init();
+            }
+
+            // 初始化
+            init() {
+                this.initPixiApp();
+                this.bindEvents();
+            }
+
+            // 初始化 Pixi.js 应用
+            initPixiApp() {
+                this.app = new PIXI.Application({
+                    view: this.canvas,
+                    width: 800,
+                    height: 600,
+                    backgroundColor: 0xfafafa,
+                    resolution: window.devicePixelRatio || 1,
+                    autoDensity: true
+                });
+
+                // 创建颜色矩阵滤镜
+                this.colorMatrixFilter = new PIXI.filters.ColorMatrixFilter();
+                this.app.stage.filters = [this.colorMatrixFilter];
+            }
+
+            // 绑定事件
+            bindEvents() {
+                // 上传区域点击
+                this.uploadOverlay.addEventListener('click', () => {
+                    this.fileInput.click();
+                });
+
+                // 拖拽上传
+                this.canvasWrapper.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.canvasWrapper.style.borderColor = '#1890ff';
+                });
+
+                this.canvasWrapper.addEventListener('dragleave', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.canvasWrapper.style.borderColor = '#d9d9d9';
+                });
+
+                this.canvasWrapper.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.canvasWrapper.style.borderColor = '#d9d9d9';
+
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0 && files[0].type.startsWith('image/')) {
+                        this.loadImage(files[0]);
+                    }
+                });
+
+                // 文件选择
+                this.fileInput.addEventListener('change', (e) => {
+                    if (e.target.files.length > 0) {
+                        this.loadImage(e.target.files[0]);
+                    }
+                });
+
+                // 滑块事件
+                Object.keys(this.sliders).forEach(key => {
+                    this.sliders[key].addEventListener('input', (e) => {
+                        this.adjustments[key] = parseInt(e.target.value);
+                        this.updateSliderUI(key);
+                        this.applyFilters();
+                    });
+                });
+
+                // 预设按钮
+                document.querySelectorAll('.preset-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const presetName = btn.dataset.preset;
+                        this.applyPreset(presetName);
+                    });
+                });
+
+                // 下载按钮
+                this.downloadBtn.addEventListener('click', () => {
+                    this.downloadImage();
+                });
+
+                // 重置按钮
+                this.resetBtn.addEventListener('click', () => {
+                    this.resetAdjustments();
+                });
+
+                // 清除按钮
+                this.clearBtn.addEventListener('click', () => {
+                    this.clearImage();
+                });
+
+                // 加载示例图片
+                this.loadSampleBtn.addEventListener('click', () => {
+                    this.loadSampleImage();
+                });
+            }
+
+            // 加载图片
+            loadImage(file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        this.currentImage = img;
+                        this.displayImage(img);
+                        this.updateFileInfo(file.name, img.width, img.height);
+                        this.enableControls(true);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // 加载示例图片
+            loadSampleImage() {
+                // 使用 picsum.photos 提供的示例图片
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.onload = () => {
+                    this.currentImage = img;
+                    this.displayImage(img);
+                    this.updateFileInfo('sample.jpg', img.width, img.height);
+                    this.enableControls(true);
+                };
+                img.onerror = () => {
+                    // 如果加载失败，使用 Canvas 绘制一个示例图片
+                    this.createSampleImage();
+                };
+                img.src = 'https://picsum.photos/800/600';
+            }
+
+            // 创建示例图片
+            createSampleImage() {
+                const canvas = document.createElement('canvas');
+                canvas.width = 800;
+                canvas.height = 600;
+                const ctx = canvas.getContext('2d');
+
+                // 绘制渐变背景
+                const gradient = ctx.createLinearGradient(0, 0, 800, 600);
+                gradient.addColorStop(0, '#667eea');
+                gradient.addColorStop(1, '#764ba2');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 800, 600);
+
+                // 绘制一些形状
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.beginPath();
+                ctx.arc(200, 200, 100, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+                ctx.beginPath();
+                ctx.arc(500, 350, 150, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+                ctx.beginPath();
+                ctx.arc(650, 150, 80, 0, Math.PI * 2);
+                ctx.fill();
+
+                // 添加文字
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 48px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('示例图片', 400, 300);
+                ctx.font = '24px Arial';
+                ctx.fillText('拖拽或点击上传您的图片', 400, 350);
+
+                const img = new Image();
+                img.onload = () => {
+                    this.currentImage = img;
+                    this.displayImage(img);
+                    this.updateFileInfo('sample.png', img.width, img.height);
+                    this.enableControls(true);
+                };
+                img.src = canvas.toDataURL();
+            }
+
+            // 显示图片
+            displayImage(img) {
+                // 清除现有的精灵
+                if (this.sprite) {
+                    this.app.stage.removeChild(this.sprite);
+                    this.sprite.destroy();
+                }
+
+                // 计算适应画布的尺寸
+                const canvasWidth = this.app.screen.width;
+                const canvasHeight = this.app.screen.height;
+                const scale = Math.min(
+                    canvasWidth / img.width,
+                    canvasHeight / img.height
+                );
+
+                // 创建纹理和精灵
+                const texture = PIXI.Texture.from(img);
+                this.sprite = new PIXI.Sprite(texture);
+
+                // 设置精灵属性
+                this.sprite.anchor.set(0.5);
+                this.sprite.x = canvasWidth / 2;
+                this.sprite.y = canvasHeight / 2;
+                this.sprite.scale.set(scale);
+
+                // 添加到舞台
+                this.app.stage.addChild(this.sprite);
+
+                // 隐藏上传覆盖层
+                this.uploadOverlay.classList.add('hidden');
+                this.previewInfo.style.display = 'flex';
+
+                // 应用当前的滤镜
+                this.applyFilters();
+            }
+
+            // 更新文件信息
+            updateFileInfo(fileName, width, height) {
+                this.imageSize.textContent = `${width} × ${height}`;
+                this.imageFileName.textContent = fileName;
+            }
+
+            // 启用/禁用控件
+            enableControls(enabled) {
+                this.downloadBtn.disabled = !enabled;
+                this.resetBtn.disabled = !enabled;
+                this.clearBtn.disabled = !enabled;
+            }
+
+            // 更新滑块 UI
+            updateSliderUI(key) {
+                const slider = this.sliders[key];
+                const fill = this.fills[key];
+                const thumb = this.thumbs[key];
+                const value = this.values[key];
+
+                const min = parseInt(slider.min);
+                const max = parseInt(slider.max);
+                const val = parseInt(slider.value);
+
+                // 计算百分比
+                const percent = ((val - min) / (max - min)) * 100;
+
+                // 更新填充和拇指位置
+                fill.style.width = `${percent}%`;
+                thumb.style.left = `${percent}%`;
+
+                // 更新显示值
+                if (key === 'hue') {
+                    value.textContent = `${val}°`;
+                } else {
+                    value.textContent = val;
+                }
+            }
+
+            // 应用滤镜
+            applyFilters() {
+                if (!this.sprite) return;
+
+                // 重置颜色矩阵
+                this.colorMatrixFilter.reset();
+
+                // 应用亮度 (-1 到 1)
+                const brightness = this.adjustments.brightness / 100;
+                this.colorMatrixFilter.brightness(1 + brightness, false);
+
+                // 应用对比度 (-1 到 1)
+                const contrast = this.adjustments.contrast / 100;
+                this.colorMatrixFilter.contrast(contrast, false);
+
+                // 应用饱和度 (-1 到 1)
+                const saturation = this.adjustments.saturation / 100;
+                this.colorMatrixFilter.saturate(saturation, false);
+
+                // 应用色相 (0 到 360)
+                const hue = this.adjustments.hue;
+                this.colorMatrixFilter.hue(hue, false);
+            }
+
+            // 应用预设
+            applyPreset(presetName) {
+                const preset = this.presets[presetName];
+                if (!preset) return;
+
+                // 更新调整参数
+                Object.keys(preset).forEach(key => {
+                    this.adjustments[key] = preset[key];
+                    this.sliders[key].value = preset[key];
+                    this.updateSliderUI(key);
+                });
+
+                // 应用滤镜
+                this.applyFilters();
+            }
+
+            // 重置调整
+            resetAdjustments() {
+                Object.keys(this.adjustments).forEach(key => {
+                    this.adjustments[key] = 0;
+                    this.sliders[key].value = 0;
+                    this.updateSliderUI(key);
+                });
+
+                this.applyFilters();
+            }
+
+            // 清除图片
+            clearImage() {
+                if (this.sprite) {
+                    this.app.stage.removeChild(this.sprite);
+                    this.sprite.destroy();
+                    this.sprite = null;
+                }
+
+                this.currentImage = null;
+                this.uploadOverlay.classList.remove('hidden');
+                this.previewInfo.style.display = 'none';
+                this.enableControls(false);
+                this.resetAdjustments();
+            }
+
+            // 下载图片
+            downloadImage() {
+                if (!this.sprite) return;
+
+                // 使用 Pixi.js 的渲染器提取图片
+                const canvas = this.app.renderer.extract.canvas(this.app.stage);
+
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = 'edited-image.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }
+        }
+
+        // 页面加载完成后初始化编辑器
+        window.addEventListener('DOMContentLoaded', () => {
+            const editor = new ImageEditor();
+        });
+    </script>
+</body>
+</html>
