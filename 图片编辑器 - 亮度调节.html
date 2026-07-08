@@ -19,179 +19,8 @@
             overflow: hidden;
         }
 
-        /* 左侧边栏 - 工具栏 */
-        .sidebar-left {
-            width: 240px;
-            background: #fff;
-            border-right: 1px solid #e8e8e8;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-        }
-
-        .sidebar-section {
-            padding: 16px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .sidebar-title {
-            font-size: 12px;
-            font-weight: 600;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-        }
-
-        .tool-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .tool-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 12px;
-            border: 1px solid #d9d9d9;
-            border-radius: 6px;
-            background: #fff;
-            font-size: 14px;
-            color: #666;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .tool-btn:hover {
-            border-color: #1890ff;
-            color: #1890ff;
-            background: #e6f7ff;
-        }
-
-        .tool-btn:active {
-            background: #bae7ff;
-        }
-
-        .tool-btn-primary {
-            background: linear-gradient(135deg, #1890ff, #096dd9);
-            color: #fff;
-            border: none;
-        }
-
-        .tool-btn-primary:hover {
-            background: linear-gradient(135deg, #40a9ff, #1890ff);
-            box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
-            color: #fff;
-        }
-
-        .tool-btn-primary:active {
-            background: linear-gradient(135deg, #096dd9, #0050b3);
-        }
-
-        .tool-btn-danger {
-            color: #ff4d4f;
-            border-color: #ff4d4f;
-        }
-
-        .tool-btn-danger:hover {
-            background: #fff1f0;
-            border-color: #ff7875;
-            color: #ff4d4f;
-        }
-
-        .tool-btn-icon {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-        }
-
-        .preset-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-        }
-
-        .preset-btn {
-            padding: 8px;
-            border: 1px solid #d9d9d9;
-            border-radius: 4px;
-            background: #fff;
-            font-size: 12px;
-            color: #666;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-        }
-
-        .preset-btn:hover {
-            border-color: #1890ff;
-            color: #1890ff;
-        }
-
-        .preset-btn:active {
-            background: #e6f7ff;
-        }
-
         /* 中间内容区 - Canvas 预览 */
         .content-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: #f5f5f5;
-            overflow: hidden;
-        }
-
-        .canvas-toolbar {
-            height: 40px;
-            background: #fff;
-            border-bottom: 1px solid #e8e8e8;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 16px;
-        }
-
-        .canvas-info {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            font-size: 13px;
-            color: #666;
-        }
-
-        .canvas-info-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .canvas-info-icon {
-            width: 14px;
-            height: 14px;
-            color: #999;
-        }
-
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            color: #999;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #52c41a;
-        }
-
-        .status-dot.inactive {
-            background: #d9d9d9;
-        }
-
-        .canvas-wrapper {
             flex: 1;
             display: flex;
             align-items: center;
@@ -256,9 +85,38 @@
             color: #999;
         }
 
+        .image-info {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            display: flex;
+            gap: 16px;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 4px;
+            font-size: 12px;
+            color: #fff;
+            z-index: 5;
+        }
+
+        .image-info.hidden {
+            display: none;
+        }
+
+        .image-info-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .image-info-icon {
+            width: 12px;
+            height: 12px;
+        }
+
         /* 右侧边栏 - 属性面板 */
         .sidebar-right {
-            width: 300px;
+            width: 320px;
             background: #fff;
             border-left: 1px solid #e8e8e8;
             display: flex;
@@ -285,6 +143,96 @@
             width: 16px;
             height: 16px;
             color: #1890ff;
+        }
+
+        .tool-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .tool-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            background: #fff;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tool-btn:hover {
+            border-color: #1890ff;
+            color: #1890ff;
+            background: #e6f7ff;
+        }
+
+        .tool-btn:active {
+            background: #bae7ff;
+        }
+
+        .tool-btn-primary {
+            background: linear-gradient(135deg, #1890ff, #096dd9);
+            color: #fff;
+            border: none;
+        }
+
+        .tool-btn-primary:hover {
+            background: linear-gradient(135deg, #40a9ff, #1890ff);
+            box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
+            color: #fff;
+        }
+
+        .tool-btn-primary:active {
+            background: linear-gradient(135deg, #096dd9, #0050b3);
+        }
+
+        .tool-btn-danger {
+            color: #ff4d4f;
+            border-color: #ff4d4f;
+        }
+
+        .tool-btn-danger:hover {
+            background: #fff1f0;
+            border-color: #ff7875;
+            color: #ff4d4f;
+        }
+
+        .tool-btn-icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .preset-btn {
+            padding: 10px;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            background: #fff;
+            font-size: 13px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .preset-btn:hover {
+            border-color: #1890ff;
+            color: #1890ff;
+        }
+
+        .preset-btn:active {
+            background: #e6f7ff;
         }
 
         .control-item {
@@ -441,14 +389,36 @@
             height: 16px;
         }
 
+        .status-bar {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 4px;
+            font-size: 12px;
+            color: #fff;
+            z-index: 5;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #52c41a;
+        }
+
+        .status-dot.inactive {
+            background: #d9d9d9;
+        }
+
         /* 响应式设计 */
         @media (max-width: 1200px) {
-            .sidebar-left {
-                width: 200px;
-            }
-
             .sidebar-right {
-                width: 280px;
+                width: 300px;
             }
         }
 
@@ -457,30 +427,20 @@
                 flex-direction: column;
             }
 
-            .sidebar-left,
+            .content-area {
+                min-height: 400px;
+            }
+
             .sidebar-right {
                 width: 100%;
-                max-height: 300px;
-            }
-
-            .sidebar-left {
-                border-right: none;
-                border-bottom: 1px solid #e8e8e8;
-                flex-direction: row;
-                overflow-x: auto;
-            }
-
-            .sidebar-section {
-                min-width: 200px;
-            }
-
-            .canvas-wrapper {
-                min-height: 400px;
+                max-height: 50vh;
+                border-left: none;
+                border-top: 1px solid #e8e8e8;
             }
         }
 
         @media (max-width: 768px) {
-            .canvas-wrapper {
+            .content-area {
                 padding: 16px;
                 min-height: 300px;
             }
@@ -492,10 +452,53 @@
     </style>
 </head>
 <body>
-    <!-- 左侧边栏 - 工具栏 -->
-    <aside class="sidebar-left">
-        <div class="sidebar-section">
-            <div class="sidebar-title">图片操作</div>
+    <!-- 中间内容区 - Canvas 预览 -->
+    <section class="content-area">
+        <div class="canvas-container" id="canvasContainer">
+            <div class="upload-overlay" id="uploadOverlay">
+                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <div class="upload-text">点击或拖拽图片到此处</div>
+                <div class="upload-hint">支持 JPG、PNG、GIF 格式</div>
+            </div>
+            <canvas id="pixiCanvas"></canvas>
+            <div class="image-info hidden" id="imageInfo">
+                <div class="image-info-item">
+                    <svg class="image-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    </svg>
+                    <span id="imageSize">0 × 0</span>
+                </div>
+                <div class="image-info-item">
+                    <svg class="image-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <span id="imageFileName">未选择文件</span>
+                </div>
+            </div>
+            <div class="status-bar">
+                <div class="status-dot" id="statusDot"></div>
+                <span id="statusText">就绪</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 右侧边栏 - 属性面板 -->
+    <aside class="sidebar-right">
+        <div class="panel-section">
+            <div class="panel-title">
+                <svg class="panel-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                图片操作
+            </div>
             <div class="tool-buttons">
                 <button class="tool-btn tool-btn-primary" id="uploadBtn">
                     <svg class="tool-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -513,12 +516,6 @@
                     </svg>
                     加载示例
                 </button>
-            </div>
-        </div>
-
-        <div class="sidebar-section">
-            <div class="sidebar-title">快速操作</div>
-            <div class="tool-buttons">
                 <button class="tool-btn" id="resetBtn" disabled>
                     <svg class="tool-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="1 4 1 10 7 10"></polyline>
@@ -536,63 +533,6 @@
             </div>
         </div>
 
-        <div class="sidebar-section">
-            <div class="sidebar-title">预设效果</div>
-            <div class="preset-grid">
-                <button class="preset-btn" data-preset="original">原始</button>
-                <button class="preset-btn" data-preset="bright">明亮</button>
-                <button class="preset-btn" data-preset="dark">暗调</button>
-                <button class="preset-btn" data-preset="high-contrast">高对比</button>
-                <button class="preset-btn" data-preset="grayscale">黑白</button>
-                <button class="preset-btn" data-preset="warm">暖色</button>
-                <button class="preset-btn" data-preset="cool">冷色</button>
-                <button class="preset-btn" data-preset="vintage">复古</button>
-            </div>
-        </div>
-    </aside>
-
-    <!-- 中间内容区 - Canvas 预览 -->
-    <section class="content-area">
-        <div class="canvas-toolbar">
-            <div class="canvas-info" id="previewInfo" style="display: none;">
-                <div class="canvas-info-item">
-                    <svg class="canvas-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                    </svg>
-                    <span id="imageSize">0 × 0</span>
-                </div>
-                <div class="canvas-info-item">
-                    <svg class="canvas-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="17 8 12 3 7 8"></polyline>
-                        <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>
-                    <span id="imageFileName">未选择文件</span>
-                </div>
-            </div>
-            <div class="status-indicator">
-                <div class="status-dot" id="statusDot"></div>
-                <span id="statusText">就绪</span>
-            </div>
-        </div>
-        <div class="canvas-wrapper">
-            <div class="canvas-container" id="canvasContainer">
-                <div class="upload-overlay" id="uploadOverlay">
-                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="17 8 12 3 7 8"></polyline>
-                        <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>
-                    <div class="upload-text">点击或拖拽图片到此处</div>
-                    <div class="upload-hint">支持 JPG、PNG、GIF 格式</div>
-                </div>
-                <canvas id="pixiCanvas"></canvas>
-            </div>
-        </div>
-    </section>
-
-    <!-- 右侧边栏 - 属性面板 -->
-    <aside class="sidebar-right">
         <div class="panel-section">
             <div class="panel-title">
                 <svg class="panel-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -655,6 +595,26 @@
             </div>
         </div>
 
+        <div class="panel-section">
+            <div class="panel-title">
+                <svg class="panel-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <path d="M3 9h18M9 3v18"></path>
+                </svg>
+                预设效果
+            </div>
+            <div class="preset-grid">
+                <button class="preset-btn" data-preset="original">原始</button>
+                <button class="preset-btn" data-preset="bright">明亮</button>
+                <button class="preset-btn" data-preset="dark">暗调</button>
+                <button class="preset-btn" data-preset="high-contrast">高对比</button>
+                <button class="preset-btn" data-preset="grayscale">黑白</button>
+                <button class="preset-btn" data-preset="warm">暖色</button>
+                <button class="preset-btn" data-preset="cool">冷色</button>
+                <button class="preset-btn" data-preset="vintage">复古</button>
+            </div>
+        </div>
+
         <div class="action-section">
             <div class="action-buttons">
                 <button class="btn btn-primary" id="downloadBtn" disabled>
@@ -680,7 +640,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.12/pixi.min.js"></script>
     <script>
-        // 图片编辑器类
         class ImageEditor {
             constructor() {
                 this.app = null;
@@ -694,18 +653,16 @@
                     hue: 0
                 };
 
-                // DOM 元素
                 this.canvas = document.getElementById('pixiCanvas');
                 this.canvasContainer = document.getElementById('canvasContainer');
                 this.uploadOverlay = document.getElementById('uploadOverlay');
                 this.fileInput = document.getElementById('fileInput');
-                this.previewInfo = document.getElementById('previewInfo');
+                this.imageInfo = document.getElementById('imageInfo');
                 this.imageSize = document.getElementById('imageSize');
                 this.imageFileName = document.getElementById('imageFileName');
                 this.statusDot = document.getElementById('statusDot');
                 this.statusText = document.getElementById('statusText');
 
-                // 滑块元素
                 this.sliders = {
                     brightness: document.getElementById('brightnessSlider'),
                     contrast: document.getElementById('contrastSlider'),
@@ -734,7 +691,6 @@
                     hue: document.getElementById('hueValue')
                 };
 
-                // 按钮元素
                 this.uploadBtn = document.getElementById('uploadBtn');
                 this.loadSampleBtn = document.getElementById('loadSampleBtn');
                 this.resetBtn = document.getElementById('resetBtn');
@@ -742,7 +698,6 @@
                 this.downloadBtn = document.getElementById('downloadBtn');
                 this.previewBtn = document.getElementById('previewBtn');
 
-                // 预设效果
                 this.presets = {
                     original: { brightness: 0, contrast: 0, saturation: 0, hue: 0 },
                     bright: { brightness: 30, contrast: 10, saturation: 5, hue: 0 },
@@ -778,17 +733,9 @@
             }
 
             bindEvents() {
-                // 上传区域点击
-                this.uploadOverlay.addEventListener('click', () => {
-                    this.fileInput.click();
-                });
+                this.uploadOverlay.addEventListener('click', () => this.fileInput.click());
+                this.uploadBtn.addEventListener('click', () => this.fileInput.click());
 
-                // 上传按钮
-                this.uploadBtn.addEventListener('click', () => {
-                    this.fileInput.click();
-                });
-
-                // 拖拽上传
                 this.canvasContainer.addEventListener('dragover', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -812,14 +759,12 @@
                     }
                 });
 
-                // 文件选择
                 this.fileInput.addEventListener('change', (e) => {
                     if (e.target.files.length > 0) {
                         this.loadImage(e.target.files[0]);
                     }
                 });
 
-                // 滑块事件
                 Object.keys(this.sliders).forEach(key => {
                     this.sliders[key].addEventListener('input', (e) => {
                         this.adjustments[key] = parseInt(e.target.value);
@@ -828,15 +773,12 @@
                     });
                 });
 
-                // 预设按钮
                 document.querySelectorAll('.preset-btn').forEach(btn => {
                     btn.addEventListener('click', () => {
-                        const presetName = btn.dataset.preset;
-                        this.applyPreset(presetName);
+                        this.applyPreset(btn.dataset.preset);
                     });
                 });
 
-                // 其他按钮
                 this.loadSampleBtn.addEventListener('click', () => this.loadSampleImage());
                 this.resetBtn.addEventListener('click', () => this.resetAdjustments());
                 this.clearBtn.addEventListener('click', () => this.clearImage());
@@ -872,9 +814,7 @@
                     this.enableControls(true);
                     this.updateStatus('示例图片已加载', true);
                 };
-                img.onerror = () => {
-                    this.createSampleImage();
-                };
+                img.onerror = () => this.createSampleImage();
                 img.src = 'https://picsum.photos/800/600';
             }
 
@@ -926,10 +866,7 @@
 
                 const canvasWidth = this.app.screen.width;
                 const canvasHeight = this.app.screen.height;
-                const scale = Math.min(
-                    canvasWidth / img.width,
-                    canvasHeight / img.height
-                );
+                const scale = Math.min(canvasWidth / img.width, canvasHeight / img.height);
 
                 const texture = PIXI.Texture.from(img);
                 this.sprite = new PIXI.Sprite(texture);
@@ -942,7 +879,7 @@
                 this.app.stage.addChild(this.sprite);
 
                 this.uploadOverlay.classList.add('hidden');
-                this.previewInfo.style.display = 'flex';
+                this.imageInfo.classList.remove('hidden');
 
                 this.applyFilters();
             }
@@ -1033,7 +970,7 @@
 
                 this.currentImage = null;
                 this.uploadOverlay.classList.remove('hidden');
-                this.previewInfo.style.display = 'none';
+                this.imageInfo.classList.add('hidden');
                 this.enableControls(false);
                 this.resetAdjustments();
                 this.updateStatus('图片已清除', true);
