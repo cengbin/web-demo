@@ -19,7 +19,6 @@
             overflow: hidden;
         }
 
-        /* 中间内容区 - Canvas 预览 */
         .content-area {
             flex: 1;
             display: flex;
@@ -65,14 +64,6 @@
             display: none;
         }
 
-        .upload-icon {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 24px;
-            color: #1890ff;
-            opacity: 0.8;
-        }
-
         .upload-text {
             font-size: 18px;
             color: #333;
@@ -103,18 +94,6 @@
             display: none;
         }
 
-        .image-info-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .image-info-icon {
-            width: 12px;
-            height: 12px;
-        }
-
-        /* 右侧边栏 - 属性面板 */
         .sidebar-right {
             width: 320px;
             background: #fff;
@@ -134,15 +113,6 @@
             font-weight: 600;
             color: #333;
             margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .panel-title-icon {
-            width: 16px;
-            height: 16px;
-            color: #1890ff;
         }
 
         .tool-buttons {
@@ -154,7 +124,6 @@
         .tool-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
             padding: 6px 10px;
             border: 1px solid #d9d9d9;
             border-radius: 4px;
@@ -201,12 +170,6 @@
             background: #fff1f0;
             border-color: #ff7875;
             color: #ff4d4f;
-        }
-
-        .tool-btn-icon {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
         }
 
         .preset-grid {
@@ -330,11 +293,6 @@
             cursor: pointer;
         }
 
-        .btn-icon {
-            width: 16px;
-            height: 16px;
-        }
-
         .status-bar {
             position: absolute;
             top: 16px;
@@ -361,7 +319,6 @@
             background: #d9d9d9;
         }
 
-        /* 响应式设计 */
         @media (max-width: 1200px) {
             .sidebar-right {
                 width: 300px;
@@ -398,34 +355,16 @@
     </style>
 </head>
 <body>
-    <!-- 中间内容区 - Canvas 预览 -->
     <section class="content-area">
         <div class="canvas-container" id="canvasContainer">
             <div class="upload-overlay" id="uploadOverlay">
-                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="17 8 12 3 7 8"></polyline>
-                    <line x1="12" y1="3" x2="12" y2="15"></line>
-                </svg>
                 <div class="upload-text">点击或拖拽图片到此处</div>
                 <div class="upload-hint">支持 JPG、PNG、GIF 格式</div>
             </div>
             <canvas id="pixiCanvas"></canvas>
             <div class="image-info hidden" id="imageInfo">
-                <div class="image-info-item">
-                    <svg class="image-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                    </svg>
-                    <span id="imageSize">0 × 0</span>
-                </div>
-                <div class="image-info-item">
-                    <svg class="image-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="17 8 12 3 7 8"></polyline>
-                        <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>
-                    <span id="imageFileName">未选择文件</span>
-                </div>
+                <span id="imageSize">0 × 0</span>
+                <span id="imageFileName">未选择文件</span>
             </div>
             <div class="status-bar">
                 <div class="status-dot" id="statusDot"></div>
@@ -434,75 +373,21 @@
         </div>
     </section>
 
-    <!-- 右侧边栏 - 属性面板 -->
     <aside class="sidebar-right">
         <div class="panel-section">
-            <div class="panel-title">
-                <svg class="panel-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="17 8 12 3 7 8"></polyline>
-                    <line x1="12" y1="3" x2="12" y2="15"></line>
-                </svg>
-                图片操作
-            </div>
+            <div class="panel-title">图片操作</div>
             <div class="tool-buttons">
-                <button class="tool-btn tool-btn-primary" id="uploadBtn">
-                    <svg class="tool-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="17 8 12 3 7 8"></polyline>
-                        <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>
-                    上传图片
-                </button>
-                <button class="tool-btn" id="loadSampleBtn">
-                    <svg class="tool-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                        <polyline points="21 15 16 10 5 21"></polyline>
-                    </svg>
-                    加载示例
-                </button>
-                <button class="tool-btn" id="resetBtn" disabled>
-                    <svg class="tool-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="1 4 1 10 7 10"></polyline>
-                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-                    </svg>
-                    重置调整
-                </button>
-                <button class="tool-btn tool-btn-danger" id="clearBtn" disabled>
-                    <svg class="tool-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="3 6 5 6 21 6"></polyline>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                    </svg>
-                    清除图片
-                </button>
-                <button class="tool-btn" id="previewBtn" disabled>
-                    <svg class="tool-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                    预览对比
-                </button>
-                <button class="tool-btn tool-btn-primary" id="downloadBtn" disabled>
-                    <svg class="tool-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                    下载图片
-                </button>
+                <button class="tool-btn tool-btn-primary" id="uploadBtn">上传图片</button>
+                <button class="tool-btn" id="loadSampleBtn">加载示例</button>
+                <button class="tool-btn" id="resetBtn" disabled>重置调整</button>
+                <button class="tool-btn tool-btn-danger" id="clearBtn" disabled>清除图片</button>
+                <button class="tool-btn" id="previewBtn" disabled>预览对比</button>
+                <button class="tool-btn tool-btn-primary" id="downloadBtn" disabled>下载图片</button>
             </div>
         </div>
 
         <div class="panel-section">
-            <div class="panel-title">
-                <svg class="panel-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
-                </svg>
-                色彩调整
-            </div>
-
+            <div class="panel-title">色彩调整</div>
             <div class="control-item">
                 <div class="control-label">
                     <span class="label-text">亮度</span>
@@ -557,13 +442,7 @@
         </div>
 
         <div class="panel-section">
-            <div class="panel-title">
-                <svg class="panel-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                    <path d="M3 9h18M9 3v18"></path>
-                </svg>
-                预设效果
-            </div>
+            <div class="panel-title">预设效果</div>
             <div class="preset-grid">
                 <button class="preset-btn" data-preset="original">原始</button>
                 <button class="preset-btn" data-preset="bright">明亮</button>
@@ -575,7 +454,6 @@
                 <button class="preset-btn" data-preset="vintage">复古</button>
             </div>
         </div>
-
     </aside>
 
     <input type="file" id="fileInput" accept="image/*" style="display: none;">
@@ -937,22 +815,10 @@
                 const currentFilters = this.app.stage.filters;
                 if (currentFilters && currentFilters.length > 0) {
                     this.app.stage.filters = [];
-                    this.previewBtn.innerHTML = `
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                        显示调整
-                    `;
+                    this.previewBtn.textContent = '显示调整';
                 } else {
                     this.app.stage.filters = [this.colorMatrixFilter];
-                    this.previewBtn.innerHTML = `
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                        预览对比
-                    `;
+                    this.previewBtn.textContent = '预览对比';
                 }
             }
 
