@@ -115,61 +115,91 @@
             margin-bottom: 16px;
         }
 
-        .tool-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .tool-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 6px 10px;
+        .btn {
+            display: inline-block;
+            padding: 4px 15px;
             border: 1px solid #d9d9d9;
-            border-radius: 4px;
+            border-radius: 6px;
             background: #fff;
-            font-size: 12px;
-            color: #666;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.88);
             cursor: pointer;
             transition: all 0.2s;
             white-space: nowrap;
+            text-align: center;
+            line-height: 1.5;
         }
 
-        .tool-btn:hover {
-            border-color: #1890ff;
-            color: #1890ff;
-            background: #e6f7ff;
+        .btn:hover {
+            border-color: #4096ff;
+            color: #4096ff;
         }
 
-        .tool-btn:active {
-            background: #bae7ff;
+        .btn:active {
+            border-color: #0958d9;
+            color: #0958d9;
         }
 
-        .tool-btn-primary {
-            background: linear-gradient(135deg, #1890ff, #096dd9);
+        .btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .btn:disabled:hover {
+            border-color: #d9d9d9;
+            color: rgba(0, 0, 0, 0.88);
+        }
+
+        .btn-primary {
+            background: #1677ff;
+            border-color: #1677ff;
             color: #fff;
-            border: none;
         }
 
-        .tool-btn-primary:hover {
-            background: linear-gradient(135deg, #40a9ff, #1890ff);
-            box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
+        .btn-primary:hover {
+            background: #4096ff;
+            border-color: #4096ff;
             color: #fff;
         }
 
-        .tool-btn-primary:active {
-            background: linear-gradient(135deg, #096dd9, #0050b3);
+        .btn-primary:active {
+            background: #0958d9;
+            border-color: #0958d9;
+            color: #fff;
         }
 
-        .tool-btn-danger {
+        .btn-primary:disabled {
+            background: #1677ff;
+            border-color: #1677ff;
+            color: #fff;
+            opacity: 0.5;
+        }
+
+        .btn-primary:disabled:hover {
+            background: #1677ff;
+            border-color: #1677ff;
+            color: #fff;
+        }
+
+        .btn-danger {
             color: #ff4d4f;
             border-color: #ff4d4f;
         }
 
-        .tool-btn-danger:hover {
-            background: #fff1f0;
+        .btn-danger:hover {
+            color: #ff7875;
             border-color: #ff7875;
-            color: #ff4d4f;
+        }
+
+        .btn-danger:active {
+            color: #d9363e;
+            border-color: #d9363e;
+        }
+
+        .tool-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .preset-grid {
@@ -377,12 +407,12 @@
         <div class="panel-section">
             <div class="panel-title">图片操作</div>
             <div class="tool-buttons">
-                <button class="tool-btn tool-btn-primary" id="uploadBtn">上传图片</button>
-                <button class="tool-btn" id="loadSampleBtn">加载示例</button>
-                <button class="tool-btn" id="resetBtn" disabled>重置调整</button>
-                <button class="tool-btn tool-btn-danger" id="clearBtn" disabled>清除图片</button>
-                <button class="tool-btn" id="previewBtn" disabled>预览对比</button>
-                <button class="tool-btn tool-btn-primary" id="downloadBtn" disabled>下载图片</button>
+                <button class="btn btn-primary" id="uploadBtn">上传图片</button>
+                <button class="btn" id="loadSampleBtn">加载示例</button>
+                <button class="btn" id="resetBtn" disabled>重置调整</button>
+                <button class="btn btn-danger" id="clearBtn" disabled>清除图片</button>
+                <button class="btn" id="previewBtn" disabled>预览对比</button>
+                <button class="btn btn-primary" id="downloadBtn" disabled>下载图片</button>
             </div>
         </div>
 
