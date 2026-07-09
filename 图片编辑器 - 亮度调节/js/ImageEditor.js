@@ -10,6 +10,27 @@ import { hue } from './filters/hue.js';
 import { lightness } from './filters/lightness.js';
 import { colorTemperature } from './filters/colorTemperature.js';
 import { exposure } from './filters/exposure.js';
+import { highlights } from './filters/highlights.js';
+import { shadows } from './filters/shadows.js';
+import { vibrance } from './filters/vibrance.js';
+import { clarity } from './filters/clarity.js';
+import { toneCurve } from './filters/toneCurve.js';
+
+// 所有调整参数的默认值
+var DEFAULT_ADJUSTMENTS = {
+    brightness: 0,
+    contrast: 0,
+    saturation: 0,
+    hue: 0,
+    lightness: 0,
+    colorTemperature: 0,
+    exposure: 0,
+    highlights: 0,
+    shadows: 0,
+    vibrance: 0,
+    clarity: 0,
+    toneCurve: 0
+};
 
 export class ImageEditor {
     constructor(canvas) {
@@ -24,15 +45,7 @@ export class ImageEditor {
         this.imageHeight = 0;
 
         // 调整参数
-        this.adjustments = {
-            brightness: 0,
-            contrast: 0,
-            saturation: 0,
-            hue: 0,
-            lightness: 0,
-            colorTemperature: 0,
-            exposure: 0
-        };
+        this.adjustments = Object.assign({}, DEFAULT_ADJUSTMENTS);
     }
 
     /**
@@ -43,14 +56,11 @@ export class ImageEditor {
         this.imageWidth = img.width;
         this.imageHeight = img.height;
 
-        // 设置 Canvas 尺寸
         this.canvas.width = img.width;
         this.canvas.height = img.height;
 
-        // 绘制图片
         this.ctx.drawImage(img, 0, 0);
 
-        // 保存原始像素数据
         this.originalImageData = this.ctx.getImageData(0, 0, img.width, img.height);
     }
 
@@ -60,25 +70,28 @@ export class ImageEditor {
     applyFilters() {
         if (!this.originalImageData) return;
 
-        // 从原始数据创建新的 ImageData
-        const imageData = new ImageData(
+        var imageData = new ImageData(
             new Uint8ClampedArray(this.originalImageData.data),
             this.imageWidth,
             this.imageHeight
         );
 
-        const data = imageData.data;
+        var data = imageData.data;
 
         // 按顺序应用滤镜
+        exposure(data, this.adjustments.exposure);
         brightness(data, this.adjustments.brightness);
         contrast(data, this.adjustments.contrast);
-        saturation(data, this.adjustments.saturation);
-        hue(data, this.adjustments.hue);
+        highlights(data, this.adjustments.highlights);
+        shadows(data, this.adjustments.shadows);
         lightness(data, this.adjustments.lightness);
+        saturation(data, this.adjustments.saturation);
+        vibrance(data, this.adjustments.vibrance);
+        hue(data, this.adjustments.hue);
         colorTemperature(data, this.adjustments.colorTemperature);
-        exposure(data, this.adjustments.exposure);
+        toneCurve(data, this.adjustments.toneCurve);
+        clarity(data, this.adjustments.clarity, this.imageWidth, this.imageHeight);
 
-        // 写回 Canvas
         this.ctx.putImageData(imageData, 0, 0);
     }
 
@@ -113,15 +126,7 @@ export class ImageEditor {
      * 重置所有调整
      */
     reset() {
-        this.adjustments = {
-            brightness: 0,
-            contrast: 0,
-            saturation: 0,
-            hue: 0,
-            lightness: 0,
-            colorTemperature: 0,
-            exposure: 0
-        };
+        this.adjustments = Object.assign({}, DEFAULT_ADJUSTMENTS);
         this.applyFilters();
     }
 
@@ -133,15 +138,7 @@ export class ImageEditor {
         this.originalImageData = null;
         this.imageWidth = 0;
         this.imageHeight = 0;
-        this.adjustments = {
-            brightness: 0,
-            contrast: 0,
-            saturation: 0,
-            hue: 0,
-            lightness: 0,
-            colorTemperature: 0,
-            exposure: 0
-        };
+        this.adjustments = Object.assign({}, DEFAULT_ADJUSTMENTS);
     }
 
     /**

@@ -365,3 +365,81 @@ body {
         padding: 16px;
     }
 }
+
+/* Tooltip 组件样式 */
+.v-tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+}
+
+.v-tooltip {
+    position: absolute;
+    z-index: 1000;
+    max-width: 250px;
+    padding: 6px 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    white-space: normal;
+    word-wrap: break-word;
+    pointer-events: none;
+}
+
+.v-tooltip-content {
+    position: relative;
+    z-index: 1;
+}
+
+.v-tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+}
+
+/* Top placement */
+.v-tooltip-top {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+}
+
+.v-tooltip-top .v-tooltip-arrow {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top-color: rgba(0, 0, 0, 0.75);
+    border-bottom: none;
+}
+
+/* Bottom placement */
+.v-tooltip-bottom {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+}
+
+.v-tooltip-bottom .v-tooltip-arrow {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom-color: rgba(0, 0, 0, 0.75);
+    border-top: none;
+}
+
+/* Fade transition */
+.v-tooltip-fade-enter-active,
+.v-tooltip-fade-leave-active {
+    transition: opacity 0.15s ease;
+}
+
+.v-tooltip-fade-enter,
+.v-tooltip-fade-leave-to {
+    opacity: 0;
+}

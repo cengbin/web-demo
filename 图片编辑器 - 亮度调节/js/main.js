@@ -1,6 +1,22 @@
 import { ImageEditor } from './ImageEditor.js';
 import { ImageLoader } from './ImageLoader.js';
 
+// 默认调整参数
+var DEFAULT_ADJUSTMENTS = {
+    brightness: 0,
+    contrast: 0,
+    saturation: 0,
+    hue: 0,
+    lightness: 0,
+    colorTemperature: 0,
+    exposure: 0,
+    highlights: 0,
+    shadows: 0,
+    vibrance: 0,
+    clarity: 0,
+    toneCurve: 0
+};
+
 new Vue({
     el: '#app',
     data: function () {
@@ -12,37 +28,34 @@ new Vue({
             imageInfo: { size: '', fileName: '' },
 
             // 调整参数
-            adjustments: {
-                brightness: 0,
-                contrast: 0,
-                saturation: 0,
-                hue: 0,
-                lightness: 0,
-                colorTemperature: 0,
-                exposure: 0
-            },
+            adjustments: Object.assign({}, DEFAULT_ADJUSTMENTS),
 
             // 滑块配置
             sliderConfigs: [
-                { key: 'brightness', label: '亮度', min: -100, max: 100 },
-                { key: 'contrast', label: '对比度', min: -100, max: 100 },
-                { key: 'saturation', label: '饱和度', min: -100, max: 100 },
-                { key: 'hue', label: '色相', min: -180, max: 180 },
-                { key: 'lightness', label: '明度', min: -100, max: 100 },
-                { key: 'colorTemperature', label: '色温', min: -100, max: 100 },
-                { key: 'exposure', label: '曝光', min: -100, max: 100 }
+                { key: 'brightness', label: '亮度', min: -100, max: 100, description: '调整图片整体明暗程度' },
+                { key: 'contrast', label: '对比度', min: -100, max: 100, description: '调整明暗区域的差异' },
+                { key: 'saturation', label: '饱和度', min: -100, max: 100, description: '调整色彩鲜艳程度' },
+                { key: 'hue', label: '色相', min: -180, max: 180, description: '旋转色相环，改变颜色' },
+                { key: 'lightness', label: '明度', min: -100, max: 100, description: '在 HSL 空间调整明暗' },
+                { key: 'colorTemperature', label: '色温', min: -100, max: 100, description: '调整冷暖色调' },
+                { key: 'exposure', label: '曝光', min: -100, max: 100, description: '模拟相机曝光调整' },
+                { key: 'highlights', label: '高光', min: -100, max: 100, description: '调整亮部区域亮度' },
+                { key: 'shadows', label: '阴影', min: -100, max: 100, description: '调整暗部区域亮度' },
+                { key: 'vibrance', label: '自然饱和度', min: -100, max: 100, description: '保护肤色的智能饱和度' },
+                { key: 'clarity', label: '清晰度', min: -100, max: 100, description: '增强中频对比度，提升细节' },
+                { key: 'toneCurve', label: '色调曲线', min: -100, max: 100, description: '通过曲线精确控制色调映射' }
             ],
 
             // 预设
             presets: {
-                original: { label: '原始', brightness: 0, contrast: 0, saturation: 0, hue: 0, lightness: 0, colorTemperature: 0, exposure: 0 },
-                bright: { label: '明亮', brightness: 30, contrast: 10, saturation: 5, hue: 0, lightness: 0, colorTemperature: 0, exposure: 0 },
-                dark: { label: '暗调', brightness: -30, contrast: 20, saturation: -10, hue: 0, lightness: 0, colorTemperature: 0, exposure: 0 },
-                'high-contrast': { label: '高对比', brightness: 0, contrast: 50, saturation: 20, hue: 0, lightness: 0, colorTemperature: 0, exposure: 0 },
-                grayscale: { label: '黑白', brightness: 0, contrast: 0, saturation: -100, hue: 0, lightness: 0, colorTemperature: 0, exposure: 0 },
-                warm: { label: '暖色', brightness: 10, contrast: 5, saturation: 20, hue: 20, lightness: 0, colorTemperature: 30, exposure: 0 },
-                cool: { label: '冷色', brightness: 0, contrast: 10, saturation: -10, hue: -20, lightness: 0, colorTemperature: -30, exposure: 0 },
-                vintage: { label: '复古', brightness: -10, contrast: 20, saturation: -30, hue: 10, lightness: 0, colorTemperature: 20, exposure: -10 }
+                original: { label: '原始', brightness: 0, contrast: 0, saturation: 0, hue: 0, lightness: 0, colorTemperature: 0, exposure: 0, highlights: 0, shadows: 0, vibrance: 0, clarity: 0, toneCurve: 0 },
+                bright: { label: '明亮', brightness: 30, contrast: 10, saturation: 5, hue: 0, lightness: 0, colorTemperature: 0, exposure: 10, highlights: 10, shadows: 0, vibrance: 0, clarity: 0, toneCurve: 0 },
+                dark: { label: '暗调', brightness: -30, contrast: 20, saturation: -10, hue: 0, lightness: 0, colorTemperature: 0, exposure: -10, highlights: 0, shadows: -20, vibrance: 0, clarity: 0, toneCurve: 0 },
+                'high-contrast': { label: '高对比', brightness: 0, contrast: 50, saturation: 20, hue: 0, lightness: 0, colorTemperature: 0, exposure: 0, highlights: -10, shadows: -10, vibrance: 0, clarity: 20, toneCurve: 30 },
+                grayscale: { label: '黑白', brightness: 0, contrast: 10, saturation: -100, hue: 0, lightness: 0, colorTemperature: 0, exposure: 0, highlights: 0, shadows: 0, vibrance: 0, clarity: 0, toneCurve: 0 },
+                warm: { label: '暖色', brightness: 10, contrast: 5, saturation: 20, hue: 20, lightness: 0, colorTemperature: 30, exposure: 0, highlights: 0, shadows: 0, vibrance: 10, clarity: 0, toneCurve: 0 },
+                cool: { label: '冷色', brightness: 0, contrast: 10, saturation: -10, hue: -20, lightness: 0, colorTemperature: -30, exposure: 0, highlights: 0, shadows: 0, vibrance: 0, clarity: 0, toneCurve: 0 },
+                vintage: { label: '复古', brightness: -10, contrast: 20, saturation: -30, hue: 10, lightness: 0, colorTemperature: 20, exposure: -10, highlights: -10, shadows: 10, vibrance: -20, clarity: -10, toneCurve: -20 }
             },
 
             // 编辑器实例
@@ -86,7 +99,6 @@ new Vue({
             if (files.length > 0) {
                 this.loadImageFile(files[0]);
             }
-            // 重置 input 的 value，允许重复选择相同文件
             e.target.value = '';
         },
         onDragOver: function (e) {
@@ -116,7 +128,6 @@ new Vue({
                     fileName: file.name
                 };
                 self.hasImage = true;
-                // 应用当前调整参数
                 self.editor.setAdjustments(Object.assign({}, self.adjustments));
                 self.setStatus('图片已加载', true);
             }).catch(function (err) {
@@ -134,7 +145,6 @@ new Vue({
                     fileName: 'sample.jpg'
                 };
                 self.hasImage = true;
-                // 应用当前调整参数
                 self.editor.setAdjustments(Object.assign({}, self.adjustments));
                 self.setStatus('示例图片已加载', true);
             }).catch(function () {
@@ -146,22 +156,13 @@ new Vue({
                         fileName: 'sample.png'
                     };
                     self.hasImage = true;
-                    // 应用当前调整参数
                     self.editor.setAdjustments(Object.assign({}, self.adjustments));
                     self.setStatus('示例图片已加载', true);
                 };
             });
         },
         resetAdjustments: function () {
-            this.adjustments = {
-                brightness: 0,
-                contrast: 0,
-                saturation: 0,
-                hue: 0,
-                lightness: 0,
-                colorTemperature: 0,
-                exposure: 0
-            };
+            this.adjustments = Object.assign({}, DEFAULT_ADJUSTMENTS);
             this.isPreview = false;
         },
         onSliderChange: function (key) {
@@ -170,29 +171,13 @@ new Vue({
             }
         },
         reset: function () {
-            this.adjustments = {
-                brightness: 0,
-                contrast: 0,
-                saturation: 0,
-                hue: 0,
-                lightness: 0,
-                colorTemperature: 0,
-                exposure: 0
-            };
+            this.adjustments = Object.assign({}, DEFAULT_ADJUSTMENTS);
             this.editor.reset();
             this.setStatus('已重置调整', true);
         },
         clear: function () {
             this.editor.clear();
-            this.adjustments = {
-                brightness: 0,
-                contrast: 0,
-                saturation: 0,
-                hue: 0,
-                lightness: 0,
-                colorTemperature: 0,
-                exposure: 0
-            };
+            this.adjustments = Object.assign({}, DEFAULT_ADJUSTMENTS);
             this.hasImage = false;
             this.isPreview = false;
             this.setStatus('图片已清除', true);
@@ -218,15 +203,7 @@ new Vue({
         applyPreset: function (name) {
             var preset = this.presets[name];
             if (!preset) return;
-            this.adjustments = {
-                brightness: preset.brightness,
-                contrast: preset.contrast,
-                saturation: preset.saturation,
-                hue: preset.hue,
-                lightness: preset.lightness,
-                colorTemperature: preset.colorTemperature,
-                exposure: preset.exposure
-            };
+            this.adjustments = Object.assign({}, preset);
             this.editor.applyFilters();
             this.setStatus('已应用预设: ' + preset.label, true);
         }

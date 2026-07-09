@@ -50,7 +50,9 @@
             <div class="panel-title">色彩调整</div>
             <div class="control-item" v-for="item in sliderConfigs" :key="item.key">
                 <div class="control-label">
-                    <span class="label-text">{{ item.label }}</span>
+                    <v-tooltip :content="item.description" placement="top">
+                        <span class="label-text">{{ item.label }}</span>
+                    </v-tooltip>
                     <span class="label-value">{{ formatValue(item.key) }}</span>
                 </div>
                 <div class="slider-container">
@@ -77,6 +79,7 @@
 </div>
 
 <script src="lib/vue@2.6.10.min.js"></script>
+<script src="js/components/Tooltip.js"></script>
 <script src="js/main.js" type="module"></script>
 </body>
 </html>
