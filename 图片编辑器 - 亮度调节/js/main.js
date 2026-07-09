@@ -65,12 +65,6 @@ new Vue({
         setStatus: function (text, active) {
             this.status = { text: text, active: active };
         },
-        getPercent: function (key) {
-            var config = this.sliderConfigs.find(function (c) { return c.key === key; });
-            var min = config.min;
-            var max = config.max;
-            return ((this.adjustments[key] - min) / (max - min)) * 100;
-        },
         formatValue: function (key) {
             var val = this.adjustments[key];
             return key === 'hue' ? val + '°' : val;

@@ -7,79 +7,76 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="app">
-        <section class="content-area">
-            <div class="canvas-wrapper">
-                <div class="canvas-container" id="canvasContainer"
-                     @dragover.prevent="onDragOver"
-                     @dragleave.prevent="onDragLeave"
-                     @drop.prevent="onDrop">
-                    <div class="upload-overlay" v-show="!hasImage" @click="triggerUpload">
-                        <div class="upload-text">点击或拖拽图片到此处</div>
-                        <div class="upload-hint">支持 JPG、PNG、GIF 格式</div>
-                    </div>
-                    <canvas ref="canvas"></canvas>
+<div id="app">
+    <section class="content-area">
+        <div class="canvas-wrapper">
+            <div class="canvas-info-bar">
+                <div class="image-info" v-show="hasImage">
+                    <span>{{ imageInfo.size }}</span>
+                    <span>{{ imageInfo.fileName }}</span>
                 </div>
-                <div class="canvas-info-bar">
-                    <div class="image-info" v-show="hasImage">
-                        <span>{{ imageInfo.size }}</span>
-                        <span>{{ imageInfo.fileName }}</span>
-                    </div>
-                    <div class="status-bar">
-                        <div class="status-dot" :class="{ inactive: !status.active }"></div>
-                        <span>{{ status.text }}</span>
-                    </div>
+                <div class="status-bar">
+                    <div class="status-dot" :class="{ inactive: !status.active }"></div>
+                    <span>{{ status.text }}</span>
                 </div>
             </div>
-        </section>
+            <div class="canvas-container" id="canvasContainer"
+                 @dragover.prevent="onDragOver"
+                 @dragleave.prevent="onDragLeave"
+                 @drop.prevent="onDrop">
+                <div class="upload-overlay" v-show="!hasImage" @click="triggerUpload">
+                    <div class="upload-text">点击或拖拽图片到此处</div>
+                    <div class="upload-hint">支持 JPG、PNG、GIF 格式</div>
+                </div>
+                <canvas ref="canvas"></canvas>
+            </div>
+        </div>
+    </section>
 
-        <aside class="sidebar-right">
-            <div class="panel-section">
-                <div class="panel-title">图片操作</div>
-                <div class="tool-buttons">
-                    <button class="btn btn-primary" @click="triggerUpload">上传图片</button>
-                    <button class="btn" @click="loadSample">加载示例</button>
-                    <button class="btn" :disabled="!hasImage" @click="reset">重置调整</button>
-                    <button class="btn btn-danger" :disabled="!hasImage" @click="clear">清除图片</button>
-                    <button class="btn" :disabled="!hasImage" @click="togglePreview">{{ previewText }}</button>
-                    <button class="btn btn-primary" :disabled="!hasImage" @click="download">下载图片</button>
+    <aside class="sidebar-right">
+        <div class="panel-section">
+            <div class="panel-title">图片操作</div>
+            <div class="tool-buttons">
+                <button class="btn btn-primary" @click="triggerUpload">上传图片</button>
+                <button class="btn" @click="loadSample">加载示例</button>
+                <button class="btn" :disabled="!hasImage" @click="reset">重置调整</button>
+                <button class="btn btn-danger" :disabled="!hasImage" @click="clear">清除图片</button>
+                <button class="btn" :disabled="!hasImage" @click="togglePreview">{{ previewText }}</button>
+                <button class="btn btn-primary" :disabled="!hasImage" @click="download">下载图片</button>
+            </div>
+        </div>
+
+        <div class="panel-section">
+            <div class="panel-title">色彩调整</div>
+            <div class="control-item" v-for="item in sliderConfigs" :key="item.key">
+                <div class="control-label">
+                    <span class="label-text">{{ item.label }}</span>
+                    <span class="label-value">{{ formatValue(item.key) }}</span>
+                </div>
+                <div class="slider-container">
+                    <input type="range" class="slider-input"
+                           :min="item.min" :max="item.max"
+                           v-model.number="adjustments[item.key]"
+                           @input="onSliderChange(item.key)">
                 </div>
             </div>
+        </div>
 
-            <div class="panel-section">
-                <div class="panel-title">色彩调整</div>
-                <div class="control-item" v-for="item in sliderConfigs" :key="item.key">
-                    <div class="control-label">
-                        <span class="label-text">{{ item.label }}</span>
-                        <span class="label-value">{{ formatValue(item.key) }}</span>
-                    </div>
-                    <div class="slider-container">
-                        <div class="slider-track"></div>
-                        <div class="slider-fill" :style="{ width: getPercent(item.key) + '%' }"></div>
-                        <div class="slider-thumb" :style="{ left: getPercent(item.key) + '%' }"></div>
-                        <input type="range" class="slider-input"
-                               :min="item.min" :max="item.max"
-                               v-model.number="adjustments[item.key]"
-                               @input="onSliderChange(item.key)">
-                    </div>
-                </div>
+        <div class="panel-section">
+            <div class="panel-title">预设效果</div>
+            <div class="preset-grid">
+                <button class="btn" v-for="(preset, name) in presets" :key="name"
+                        @click="applyPreset(name)">
+                    {{ preset.label }}
+                </button>
             </div>
+        </div>
+    </aside>
 
-            <div class="panel-section">
-                <div class="panel-title">预设效果</div>
-                <div class="preset-grid">
-                    <button class="btn" v-for="(preset, name) in presets" :key="name"
-                            @click="applyPreset(name)">
-                        {{ preset.label }}
-                    </button>
-                </div>
-            </div>
-        </aside>
+    <input type="file" ref="fileInput" accept="image/*" style="display: none;" @change="onFileChange">
+</div>
 
-        <input type="file" ref="fileInput" accept="image/*" style="display: none;" @change="onFileChange">
-    </div>
-
-    <script src="lib/vue@2.6.10.min.js"></script>
-    <script src="js/main.js" type="module"></script>
+<script src="lib/vue@2.6.10.min.js"></script>
+<script src="js/main.js" type="module"></script>
 </body>
 </html>
