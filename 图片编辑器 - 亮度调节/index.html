@@ -4,112 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>图片编辑器 - 亮度调节</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <section class="content-area">
-        <div class="canvas-container" id="canvasContainer">
-            <div class="upload-overlay" id="uploadOverlay">
-                <div class="upload-text">点击或拖拽图片到此处</div>
-                <div class="upload-hint">支持 JPG、PNG、GIF 格式</div>
-            </div>
-            <canvas id="pixiCanvas"></canvas>
-            <div class="image-info hidden" id="imageInfo">
-                <span id="imageSize">0 × 0</span>
-                <span id="imageFileName">未选择文件</span>
-            </div>
-            <div class="status-bar">
-                <div class="status-dot" id="statusDot"></div>
-                <span id="statusText">就绪</span>
-            </div>
-        </div>
-    </section>
-
-    <aside class="sidebar-right">
-        <div class="panel-section">
-            <div class="panel-title">图片操作</div>
-            <div class="tool-buttons">
-                <button class="btn btn-primary" id="uploadBtn">上传图片</button>
-                <button class="btn" id="loadSampleBtn">加载示例</button>
-                <button class="btn" id="resetBtn" disabled>重置调整</button>
-                <button class="btn btn-danger" id="clearBtn" disabled>清除图片</button>
-                <button class="btn" id="previewBtn" disabled>预览对比</button>
-                <button class="btn btn-primary" id="downloadBtn" disabled>下载图片</button>
-            </div>
-        </div>
-
-        <div class="panel-section">
-            <div class="panel-title">色彩调整</div>
-            <div class="control-item">
-                <div class="control-label">
-                    <span class="label-text">亮度</span>
-                    <span class="label-value" id="brightnessValue">0</span>
+    <div id="app">
+        <section class="content-area">
+            <div class="canvas-wrapper">
+                <div class="canvas-container" id="canvasContainer"
+                     @dragover.prevent="onDragOver"
+                     @dragleave.prevent="onDragLeave"
+                     @drop.prevent="onDrop">
+                    <div class="upload-overlay" v-show="!hasImage" @click="triggerUpload">
+                        <div class="upload-text">点击或拖拽图片到此处</div>
+                        <div class="upload-hint">支持 JPG、PNG、GIF 格式</div>
+                    </div>
+                    <canvas ref="canvas"></canvas>
                 </div>
-                <div class="slider-container">
-                    <div class="slider-track"></div>
-                    <div class="slider-fill" id="brightnessFill" style="width: 50%"></div>
-                    <div class="slider-thumb" id="brightnessThumb" style="left: 50%"></div>
-                    <input type="range" class="slider-input" id="brightnessSlider" min="-100" max="100" value="0">
+                <div class="canvas-info-bar">
+                    <div class="image-info" v-show="hasImage">
+                        <span>{{ imageInfo.size }}</span>
+                        <span>{{ imageInfo.fileName }}</span>
+                    </div>
+                    <div class="status-bar">
+                        <div class="status-dot" :class="{ inactive: !status.active }"></div>
+                        <span>{{ status.text }}</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="sidebar-right">
+            <div class="panel-section">
+                <div class="panel-title">图片操作</div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" @click="triggerUpload">上传图片</button>
+                    <button class="btn" @click="loadSample">加载示例</button>
+                    <button class="btn" :disabled="!hasImage" @click="reset">重置调整</button>
+                    <button class="btn btn-danger" :disabled="!hasImage" @click="clear">清除图片</button>
+                    <button class="btn" :disabled="!hasImage" @click="togglePreview">{{ previewText }}</button>
+                    <button class="btn btn-primary" :disabled="!hasImage" @click="download">下载图片</button>
                 </div>
             </div>
 
-            <div class="control-item">
-                <div class="control-label">
-                    <span class="label-text">对比度</span>
-                    <span class="label-value" id="contrastValue">0</span>
-                </div>
-                <div class="slider-container">
-                    <div class="slider-track"></div>
-                    <div class="slider-fill" id="contrastFill" style="width: 50%"></div>
-                    <div class="slider-thumb" id="contrastThumb" style="left: 50%"></div>
-                    <input type="range" class="slider-input" id="contrastSlider" min="-100" max="100" value="0">
-                </div>
-            </div>
-
-            <div class="control-item">
-                <div class="control-label">
-                    <span class="label-text">饱和度</span>
-                    <span class="label-value" id="saturationValue">0</span>
-                </div>
-                <div class="slider-container">
-                    <div class="slider-track"></div>
-                    <div class="slider-fill" id="saturationFill" style="width: 50%"></div>
-                    <div class="slider-thumb" id="saturationThumb" style="left: 50%"></div>
-                    <input type="range" class="slider-input" id="saturationSlider" min="-100" max="100" value="0">
+            <div class="panel-section">
+                <div class="panel-title">色彩调整</div>
+                <div class="control-item" v-for="item in sliderConfigs" :key="item.key">
+                    <div class="control-label">
+                        <span class="label-text">{{ item.label }}</span>
+                        <span class="label-value">{{ formatValue(item.key) }}</span>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <div class="slider-fill" :style="{ width: getPercent(item.key) + '%' }"></div>
+                        <div class="slider-thumb" :style="{ left: getPercent(item.key) + '%' }"></div>
+                        <input type="range" class="slider-input"
+                               :min="item.min" :max="item.max"
+                               v-model.number="adjustments[item.key]"
+                               @input="onSliderChange(item.key)">
+                    </div>
                 </div>
             </div>
 
-            <div class="control-item">
-                <div class="control-label">
-                    <span class="label-text">色相</span>
-                    <span class="label-value" id="hueValue">0°</span>
-                </div>
-                <div class="slider-container">
-                    <div class="slider-track"></div>
-                    <div class="slider-fill" id="hueFill" style="width: 50%"></div>
-                    <div class="slider-thumb" id="hueThumb" style="left: 50%"></div>
-                    <input type="range" class="slider-input" id="hueSlider" min="-180" max="180" value="0">
+            <div class="panel-section">
+                <div class="panel-title">预设效果</div>
+                <div class="preset-grid">
+                    <button class="btn" v-for="(preset, name) in presets" :key="name"
+                            @click="applyPreset(name)">
+                        {{ preset.label }}
+                    </button>
                 </div>
             </div>
-        </div>
+        </aside>
 
-        <div class="panel-section">
-            <div class="panel-title">预设效果</div>
-            <div class="preset-grid">
-                <button class="btn" data-preset="original">原始</button>
-                <button class="btn" data-preset="bright">明亮</button>
-                <button class="btn" data-preset="dark">暗调</button>
-                <button class="btn" data-preset="high-contrast">高对比</button>
-                <button class="btn" data-preset="grayscale">黑白</button>
-                <button class="btn" data-preset="warm">暖色</button>
-                <button class="btn" data-preset="cool">冷色</button>
-                <button class="btn" data-preset="vintage">复古</button>
-            </div>
-        </div>
-    </aside>
+        <input type="file" ref="fileInput" accept="image/*" style="display: none;" @change="onFileChange">
+    </div>
 
-    <input type="file" id="fileInput" accept="image/*" style="display: none;">
-
+    <script src="lib/vue@2.6.10.min.js"></script>
     <script src="js/main.js" type="module"></script>
 </body>
 </html>

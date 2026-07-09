@@ -84,6 +84,23 @@ export class ImageEditor {
     }
 
     /**
+     * 批量设置调整参数
+     * @param {object} adjustments - 参数对象
+     */
+    setAdjustments(adjustments) {
+        Object.assign(this.adjustments, adjustments);
+        this.applyFilters();
+    }
+
+    /**
+     * 显示原图
+     */
+    showOriginal() {
+        if (!this.originalImageData) return;
+        this.ctx.putImageData(this.originalImageData, 0, 0);
+    }
+
+    /**
      * 重置所有调整
      */
     reset() {
