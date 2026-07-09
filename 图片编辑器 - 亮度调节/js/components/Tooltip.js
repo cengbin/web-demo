@@ -15,7 +15,7 @@ Vue.component('v-tooltip', {
                      ref="popup" \
                      class="v-tooltip" \
                      :style="popupStyle">\
-                    <div class="v-tooltip-content">{{ content }}</div>\
+                    <div class="v-tooltip-content" v-html="formattedContent"></div>\
                     <div class="v-tooltip-arrow" :style="arrowStyle"></div>\
                 </div>\
             </transition>\
@@ -36,6 +36,12 @@ Vue.component('v-tooltip', {
             popupStyle: {},
             arrowStyle: {}
         };
+    },
+    computed: {
+        formattedContent: function () {
+            if (!this.content) return '';
+            return this.content.replace(/\n/g, '<br>');
+        }
     },
     methods: {
         onMouseEnter: function () {

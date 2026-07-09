@@ -352,7 +352,7 @@ body {
     background: rgba(0, 0, 0, 0.75);
     border-radius: 6px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    white-space: nowrap;
+    white-space: pre-line;
     word-wrap: break-word;
     pointer-events: none;
 }
@@ -360,6 +360,12 @@ body {
 .v-tooltip-content {
     position: relative;
     z-index: 1;
+}
+
+.v-tooltip-content br {
+    display: block;
+    margin-top: 4px;
+    content: "";
 }
 
 .v-tooltip-arrow {

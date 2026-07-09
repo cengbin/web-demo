@@ -32,18 +32,18 @@ new Vue({
 
             // 滑块配置
             sliderConfigs: [
-                { key: 'brightness', label: '亮度', min: -100, max: 100, description: '调整图片整体明暗程度' },
-                { key: 'contrast', label: '对比度', min: -100, max: 100, description: '调整明暗区域的差异' },
-                { key: 'saturation', label: '饱和度', min: -100, max: 100, description: '调整色彩鲜艳程度' },
-                { key: 'hue', label: '色相', min: -180, max: 180, description: '旋转色相环，改变颜色' },
-                { key: 'lightness', label: '明度', min: -100, max: 100, description: '在 HSL 空间调整明暗' },
-                { key: 'colorTemperature', label: '色温', min: -100, max: 100, description: '调整冷暖色调' },
-                { key: 'exposure', label: '曝光', min: -100, max: 100, description: '模拟相机曝光调整' },
-                { key: 'highlights', label: '高光', min: -100, max: 100, description: '调整亮部区域亮度' },
-                { key: 'shadows', label: '阴影', min: -100, max: 100, description: '调整暗部区域亮度' },
-                { key: 'vibrance', label: '自然饱和度', min: -100, max: 100, description: '保护肤色的智能饱和度' },
-                { key: 'clarity', label: '清晰度', min: -100, max: 100, description: '增强中频对比度，提升细节' },
-                { key: 'toneCurve', label: '色调曲线', min: -100, max: 100, description: '通过曲线精确控制色调映射' }
+                { key: 'brightness', label: '亮度', min: -100, max: 100, description: '定义：调整图片整体明暗\n效果：变亮 ↔ 变暗\n场景：修正过暗或过亮的照片' },
+                { key: 'contrast', label: '对比度', min: -100, max: 100, description: '定义：调整明暗区域差异\n效果：更强 ↔ 更柔和\n场景：让画面更有层次感' },
+                { key: 'saturation', label: '饱和度', min: -100, max: 100, description: '定义：调整色彩鲜艳程度\n效果：更鲜艳 ↔ 更灰暗\n场景：美食/风景更诱人' },
+                { key: 'hue', label: '色相', min: -180, max: 180, description: '定义：旋转色相环改变颜色\n效果：偏暖 ↔ 偏冷\n场景：创意调色' },
+                { key: 'lightness', label: '明度', min: -100, max: 100, description: '定义：在HSL空间调整明暗\n效果：变亮 ↔ 变暗\n场景：精细控制明暗' },
+                { key: 'colorTemperature', label: '色温', min: -100, max: 100, description: '定义：调整冷暖色调\n效果：偏暖(红) ↔ 偏冷(蓝)\n场景：修正偏色照片' },
+                { key: 'exposure', label: '曝光', min: -100, max: 100, description: '定义：模拟相机进光量\n效果：过曝 ↔ 欠曝\n场景：修正曝光不准的照片' },
+                { key: 'highlights', label: '高光', min: -100, max: 100, description: '定义：只调整最亮部分\n效果：更亮 ↔ 压暗\n场景：修复过曝天空' },
+                { key: 'shadows', label: '阴影', min: -100, max: 100, description: '定义：只调整最暗部分\n效果：提亮 ↔ 更暗\n场景：提亮暗部细节' },
+                { key: 'vibrance', label: '自然饱和度', min: -100, max: 100, description: '定义：智能调整饱和度\n效果：更鲜艳(保护肤色)\n场景：人像/美食调色' },
+                { key: 'clarity', label: '清晰度', min: -100, max: 100, description: '定义：增强中频对比度\n效果：更清晰 ↔ 更柔和\n场景：风景/建筑细节' },
+                { key: 'toneCurve', label: '色调曲线', min: -100, max: 100, description: '定义：精细调整明暗层次\n效果：增强对比 ↔ 降低对比\n场景：专业调色' }
             ],
 
             // 预设
