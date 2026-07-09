@@ -7,6 +7,7 @@ import { brightness } from './filters/brightness.js';
 import { contrast } from './filters/contrast.js';
 import { saturation } from './filters/saturation.js';
 import { hue } from './filters/hue.js';
+import { lightness } from './filters/lightness.js';
 
 export class ImageEditor {
     constructor(canvas) {
@@ -25,7 +26,8 @@ export class ImageEditor {
             brightness: 0,
             contrast: 0,
             saturation: 0,
-            hue: 0
+            hue: 0,
+            lightness: 0
         };
     }
 
@@ -68,6 +70,7 @@ export class ImageEditor {
         contrast(data, this.adjustments.contrast);
         saturation(data, this.adjustments.saturation);
         hue(data, this.adjustments.hue);
+        lightness(data, this.adjustments.lightness);
 
         // 写回 Canvas
         this.ctx.putImageData(imageData, 0, 0);
@@ -108,7 +111,8 @@ export class ImageEditor {
             brightness: 0,
             contrast: 0,
             saturation: 0,
-            hue: 0
+            hue: 0,
+            lightness: 0
         };
         this.applyFilters();
     }
@@ -125,7 +129,8 @@ export class ImageEditor {
             brightness: 0,
             contrast: 0,
             saturation: 0,
-            hue: 0
+            hue: 0,
+            lightness: 0
         };
     }
 
