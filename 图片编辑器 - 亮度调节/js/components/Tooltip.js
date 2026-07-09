@@ -6,17 +6,17 @@
 Vue.component('v-tooltip', {
     template: '\
         <span class="v-tooltip-wrapper" \
+              ref="trigger" \
               @mouseenter="onMouseEnter" \
               @mouseleave="onMouseLeave">\
             <slot></slot>\
             <transition name="v-tooltip-fade">\
-                <div v-show="visible" \
+                <div v-if="visible" \
                      ref="popup" \
                      class="v-tooltip" \
-                     :class="placementClass" \
                      :style="popupStyle">\
                     <div class="v-tooltip-content">{{ content }}</div>\
-                    <div class="v-tooltip-arrow"></div>\
+                    <div class="v-tooltip-arrow" :style="arrowStyle"></div>\
                 </div>\
             </transition>\
         </span>',
@@ -33,13 +33,9 @@ Vue.component('v-tooltip', {
     data: function () {
         return {
             visible: false,
-            popupStyle: {}
+            popupStyle: {},
+            arrowStyle: {}
         };
-    },
-    computed: {
-        placementClass: function () {
-            return 'v-tooltip-' + this.placement;
-        }
     },
     methods: {
         onMouseEnter: function () {
@@ -48,31 +44,78 @@ Vue.component('v-tooltip', {
             this.$nextTick(this.updatePosition);
         },
         onMouseLeave: function () {
-            // this.visible = false;
+            this.visible = false;
+            this.popupStyle = {};
+            this.arrowStyle = {};
         },
         updatePosition: function () {
+            var trigger = this.$refs.trigger;
             var popup = this.$refs.popup;
-            if (!popup) return;
+            if (!trigger || !popup) return;
 
-            var rect = popup.getBoundingClientRect();
+            var triggerRect = trigger.getBoundingClientRect();
+            var popupRect = popup.getBoundingClientRect();
+            var gap = 8; // 间距
+
             var style = {};
+            var arrow = {};
 
-            // 检查是否超出视口，自动调整位置
-            if (this.placement === 'top' && rect.top < 0) {
-                style.bottom = 'auto';
-                style.top = '100%';
-                style.marginTop = '8px';
-                style.marginBottom = '0';
+            if (this.placement === 'top') {
+                style.position = 'fixed';
+                style.left = (triggerRect.left + triggerRect.width / 2 - popupRect.width / 2) + 'px';
+                style.top = (triggerRect.top - popupRect.height - gap) + 'px';
+
+                // 如果顶部超出视口，改为底部显示
+                if (triggerRect.top - popupRect.height - gap < 0) {
+                    style.top = (triggerRect.bottom + gap) + 'px';
+                    arrow.position = 'absolute';
+                    arrow.bottom = '100%';
+                    arrow.left = '50%';
+                    arrow.transform = 'translateX(-50%)';
+                    arrow.borderBottomColor = 'rgba(0, 0, 0, 0.75)';
+                    arrow.borderTopColor = 'transparent';
+                } else {
+                    arrow.position = 'absolute';
+                    arrow.top = '100%';
+                    arrow.left = '50%';
+                    arrow.transform = 'translateX(-50%)';
+                    arrow.borderTopColor = 'rgba(0, 0, 0, 0.75)';
+                    arrow.borderBottomColor = 'transparent';
+                }
+            } else {
+                style.position = 'fixed';
+                style.left = (triggerRect.left + triggerRect.width / 2 - popupRect.width / 2) + 'px';
+                style.top = (triggerRect.bottom + gap) + 'px';
+
+                // 如果底部超出视口，改为顶部显示
+                if (triggerRect.bottom + popupRect.height + gap > window.innerHeight) {
+                    style.top = (triggerRect.top - popupRect.height - gap) + 'px';
+                    arrow.position = 'absolute';
+                    arrow.top = '100%';
+                    arrow.left = '50%';
+                    arrow.transform = 'translateX(-50%)';
+                    arrow.borderTopColor = 'rgba(0, 0, 0, 0.75)';
+                    arrow.borderBottomColor = 'transparent';
+                } else {
+                    arrow.position = 'absolute';
+                    arrow.bottom = '100%';
+                    arrow.left = '50%';
+                    arrow.transform = 'translateX(-50%)';
+                    arrow.borderBottomColor = 'rgba(0, 0, 0, 0.75)';
+                    arrow.borderTopColor = 'transparent';
+                }
             }
 
-            if (this.placement === 'bottom' && rect.bottom > window.innerHeight) {
-                style.top = 'auto';
-                style.bottom = '100%';
-                style.marginBottom = '8px';
-                style.marginTop = '0';
+            // 水平方向超出视口处理
+            var left = parseFloat(style.left);
+            if (left < 0) {
+                style.left = '0px';
+            } else if (left + popupRect.width > window.innerWidth) {
+                style.left = (window.innerWidth - popupRect.width) + 'px';
             }
 
             this.popupStyle = style;
+            this.arrowStyle = arrow;
         }
     }
 });
