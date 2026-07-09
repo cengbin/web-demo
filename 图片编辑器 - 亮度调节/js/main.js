@@ -17,7 +17,9 @@ new Vue({
                 contrast: 0,
                 saturation: 0,
                 hue: 0,
-                lightness: 0
+                lightness: 0,
+                colorTemperature: 0,
+                exposure: 0
             },
 
             // 滑块配置
@@ -26,19 +28,21 @@ new Vue({
                 { key: 'contrast', label: '对比度', min: -100, max: 100 },
                 { key: 'saturation', label: '饱和度', min: -100, max: 100 },
                 { key: 'hue', label: '色相', min: -180, max: 180 },
-                { key: 'lightness', label: '明度', min: -100, max: 100 }
+                { key: 'lightness', label: '明度', min: -100, max: 100 },
+                { key: 'colorTemperature', label: '色温', min: -100, max: 100 },
+                { key: 'exposure', label: '曝光', min: -100, max: 100 }
             ],
 
             // 预设
             presets: {
-                original: { label: '原始', brightness: 0, contrast: 0, saturation: 0, hue: 0, lightness: 0 },
-                bright: { label: '明亮', brightness: 30, contrast: 10, saturation: 5, hue: 0, lightness: 0 },
-                dark: { label: '暗调', brightness: -30, contrast: 20, saturation: -10, hue: 0, lightness: 0 },
-                'high-contrast': { label: '高对比', brightness: 0, contrast: 50, saturation: 20, hue: 0, lightness: 0 },
-                grayscale: { label: '黑白', brightness: 0, contrast: 0, saturation: -100, hue: 0, lightness: 0 },
-                warm: { label: '暖色', brightness: 10, contrast: 5, saturation: 20, hue: 20, lightness: 0 },
-                cool: { label: '冷色', brightness: 0, contrast: 10, saturation: -10, hue: -20, lightness: 0 },
-                vintage: { label: '复古', brightness: -10, contrast: 20, saturation: -30, hue: 10, lightness: 0 }
+                original: { label: '原始', brightness: 0, contrast: 0, saturation: 0, hue: 0, lightness: 0, colorTemperature: 0, exposure: 0 },
+                bright: { label: '明亮', brightness: 30, contrast: 10, saturation: 5, hue: 0, lightness: 0, colorTemperature: 0, exposure: 0 },
+                dark: { label: '暗调', brightness: -30, contrast: 20, saturation: -10, hue: 0, lightness: 0, colorTemperature: 0, exposure: 0 },
+                'high-contrast': { label: '高对比', brightness: 0, contrast: 50, saturation: 20, hue: 0, lightness: 0, colorTemperature: 0, exposure: 0 },
+                grayscale: { label: '黑白', brightness: 0, contrast: 0, saturation: -100, hue: 0, lightness: 0, colorTemperature: 0, exposure: 0 },
+                warm: { label: '暖色', brightness: 10, contrast: 5, saturation: 20, hue: 20, lightness: 0, colorTemperature: 30, exposure: 0 },
+                cool: { label: '冷色', brightness: 0, contrast: 10, saturation: -10, hue: -20, lightness: 0, colorTemperature: -30, exposure: 0 },
+                vintage: { label: '复古', brightness: -10, contrast: 20, saturation: -30, hue: 10, lightness: 0, colorTemperature: 20, exposure: -10 }
             },
 
             // 编辑器实例
@@ -154,7 +158,9 @@ new Vue({
                 contrast: 0,
                 saturation: 0,
                 hue: 0,
-                lightness: 0
+                lightness: 0,
+                colorTemperature: 0,
+                exposure: 0
             };
             this.isPreview = false;
         },
@@ -169,7 +175,9 @@ new Vue({
                 contrast: 0,
                 saturation: 0,
                 hue: 0,
-                lightness: 0
+                lightness: 0,
+                colorTemperature: 0,
+                exposure: 0
             };
             this.editor.reset();
             this.setStatus('已重置调整', true);
@@ -181,7 +189,9 @@ new Vue({
                 contrast: 0,
                 saturation: 0,
                 hue: 0,
-                lightness: 0
+                lightness: 0,
+                colorTemperature: 0,
+                exposure: 0
             };
             this.hasImage = false;
             this.isPreview = false;
@@ -213,7 +223,9 @@ new Vue({
                 contrast: preset.contrast,
                 saturation: preset.saturation,
                 hue: preset.hue,
-                lightness: preset.lightness
+                lightness: preset.lightness,
+                colorTemperature: preset.colorTemperature,
+                exposure: preset.exposure
             };
             this.editor.applyFilters();
             this.setStatus('已应用预设: ' + preset.label, true);
