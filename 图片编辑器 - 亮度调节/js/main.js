@@ -112,7 +112,8 @@ new Vue({
                     fileName: file.name
                 };
                 self.hasImage = true;
-                self.resetAdjustments();
+                // 应用当前调整参数
+                self.editor.setAdjustments(Object.assign({}, self.adjustments));
                 self.setStatus('图片已加载', true);
             }).catch(function (err) {
                 self.setStatus('加载失败', false);
@@ -129,7 +130,8 @@ new Vue({
                     fileName: 'sample.jpg'
                 };
                 self.hasImage = true;
-                self.resetAdjustments();
+                // 应用当前调整参数
+                self.editor.setAdjustments(Object.assign({}, self.adjustments));
                 self.setStatus('示例图片已加载', true);
             }).catch(function () {
                 var img = ImageLoader.createSample();
@@ -140,7 +142,8 @@ new Vue({
                         fileName: 'sample.png'
                     };
                     self.hasImage = true;
-                    self.resetAdjustments();
+                    // 应用当前调整参数
+                    self.editor.setAdjustments(Object.assign({}, self.adjustments));
                     self.setStatus('示例图片已加载', true);
                 };
             });
