@@ -10,16 +10,6 @@
 <div id="app">
     <section class="content-area">
         <div class="canvas-wrapper">
-            <div class="canvas-info-bar">
-                <div class="image-info" v-show="hasImage">
-                    <span>{{ imageInfo.size }}</span>
-                    <span>{{ imageInfo.fileName }}</span>
-                </div>
-                <div class="status-bar">
-                    <div class="status-dot" :class="{ inactive: !status.active }"></div>
-                    <span>{{ status.text }}</span>
-                </div>
-            </div>
             <div class="canvas-container" id="canvasContainer"
                  @dragover.prevent="onDragOver"
                  @dragleave.prevent="onDragLeave"
@@ -29,6 +19,16 @@
                     <div class="upload-hint">支持 JPG、PNG、GIF 格式</div>
                 </div>
                 <canvas ref="canvas"></canvas>
+            </div>
+        </div>
+        <div class="canvas-info-bar">
+            <div class="image-info" v-show="hasImage">
+                <span>{{ imageInfo.size }}</span>
+                <span>{{ imageInfo.fileName }}</span>
+            </div>
+            <div class="status-bar">
+                <div class="status-dot" :class="{ inactive: !status.active }"></div>
+                <span>{{ status.text }}</span>
             </div>
         </div>
     </section>

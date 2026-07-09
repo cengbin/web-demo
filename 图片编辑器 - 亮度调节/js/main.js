@@ -105,6 +105,7 @@ new Vue({
                     fileName: file.name
                 };
                 self.hasImage = true;
+                self.resetAdjustments();
                 self.setStatus('图片已加载', true);
             }).catch(function (err) {
                 self.setStatus('加载失败', false);
@@ -121,6 +122,7 @@ new Vue({
                     fileName: 'sample.jpg'
                 };
                 self.hasImage = true;
+                self.resetAdjustments();
                 self.setStatus('示例图片已加载', true);
             }).catch(function () {
                 var img = ImageLoader.createSample();
@@ -131,9 +133,19 @@ new Vue({
                         fileName: 'sample.png'
                     };
                     self.hasImage = true;
+                    self.resetAdjustments();
                     self.setStatus('示例图片已加载', true);
                 };
             });
+        },
+        resetAdjustments: function () {
+            this.adjustments = {
+                brightness: 0,
+                contrast: 0,
+                saturation: 0,
+                hue: 0
+            };
+            this.isPreview = false;
         },
         onSliderChange: function (key) {
             if (this.editor) {
